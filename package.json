@@ -4,7 +4,10 @@
   "scripts": {
     "build": "vue-tsc -b && vite build",
     "dev": "vite",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "description": "A UI component library for Vue 3 based on Tailwind CSS",
   "types": "dist/types/index.d.ts",
@@ -62,8 +65,5 @@
     "vite-plugin-dts": "^4.5.4",
     "vitepress": "^1.6.4",
     "vue-tsc": "latest"
-  },
-  "overrides": {
-    "vite": "npm:rolldown-vite@latest"
   }
 }

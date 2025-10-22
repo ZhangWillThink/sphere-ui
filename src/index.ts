@@ -1,14 +1,6 @@
 import './style.css'
 
 import Button from './ui/Button/index.vue'
-export type {
-  ButtonProps,
-  ButtonSize,
-  ButtonVariant,
-  ButtonEmits,
-  ButtonSlots,
-  ButtonInstance,
-} from './ui/Button/types'
 import Card from './ui/Card/index.vue'
 export type { CollapseItem, CollapseProps } from './ui/Collapse/types'
 export type {
