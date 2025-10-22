@@ -1,0 +1,68 @@
+{
+  "name": "sphere-ui",
+  "private": false,
+  "scripts": {
+    "build": "vue-tsc -b && vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "description": "A UI component library for Vue 3 based on Tailwind CSS",
+  "types": "dist/types/index.d.ts",
+  "main": "dist/sphere-ui.cjs.js",
+  "module": "dist/sphere-ui.es.js",
+  "type": "module",
+  "version": "0.1.4",
+  "keywords": [
+    "vue",
+    "components",
+    "ui"
+  ],
+  "author": "WillZhang",
+  "license": "MIT",
+  "peerDependencies": {
+    "@icon-park/vue-next": "^2 || latest",
+    "@tailwindcss/vite": "latest",
+    "@vueuse/core": "latest",
+    "class-variance-authority": "latest",
+    "lodash-es": "latest",
+    "tailwindcss": "latest",
+    "vue": "^3 || latest"
+  },
+  "dependencies": {},
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/sphere-ui.es.js",
+      "require": "./dist/sphere-ui.cjs.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./style.css": "./dist/sphere-ui.css",
+    "./dist/sphere-ui.css": "./dist/sphere-ui.css"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "latest",
+    "@types/node": "latest",
+    "@vitejs/plugin-vue": "latest",
+    "@vue/eslint-config-prettier": "latest",
+    "@vue/eslint-config-typescript": "latest",
+    "@vue/tsconfig": "latest",
+    "@vuedx/typescript-plugin-vue": "latest",
+    "eslint": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-import": "latest",
+    "eslint-plugin-vue": "latest",
+    "prettier": "latest",
+    "prettier-plugin-tailwindcss": "latest",
+    "shiki": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "vite-plugin-dts": "^4.5.4",
+    "vue-tsc": "latest"
+  },
+  "overrides": {
+    "vite": "npm:rolldown-vite@latest"
+  }
+}

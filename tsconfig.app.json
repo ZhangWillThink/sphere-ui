@@ -1,0 +1,21 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "types": ["vite/client"],
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+
+    "declaration": true, // 生成 .d.ts 文件
+    "declarationDir": "dist/types", // 类型文件输出目录
+    "emitDeclarationOnly": true // 只生成类型，不编译JS
+  },
+  "include": ["src/**/*", "src/ui"],
+  "exclude": ["node_modules"]
+}
