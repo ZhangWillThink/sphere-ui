@@ -17,7 +17,7 @@ import Tabs from './Tabs/index.vue'
 import Tag from './Tag/index.vue'
 import Textarea from './Textarea/index.vue'
 import Tooltip from './Tooltip/index.vue'
-import { Collapse as CollapseTransition } from './Transition'
+import { CollapseTransition } from './Transition'
 
 export {
   Button,

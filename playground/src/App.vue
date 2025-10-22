@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Button, Select } from 'rings-ui'
+import { Button, Select } from 'sphere-ui'
 
 defineOptions({ name: 'App' })
 </script>
