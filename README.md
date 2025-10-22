@@ -227,7 +227,7 @@ const visible = ref(false)
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/sphere-ui.git
+git clone https://github.com/ZhangWillThink/sphere-ui.git
 cd sphere-ui
 
 # Install dependencies

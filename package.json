@@ -9,12 +9,15 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
+  "repository": {
+    "url": "https://github.com/ZhangWillThink/sphere-ui#"
+  },
   "description": "A UI component library for Vue 3 based on Tailwind CSS",
   "types": "dist/types/index.d.ts",
   "main": "dist/sphere-ui.cjs.js",
   "module": "dist/sphere-ui.es.js",
   "type": "module",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "keywords": [
     "vue",
     "components",
