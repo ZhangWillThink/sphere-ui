@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { VariantProps } from 'class-variance-authority'
+import type { ButtonProps, ButtonSlots, ButtonEmits } from './types'
 
 import { cva } from 'class-variance-authority'
 
@@ -55,28 +55,11 @@ const button = cva(
   },
 )
 
-type ButtonProps = VariantProps<typeof button>
+const { size = 'md', variant = 'default', loading, disabled } = defineProps<ButtonProps>()
 
-const {
-  size = 'md',
-  variant = 'default',
-  loading,
-  disabled,
-} = defineProps<
-  {
-    loading?: boolean
-    disabled?: boolean
-  } & ButtonProps
->()
+const slot = defineSlots<ButtonSlots>()
 
-const slot = defineSlots<{
-  default?: () => any
-  icon?: () => any
-}>()
-
-const emit = defineEmits<{
-  click: [Event]
-}>()
+const emit = defineEmits<ButtonEmits>()
 
 const handleClick = (evt: Event) => {
   if (disabled || loading) {
