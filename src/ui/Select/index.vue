@@ -4,11 +4,12 @@ import type { VNodeChild } from 'vue'
 import { computed, isVNode, ref, shallowRef, useTemplateRef, watch } from 'vue'
 
 import { Check, Down } from '@icon-park/vue-next'
-import { onKeyStroke, useToggle } from '@vueuse/core'
+import { onClickOutside, onKeyStroke, useToggle } from '@vueuse/core'
 import { isString } from 'lodash-es'
 
 import useFixedPosition from '../shared/hooks/useFixedPosition'
 import UiTag from '../Tag/index.vue'
+import { CollapseTransition } from '../Transition'
 
 defineOptions({ name: 'UiSelect', inheritAttrs: true })
 
@@ -178,6 +179,7 @@ onKeyStroke(['ArrowDown', 'ArrowUp', 'Home', 'End', 'Enter', ' ', 'Escape'], key
 onKeyStroke(['ArrowDown', 'ArrowUp', 'Home', 'End', 'Enter', ' ', 'Escape'], keyHandler, {
   target: content,
 })
+onClickOutside(content, closeDropdown)
 </script>
 
 <template>
@@ -222,8 +224,9 @@ onKeyStroke(['ArrowDown', 'ArrowUp', 'Home', 'End', 'Enter', ' ', 'Escape'], key
   </button>
 
   <Teleport to="body">
-    <main v-if="open" class="fixed inset-0 z-50 h-svh w-svw" @click="closeDropdown">
+    <CollapseTransition>
       <ul
+        v-if="open"
         ref="content"
         role="listbox"
         :style="{ ...contentPosition, width: `${triggerBounding.width.value}px` }"
@@ -278,6 +281,6 @@ onKeyStroke(['ArrowDown', 'ArrowUp', 'Home', 'End', 'Enter', ' ', 'Escape'], key
           未找到匹配的选项
         </li>
       </ul>
-    </main>
+    </CollapseTransition>
   </Teleport>
 </template>

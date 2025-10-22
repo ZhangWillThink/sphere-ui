@@ -1,1 +1,3 @@
-export { default as Collapse } from './Collapse.vue'
+import CollapseTransition from './Collapse.vue'
+
+export { CollapseTransition }

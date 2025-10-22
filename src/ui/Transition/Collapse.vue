@@ -76,8 +76,6 @@ const onLeaveCancelled = (el: RendererElement) => reset(el)
 <template>
   <Transition
     v-bind="$attrs"
-    enterActiveClass="transition-all"
-    leaveActiveClass="transition-all"
     @beforeEnter="onBeforeEnter"
     @enter="onEnter"
     @afterEnter="onAfterEnter"
@@ -86,6 +84,7 @@ const onLeaveCancelled = (el: RendererElement) => reset(el)
     @leave="onLeave"
     @afterLeave="handleAfterLeave"
     @leaveCancelled="onLeaveCancelled"
+    class="transition-all"
   >
     <slot name="default" />
   </Transition>

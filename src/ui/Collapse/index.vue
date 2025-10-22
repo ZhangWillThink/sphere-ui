@@ -7,7 +7,7 @@ import { computed, isVNode, ref } from 'vue'
 import { Down } from '@icon-park/vue-next'
 import { cva } from 'class-variance-authority'
 
-import { Collapse as TransitionCollapse } from '../Transition'
+import { CollapseTransition } from '../Transition'
 
 defineOptions({ name: 'UiCollapse' })
 
@@ -174,14 +174,14 @@ const contentBoxClasses = cva('text-foreground/80 px-4 pt-0 pb-4 text-sm', {
       </div>
 
       <KeepAlive>
-        <TransitionCollapse>
+        <CollapseTransition>
           <div v-if="isActive(item.key)" class="overflow-hidden">
             <div :class="contentBoxClasses({ ghost })">
               <component v-if="isVNode(item.children)" :is="item.children" />
               <template v-else>{{ item.children }}</template>
             </div>
           </div>
-        </TransitionCollapse>
+        </CollapseTransition>
       </KeepAlive>
     </div>
   </div>

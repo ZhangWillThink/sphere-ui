@@ -26,7 +26,7 @@ import Tabs from './ui/Tabs/index.vue'
 import Tag from './ui/Tag/index.vue'
 import Textarea from './ui/Textarea/index.vue'
 import Tooltip from './ui/Tooltip/index.vue'
-import { Collapse as CollapseTransition } from './ui/Transition'
+import { CollapseTransition } from './ui/Transition'
 
 // 命名导出
 export {
