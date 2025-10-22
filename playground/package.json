@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "rings-ui": "latest",
+    "sphere-ui": "link:..",
     "vue": "^3.5.22"
   },
   "devDependencies": {
