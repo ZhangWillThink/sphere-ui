@@ -32,7 +32,7 @@
 
   --color-glass-background: var(--glass-background);
 }
-gs .glass-light {
+.glass-light {
   @apply bg-glass-background backdrop-blur-sm;
 }
 

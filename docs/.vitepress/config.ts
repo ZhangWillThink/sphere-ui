@@ -135,6 +135,10 @@ export default defineConfig({
       port: 5173,
       host: true,
       // Allow serving files from project root so theme can import `src/style.css`
+      fs: {
+        // allow importing from project root
+        allow: ['..', '../..'],
+      },
     },
   },
 })
