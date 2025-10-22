@@ -134,6 +134,7 @@ export default defineConfig({
     server: {
       port: 5173,
       host: true,
+      // Allow serving files from project root so theme can import `src/style.css`
     },
   },
 })

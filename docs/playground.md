@@ -106,15 +106,22 @@ const handleButtonClick = () => {
             {{ buttonLoading ? 'Loading...' : 'Click Me' }}
           </Button>
           
-          <div class="text-sm text-gray-600">
-            <strong>Props:</strong>
-            <pre class="mt-2 p-2 bg-gray-100 rounded">variant="{{ buttonVariant }}"
+            <div class="text-sm text-gray-600">
+              <strong>Props:</strong>
+              <div class="mt-2 p-2 bg-gray-100 rounded">
+
+```text
+variant="{{ buttonVariant }}"
 size="{{ buttonSize }}"
-:loading="{{ buttonLoading }}"</pre>
-          </div>
+:loading="{{ buttonLoading }}"
+```
+
+              </div>
+            </div>
         </div>
       </div>
     </div>
+
   </Card>
 
   <Card class="mb-6">
@@ -286,18 +293,23 @@ The playground above demonstrates the core components of Sphere UI. You can:
 ## Component Categories
 
 ### Basic Components
+
 Interactive elements that form the foundation of your UI.
 
 ### Form Components
+
 Input controls for collecting user data with validation support.
 
 ### Data Display
+
 Components for presenting information in structured formats.
 
 ### Feedback
+
 Components that provide user feedback and confirmations.
 
 ### Layout
+
 Structural components for organizing your interface.
 
 ## Code Sandbox
@@ -320,4 +332,4 @@ Built something cool with Sphere UI? Share it with the community!
 
 - Explore [Component Documentation](/components/button)
 - Read the [Guide](/guide/introduction)
-- Check out [Advanced Examples](/examples)
+- Check out [Advanced Examples](/examples/)
