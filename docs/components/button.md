@@ -6,7 +6,7 @@ Button components are used to trigger actions and events with various styles and
 
 The most basic button with different variants.
 
-<script setup>
+<script>
 import { ref } from 'vue'
 
 const count = ref(0)
@@ -182,15 +182,9 @@ const count = ref(0)
   <div class="flex flex-col items-center gap-4">
     <div class="text-4xl font-bold">{{ count }}</div>
     <div class="flex gap-3">
-      <Button variant="destructive" @click="count--" :disabled="count <= 0">
-        Decrease
-      </Button>
-      <Button variant="ghost" @click="count = 0">
-        Reset
-      </Button>
-      <Button variant="primary" @click="count++">
-        Increase
-      </Button>
+      <Button variant="destructive" @click="count--" :disabled="count <= 0"> Decrease </Button>
+      <Button variant="ghost" @click="count = 0"> Reset </Button>
+      <Button variant="primary" @click="count++"> Increase </Button>
     </div>
   </div>
 </template>
@@ -237,6 +231,7 @@ Complete overview of all button variants and sizes.
         <Button size="lg" variant="destructive">Large Destructive</Button>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -244,25 +239,25 @@ Complete overview of all button variants and sizes.
 
 ### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'default' \| 'primary' \| 'ghost' \| 'destructive'` | `'default'` | Button style variant |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
-| `disabled` | `boolean` | `false` | Whether the button is disabled |
-| `loading` | `boolean` | `false` | Show loading state |
+| Prop       | Type                                                 | Default     | Description                    |
+| ---------- | ---------------------------------------------------- | ----------- | ------------------------------ |
+| `variant`  | `'default' \| 'primary' \| 'ghost' \| 'destructive'` | `'default'` | Button style variant           |
+| `size`     | `'sm' \| 'md' \| 'lg'`                               | `'md'`      | Button size                    |
+| `disabled` | `boolean`                                            | `false`     | Whether the button is disabled |
+| `loading`  | `boolean`                                            | `false`     | Show loading state             |
 
 ### Events
 
-| Event | Type | Description |
-|-------|------|-------------|
+| Event   | Type                     | Description                                                           |
+| ------- | ------------------------ | --------------------------------------------------------------------- |
 | `click` | `(event: Event) => void` | Emitted when button is clicked (not emitted when disabled or loading) |
 
 ### Slots
 
-| Slot | Description |
-|------|-------------|
-| `default` | Button content |
-| `icon` | Icon to display before the text |
+| Slot      | Description                     |
+| --------- | ------------------------------- |
+| `default` | Button content                  |
+| `icon`    | Icon to display before the text |
 
 ## TypeScript
 

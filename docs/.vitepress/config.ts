@@ -1,3 +1,4 @@
+import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
@@ -86,22 +87,16 @@ export default defineConfig({
         },
         {
           text: 'Navigation',
-          items: [
-            { text: 'Context Menu', link: '/components/context-menu' },
-          ],
+          items: [{ text: 'Context Menu', link: '/components/context-menu' }],
         },
         {
           text: 'Utilities',
-          items: [
-            { text: 'Transition', link: '/components/transition' },
-          ],
+          items: [{ text: 'Transition', link: '/components/transition' }],
         },
       ],
     },
 
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/yourusername/sphere-ui' },
-    ],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/yourusername/sphere-ui' }],
 
     search: {
       provider: 'local',
@@ -135,6 +130,7 @@ export default defineConfig({
   },
 
   vite: {
+    plugins: [tailwindcss()],
     server: {
       port: 5173,
       host: true,

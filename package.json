@@ -31,7 +31,6 @@
     "tailwindcss": "latest",
     "vue": "3"
   },
-  "dependencies": {},
   "files": [
     "dist",
     "README.md"
@@ -46,6 +45,7 @@
     "./dist/sphere-ui.css": "./dist/sphere-ui.css"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.15",
     "@types/lodash-es": "latest",
     "@types/node": "latest",
     "@vitejs/plugin-vue": "latest",
@@ -60,6 +60,7 @@
     "prettier": "latest",
     "prettier-plugin-tailwindcss": "latest",
     "shiki": "latest",
+    "tailwindcss": "^4.1.15",
     "typescript": "latest",
     "vite": "latest",
     "vite-plugin-dts": "latest",
