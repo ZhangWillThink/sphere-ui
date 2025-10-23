@@ -6,6 +6,8 @@ import { h } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import './style.css'
 
+import 'sphere-ui/style.css'
+
 export default {
   extends: DefaultTheme,
   Layout: () => {
