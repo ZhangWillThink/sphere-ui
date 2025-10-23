@@ -26,12 +26,12 @@
   "author": "WillZhang",
   "license": "MIT",
   "peerDependencies": {
-    "@icon-park/vue-next": "latest",
-    "@tailwindcss/vite": "latest",
-    "@vueuse/core": "latest",
-    "class-variance-authority": "latest",
-    "lodash-es": "latest",
-    "tailwindcss": "latest",
+    "@icon-park/vue-next": "1",
+    "@tailwindcss/vite": "4",
+    "@vueuse/core": "14",
+    "class-variance-authority": "0.7.1",
+    "lodash-es": "4",
+    "tailwindcss": "4",
     "vue": "3"
   },
   "files": [
