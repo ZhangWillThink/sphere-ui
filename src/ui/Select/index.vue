@@ -229,9 +229,12 @@ onClickOutside(content, closeDropdown)
         v-if="open"
         ref="content"
         role="listbox"
-        :style="{ ...contentPosition, width: `${triggerBounding.width.value}px` }"
+        :style="{
+          ...contentPosition,
+          width: `${triggerBounding.width.value}px`,
+          left: `${triggerBounding.left.value}px`,
+        }"
         class="glass mt-2 max-h-48 overflow-auto rounded-lg p-1 shadow"
-        @click.stop
       >
         <li
           v-if="searchable"

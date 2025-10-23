@@ -1,4 +1,6 @@
-import { computed, type CSSProperties, type ShallowRef } from 'vue'
+import type { CSSProperties, ShallowRef } from 'vue'
+
+import { computed } from 'vue'
 
 import { useElementBounding, useElementSize } from '@vueuse/core'
 import { isNil, isNumber } from 'lodash-es'
