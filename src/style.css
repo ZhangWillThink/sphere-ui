@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 
+@source '../docs/**/*.md';
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant hover (&:hover);
 
