@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      sphere-ui:
+        specifier: ^0.1.5
+        version: 0.1.5(vue@3.5.22)
     devDependencies:
       vitepress:
         specifier: 2.0.0-alpha.12
@@ -628,6 +632,17 @@ packages:
   speakingurl@14.0.1:
     resolution: {integrity: sha512-1POYv7uv2gXoyGFpBCmpDVSNV74IfsWlDW216UPjbWufNf+bSU6GdbDsxdcxtfwb4xlI3yxzOTKClUosxARYrQ==}
     engines: {node: '>=0.10.0'}
+
+  sphere-ui@0.1.5:
+    resolution: {integrity: sha512-n6JsWntcGLPw5B0lZ3PhpOvW62IIZJCeyddqmXy4Ls5zknH3NoBnQB/bTnlrqX54F0Erk0+C+XB3+48vfz4ujg==}
+    peerDependencies:
+      '@icon-park/vue-next': latest
+      '@tailwindcss/vite': latest
+      '@vueuse/core': latest
+      class-variance-authority: latest
+      lodash-es: latest
+      tailwindcss: latest
+      vue: '3'
 
   stringify-entities@4.0.4:
     resolution: {integrity: sha512-IwfBptatlO+QCJUo19AqvrPNqlVMpW9YEL2LIVY+Rpv2qsjCGxaDLNRgeGsQWJhfItebuJhsGSLjaBbNSQ+ieg==}
@@ -1277,6 +1292,10 @@ snapshots:
   space-separated-tokens@2.0.2: {}
 
   speakingurl@14.0.1: {}
+
+  sphere-ui@0.1.5(vue@3.5.22):
+    dependencies:
+      vue: 3.5.22
 
   stringify-entities@4.0.4:
     dependencies:

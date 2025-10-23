@@ -12,7 +12,9 @@
   "author": "WillZhang",
   "packageManager": "pnpm@10.19.0",
   "devDependencies": {
-    "vitepress": "2.0.0-alpha.12",
-    "rings-ui": "link:.."
+    "vitepress": "2.0.0-alpha.12"
+  },
+  "dependencies": {
+    "sphere-ui": "^0.1.5"
   }
 }
