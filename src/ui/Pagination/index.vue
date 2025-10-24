@@ -193,7 +193,7 @@ const quickJumperValue = computed({
         :min="1"
         :max="totalPages"
         :disabled
-        class="text-foreground w-16 rounded-md border border-gray-300 bg-white px-2 py-1 text-center text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800"
+        class="text-foreground w-16 rounded-md border border-gray-300 bg-white px-2 py-1 text-center text-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-blue-500 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:focus:ring-blue-400"
         @keydown.enter="($event.target as HTMLInputElement).blur()"
       />
       <span class="text-gray-600 dark:text-gray-400">页</span>

@@ -68,7 +68,8 @@ const html = computedAsync(async () => {
       :class="[
         paddingClass,
         type === 'password' ? 'text-foreground' : 'text-transparent',
-        'absolute z-10 w-full appearance-none bg-transparent caret-black outline-none dark:caret-blue-400',
+        'absolute z-10 w-full appearance-none bg-transparent outline-none',
+        'caret-gray-900 dark:caret-blue-400',
       ]"
       :type
     />

@@ -20,7 +20,7 @@ const slot = defineSlots<{
 </script>
 
 <template>
-  <div class="glass text-foreground rounded-lg shadow-sm">
+  <div class="glass text-foreground rounded-lg shadow-sm dark:shadow-lg dark:shadow-black/20">
     <header v-if="slot.cover" class="text-2xl leading-none font-semibold tracking-tight">
       <slot name="cover">
         <template v-if="cover">

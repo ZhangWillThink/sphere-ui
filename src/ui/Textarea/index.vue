@@ -79,7 +79,8 @@ watch(
       v-model="modelValue"
       :class="[
         paddingClass,
-        'absolute z-10 min-h-30 w-full resize-none appearance-none bg-transparent text-transparent caret-black outline-none dark:caret-blue-400',
+        'absolute z-10 min-h-30 w-full resize-none appearance-none bg-transparent text-transparent outline-none',
+        'caret-gray-900 dark:caret-blue-400',
         autoResize ? 'overflow-hidden' : '',
       ]"
     />

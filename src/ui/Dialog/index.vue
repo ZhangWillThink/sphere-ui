@@ -33,11 +33,11 @@ const toggleOpen = useToggle(modelValue)
     >
       <main
         v-if="modelValue"
-        class="fixed inset-0 z-50 flex items-center justify-center"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60 backdrop-blur-sm"
         @click="toggleOpen(false)"
       >
         <div
-          class="glass flex max-h-[90vh] w-full max-w-md flex-col overflow-hidden rounded-lg shadow-xl"
+          class="glass flex max-h-[90vh] w-full max-w-md flex-col overflow-hidden rounded-lg shadow-xl dark:shadow-2xl dark:shadow-black/40"
           role="dialog"
           aria-modal="true"
           @click.stop
@@ -64,7 +64,7 @@ const toggleOpen = useToggle(modelValue)
             </aside>
             <button
               type="button"
-              class="text-gray-400 hover:text-gray-500 focus:outline-none"
+              class="text-gray-400 transition-colors duration-150 ease-in-out hover:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:text-gray-300"
               @click="toggleOpen(false)"
             >
               <Close />

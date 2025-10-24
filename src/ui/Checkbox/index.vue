@@ -85,11 +85,11 @@ onKeyStroke(
       :class="[
         checkbox({ size }),
         modelValue
-          ? 'border-blue-600 bg-blue-600 text-white'
-          : 'border-gray-300 dark:border-gray-600',
+          ? 'border-blue-600 bg-blue-600 text-white dark:border-blue-500 dark:bg-blue-600'
+          : 'border-gray-300 dark:border-gray-600 dark:bg-gray-800/50',
         disabled
           ? 'border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-800'
-          : 'hover:scale-105 active:scale-95',
+          : 'hover:scale-105 active:scale-95 dark:hover:border-blue-500',
       ]"
     >
       <input

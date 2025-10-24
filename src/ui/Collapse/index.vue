@@ -76,18 +76,21 @@ const togglePanel = (key: any, disabled?: boolean) => {
 const isActive = (key: any) => activeKeys.value.has(key)
 
 // 容器样式 — 现代化毛玻璃风格（默认无边框）
-const containerClasses = cva(['glass text-foreground rounded-lg shadow-sm'], {
-  variants: {
-    bordered: {
-      // 保留属性以兼容 API，但默认不显示边框
-      true: '',
-      false: '',
+const containerClasses = cva(
+  'glass text-foreground rounded-lg shadow-sm dark:shadow-lg dark:shadow-black/20',
+  {
+    variants: {
+      bordered: {
+        // 保留属性以兼容 API，但默认不显示边框
+        true: '',
+        false: '',
+      },
+    },
+    defaultVariants: {
+      bordered: false,
     },
   },
-  defaultVariants: {
-    bordered: false,
-  },
-})
+)
 
 // 每个项目样式 — 毛玻璃风格，移除分隔线，使用间距与圆角进行分隔
 const itemClasses = cva('bg-transparent', {
@@ -105,11 +108,7 @@ const itemClasses = cva('bg-transparent', {
 
 // 头部样式 — 与 Card/Button 保持一致的内边距、圆角和交互反馈
 const headerClasses = cva(
-  [
-    'flex items-center gap-3 px-4 py-3',
-    'transition-all duration-200 ease-in-out select-none',
-    'cursor-pointer',
-  ],
+  'flex items-center gap-3 px-4 py-3 transition-all duration-200 ease-in-out select-none cursor-pointer',
   {
     variants: {
       disabled: {
@@ -142,14 +141,17 @@ const headerClasses = cva(
 )
 
 // 内容盒子样式 — 留白与文本颜色保持项目一致
-const contentBoxClasses = cva('text-foreground/80 px-4 pt-0 pb-4 text-sm', {
-  variants: {
-    ghost: {
-      true: 'pl-4',
-      false: 'pl-[52px]',
+const contentBoxClasses = cva(
+  'text-foreground/80 dark:text-gray-300 px-4 pt-0 pb-4 text-sm transition-colors duration-150',
+  {
+    variants: {
+      ghost: {
+        true: 'pl-4',
+        false: 'pl-[52px]',
+      },
     },
   },
-})
+)
 </script>
 
 <template>

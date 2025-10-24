@@ -38,16 +38,16 @@ const isActive = (value: any) => {
 
 <template>
   <div class="w-full">
-    <div class="glass mb-4 inline-flex gap-1 rounded-lg p-1">
+    <div class="glass mb-4 inline-flex gap-1 rounded-lg p-1 dark:shadow-lg dark:shadow-black/20">
       <button
         v-for="item in items"
         :key="item.value"
         :class="[
           'rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ease-in-out',
-          'focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none',
+          'focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:focus-visible:ring-blue-400',
           isActive(item.value)
-            ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800 dark:text-blue-400'
-            : 'text-foreground/70 hover:text-foreground hover:bg-white/50 dark:hover:bg-gray-800/50',
+            ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800 dark:text-blue-400 dark:shadow-lg dark:shadow-black/20'
+            : 'text-foreground/70 hover:text-foreground hover:bg-white/50 dark:hover:bg-gray-800/50 dark:text-gray-300',
           item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         ]"
         :disabled="item.disabled"

@@ -31,7 +31,7 @@ const { size = 'md', fullscreen = false } = defineProps<{
     <div
       :class="
         fullscreen
-          ? 'glass flex items-center gap-4 rounded-lg border p-6 shadow-sm'
+          ? 'glass flex items-center gap-4 rounded-lg border p-6 shadow-sm dark:shadow-lg dark:shadow-black/20'
           : 'flex items-center gap-3'
       "
     >

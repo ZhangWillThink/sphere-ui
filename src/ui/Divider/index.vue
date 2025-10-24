@@ -20,7 +20,8 @@ const {
       <!-- 左侧线条 -->
       <div
         :class="[
-          'bg-foreground/30 h-px flex-grow border-0',
+          'h-px grow border-0 transition-colors duration-150',
+          'bg-gray-300 dark:bg-gray-700',
           dashed ? 'border-t border-dashed' : '',
         ]"
         :style="{
@@ -34,7 +35,7 @@ const {
         v-if="$slots.default"
         :class="[
           'glass rounded-lg px-3 text-sm whitespace-nowrap',
-          plain ? 'text-foreground/70' : 'text-foreground font-medium',
+          plain ? 'text-foreground/70 dark:text-gray-400' : 'text-foreground font-medium dark:text-gray-100',
         ]"
       >
         <slot name="default" />
@@ -43,7 +44,8 @@ const {
       <!-- 右侧线条 -->
       <div
         :class="[
-          'bg-foreground/30 h-px flex-grow border-0',
+          'h-px grow border-0 transition-colors duration-150',
+          'bg-gray-300 dark:bg-gray-700',
           dashed ? 'border-t border-dashed' : '',
         ]"
         :style="{
@@ -58,7 +60,8 @@ const {
     <!-- 垂直分割线 -->
     <span
       :class="[
-        'bg-foreground/30 mx-4 inline-block h-full w-px border-0 align-middle',
+        'mx-4 inline-block h-full w-px border-0 align-middle transition-colors duration-150',
+        'bg-gray-300 dark:bg-gray-700',
         dashed ? 'border-l border-dashed' : '',
       ]"
     />

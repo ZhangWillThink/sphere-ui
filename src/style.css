@@ -1,93 +1,282 @@
 @import 'tailwindcss';
 
-@source '../docs/**/*.md';
 @custom-variant dark (&:where(.dark, .dark *));
-@custom-variant hover (&:hover);
+
+@theme {
+  /* 浅色主题 - 主色系蓝色 */
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+
+  /* 浅色主题 - 背景色 */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8fafc;
+  --color-bg-tertiary: #f1f5f9;
+  --color-bg-overlay: rgba(255, 255, 255, 0.8);
+
+  /* 浅色主题 - 前景色 */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #94a3b8;
+  --color-text-inverse: #ffffff;
+
+  /* 浅色主题 - 边框色 */
+  --color-border-light: #e2e8f0;
+  --color-border-default: #cbd5e1;
+  --color-border-dark: #94a3b8;
+
+  /* 毛玻璃效果 */
+  --glass-blur: 12px;
+  --glass-opacity: 0.7;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --glass-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.12);
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+
+  /* 过渡 */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* 圆角 */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+}
+
+/* 深色主题变量覆盖 */
+:root.dark {
+  --color-bg-primary: #0f172a;
+  --color-bg-secondary: #1a1f35;
+  --color-bg-tertiary: #1e293b;
+  --color-bg-overlay: rgba(15, 23, 42, 0.8);
+
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #94a3b8;
+  --color-text-inverse: #0f172a;
+
+  --color-border-light: #334155;
+  --color-border-default: #475569;
+  --color-border-dark: #64748b;
+
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --glass-border: rgba(148, 163, 184, 0.15);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --glass-shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.4);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================
+   毛玻璃效果组件类
+   ============================================ */
+
+@layer components {
+  .glass {
+    @apply transition-all duration-300;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+
+    @variant dark {
+      @apply hover:border-primary-500;
+    }
+    @apply hover:border-primary-400;
+  }
+
+  .glass-light {
+    @apply transition-all duration-300;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: var(--glass-shadow);
+
+    @variant dark {
+      background: rgba(30, 41, 59, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+  }
+}
+
+/* ============================================
+   主题色彩系统
+   ============================================ */
 
 :root {
-  --radius: 0.75rem;
-
-  --background: #fff;
-  --foreground: #000;
-
-  --glass-background: rgba(255, 255, 255, 0.25);
+  --foreground: var(--color-text-primary);
+  --background: var(--color-bg-primary);
+  --muted: var(--color-text-tertiary);
+  --muted-foreground: var(--color-text-secondary);
 }
 
-.dark {
-  --radius: 0.75rem;
-
-  --background: #000;
-  --foreground: #fff;
-
-  --glass-background: rgba(0, 0, 0, 0.1);
+:root.dark {
+  --foreground: var(--color-text-primary);
+  --background: var(--color-bg-primary);
+  --muted: var(--color-text-tertiary);
+  --muted-foreground: var(--color-text-secondary);
 }
 
-@theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+@layer components {
+  .bg-background {
+    @apply transition-colors duration-300;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+  }
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  .text-foreground {
+    color: var(--color-text-primary);
+  }
 
-  --color-glass-background: var(--glass-background);
-}
-.glass-light {
-  @apply bg-glass-background backdrop-blur-sm;
-}
-
-.glass {
-  @apply bg-glass-background backdrop-blur-md;
+  .text-muted {
+    color: var(--color-text-tertiary);
+  }
 }
 
-.glass-strong {
-  @apply bg-glass-background backdrop-blur-xl;
+/* ============================================
+   现代化交互效果
+   ============================================ */
+
+@layer base {
+  /* 平滑过渡 */
+  * {
+    @apply transition-colors duration-200;
+    transition-property: background-color, border-color, color, fill, stroke;
+  }
+
+  /* 焦点环效果 */
+  :focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow:
+      0 0 0 3px var(--color-bg-primary),
+      0 0 0 6px var(--color-primary-500);
+
+    @variant dark {
+      box-shadow:
+        0 0 0 3px var(--color-bg-primary),
+        0 0 0 6px var(--color-primary-400);
+    }
+  }
+
+  /* 按钮基础样式优化 */
+  button {
+    @apply font-medium tracking-wider transition-all duration-300;
+
+    &:active {
+      @apply scale-[0.98];
+    }
+  }
+
+  /* 输入框焦点效果 */
+  input:focus,
+  textarea:focus,
+  select:focus {
+    box-shadow:
+      0 0 0 3px var(--color-primary-100),
+      0 0 0 6px var(--color-primary-500);
+
+    @variant dark {
+      box-shadow:
+        0 0 0 3px var(--color-primary-900),
+        0 0 0 6px var(--color-primary-400);
+    }
+  }
 }
 
-.hover\:glass-light:hover {
-  @apply bg-glass-background backdrop-blur-sm;
+/* ============================================
+   滚动条美化
+   ============================================ */
+
+@layer base {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded transition-colors duration-300;
+    background: var(--color-primary-400);
+
+    &:hover {
+      background: var(--color-primary-500);
+    }
+
+    @variant dark {
+      background: var(--color-primary-600);
+
+      &:hover {
+        background: var(--color-primary-500);
+      }
+    }
+  }
+
+  /* ============================================
+     选择文本效果
+     ============================================ */
+
+  ::selection {
+    background-color: var(--color-primary-500);
+    color: white;
+
+    @variant dark {
+      background-color: var(--color-primary-400);
+      color: var(--color-bg-primary);
+    }
+  }
+
+  /* ============================================
+     占位符样式
+     ============================================ */
+
+  ::placeholder {
+    @apply opacity-70;
+    color: var(--color-text-tertiary);
+  }
 }
 
-.hover\:glass:hover {
-  @apply bg-glass-background backdrop-blur-md;
+/* ============================================
+   响应式设计支持
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-.hover\:glass-strong:hover {
-  @apply bg-glass-background backdrop-blur-xl;
-}
-
-* {
-  font-family: -apple-system, system-ui !important;
-}
-
-/* 自定义滚动条样式 */
-.scrollbar-thin {
-  scrollbar-width: thin;
-}
-
-.scrollbar-thin::-webkit-scrollbar {
-  height: 4px;
-  width: 4px;
-}
-
-.scrollbar-thin::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: rgb(209 213 219);
-  border-radius: 2px;
-}
-
-.scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(156 163 175);
-}
-
-.dark .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: rgb(75 85 99);
-}
-
-.dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(107 114 128);
+/* 深色模式媒体查询支持 */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
+  }
 }

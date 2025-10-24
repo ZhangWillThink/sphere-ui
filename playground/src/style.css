@@ -1,0 +1,142 @@
+/* ============================================
+   Global Styles & Dark Mode Optimization
+   ============================================ */
+
+:root {
+  /* Light mode colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+html.dark {
+  /* Dark mode colors */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --border-color: #334155;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+
+/* Hide scrollbar but keep scrolling functional */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Styled scrollbar for better dark mode visibility */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+  transition: background 150ms ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* ============================================
+   Code Block Styling
+   ============================================ */
+
+pre,
+code {
+  transition: all 150ms ease-in-out;
+}
+
+pre {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 12px 16px;
+  overflow-x: auto;
+}
+
+code {
+  color: var(--text-primary);
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* ============================================
+   Link Styling
+   ============================================ */
+
+a {
+  color: #3b82f6;
+  text-decoration: none;
+  transition: color 150ms ease-in-out;
+}
+
+a:hover {
+  color: #2563eb;
+}
+
+html.dark a {
+  color: #60a5fa;
+}
+
+html.dark a:hover {
+  color: #93c5fd;
+}
+
+/* ============================================
+   Focus Visible Styles
+   ============================================ */
+
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+html.dark *:focus-visible {
+  outline-color: #60a5fa;
+}
+
+/* ============================================
+   Selection Styling
+   ============================================ */
+
+::selection {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+html.dark ::selection {
+  background-color: #1e40af;
+  color: #f1f5f9;
+}

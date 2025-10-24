@@ -187,7 +187,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
     v-bind="$attrs"
     ref="trigger"
     type="button"
-    class="glass text-foreground flex w-full items-center justify-between rounded-lg px-3 py-2 shadow focus-within:ring-3 focus-within:ring-blue-300/30"
+    class="glass text-foreground flex w-full items-center justify-between rounded-lg px-3 py-2 shadow transition-all duration-150 ease-in-out focus-within:ring-3 focus-within:ring-blue-300/30 dark:focus-within:ring-blue-400/40"
     :aria-expanded="open"
     aria-haspopup="listbox"
     @click="openDropdown"
@@ -234,7 +234,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
           width: `${triggerBounding.width.value}px`,
           left: `${triggerBounding.left.value}px`,
         }"
-        class="glass mt-2 max-h-48 overflow-auto rounded-lg p-1 shadow"
+        class="glass mt-2 max-h-48 overflow-auto rounded-lg p-1 shadow dark:shadow-lg dark:shadow-black/30"
       >
         <li
           v-if="searchable"
@@ -244,7 +244,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
             v-model="searchQuery"
             type="text"
             placeholder="搜索选项..."
-            class="w-full rounded-md border border-gray-300 px-2 py-1 text-sm focus:ring-2 focus:ring-blue-300 focus:outline-none dark:border-gray-600 dark:bg-gray-700"
+            class="w-full rounded-md border border-gray-300 px-2 py-1 text-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-blue-300 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:focus:ring-blue-400"
             @keydown.stop
           />
         </li>
@@ -257,7 +257,9 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
           :class="[
             'flex items-center space-x-2 rounded-md px-3 py-2 transition-all select-none',
             opt.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-            highlighted === i && !opt.disabled ? 'bg-blue-100 dark:bg-blue-900/30' : '',
+            highlighted === i && !opt.disabled
+              ? 'bg-blue-100 dark:bg-blue-900/40 dark:text-blue-100'
+              : '',
           ]"
           @click="
             () => {
