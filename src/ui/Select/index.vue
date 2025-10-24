@@ -179,7 +179,7 @@ onKeyStroke(['ArrowDown', 'ArrowUp', 'Home', 'End', 'Enter', ' ', 'Escape'], key
 onKeyStroke(['ArrowDown', 'ArrowUp', 'Home', 'End', 'Enter', ' ', 'Escape'], keyHandler, {
   target: content,
 })
-onClickOutside(content, closeDropdown)
+onClickOutside(content, closeDropdown, { ignore: [trigger] })
 </script>
 
 <template>
