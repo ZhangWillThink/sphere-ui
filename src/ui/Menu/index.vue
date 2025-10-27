@@ -114,7 +114,6 @@ const MenuItem = defineComponent({
           class: [
             'items-center justify-between  transition-colors select-none',
             item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-            isSelectedKey(key) ? 'bg-blue-500/80 text-white' : '',
           ],
           onClick,
         },
@@ -122,8 +121,10 @@ const MenuItem = defineComponent({
           h(
             'div',
             {
-              class:
+              class: [
                 'flex items-center justify-between truncate px-3 rounded-md py-2 hover:bg-blue-100 dark:hover:bg-blue-900/40',
+                isSelectedKey(key) ? 'bg-blue-100 dark:bg-blue-900/40' : '',
+              ],
             },
             [
               h('div', { class: 'flex items-center space-x-2' }, [

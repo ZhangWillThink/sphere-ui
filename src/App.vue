@@ -37,14 +37,20 @@ const btnClick = () => {
 
     <div>
       <Menu
+        :modelValue="`/flow`"
         class="w-70"
         :items="[
           {
             label: 'Flow',
             icon: h(AssemblyLine),
             children: [
-              { label: h('p', { class: 'text-green-400' }, 'List'), icon: h(List), value: '/flow' },
-              { label: 'Result', icon: h(DoneAll), value: '/flow/result' },
+              {
+                label: h('p', { class: 'text-green-400' }, 'List'),
+                icon: h(List),
+                value: '/flow',
+                key: '/flow',
+              },
+              { label: 'Result', icon: h(DoneAll), value: '/flow/result', key: '/flow/result' },
             ],
           },
           { label: '2', value: 2 },
