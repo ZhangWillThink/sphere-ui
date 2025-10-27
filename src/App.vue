@@ -35,7 +35,14 @@ colorMode.value = 'auto'
       <Menu
         class="w-70"
         :items="[
-          { label: 'Flow', icon: h(AssemblyLine), children: [{ label: 'List', icon: h(List) }] },
+          {
+            label: 'Flow',
+            icon: h(AssemblyLine),
+            children: [
+              { label: 'List', icon: h(List) },
+              { label: '123', icon: 'icon' },
+            ],
+          },
           { label: '2', value: 2 },
           { label: h('p', { class: 'text-green-400' }, '123'), value: 3 },
         ]"

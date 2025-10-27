@@ -117,36 +117,41 @@ const MenuItem = defineComponent({
         'li',
         {
           class: [
-            'items-center justify-between rounded-md px-3 py-2 transition-colors select-none',
-            item.disabled
-              ? 'cursor-not-allowed opacity-50'
-              : 'cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/40',
+            'items-center justify-between  transition-colors select-none',
+            item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
             isSelectedKey(key) ? 'bg-blue-500/80 text-white' : '',
           ],
           onClick,
         },
         [
-          h('div', { class: 'flex items-center truncate justify-between' }, [
-            h('div', { class: 'flex items-center space-x-2' }, [
-              item.icon ? (isVNode(item.icon) ? item.icon : h('span', {}, item.icon)) : null,
-              (() => {
-                const lbl = renderLabel(item.label)
-                // h() accepts VNodeChild; wrap primitives in array to satisfy TS
-                return h(
-                  'span',
-                  { class: 'truncate' },
-                  Array.isArray(lbl) || isVNode(lbl) ? lbl : String(lbl),
-                )
-              })(),
-            ]),
-            hasChildren
-              ? h(
-                  RightOne,
-                  { class: ['ml-2 transition-transform', isOpen(key) ? 'rotate-90' : ''] },
-                  [],
-                )
-              : null,
-          ]),
+          h(
+            'div',
+            {
+              class:
+                'flex items-center justify-between truncate px-3 rounded-md py-2 hover:bg-blue-100 dark:hover:bg-blue-900/40',
+            },
+            [
+              h('div', { class: 'flex items-center space-x-2' }, [
+                item.icon ? (isVNode(item.icon) ? item.icon : h('span', {}, item.icon)) : null,
+                (() => {
+                  const lbl = renderLabel(item.label)
+                  // h() accepts VNodeChild; wrap primitives in array to satisfy TS
+                  return h(
+                    'span',
+                    { class: 'truncate' },
+                    Array.isArray(lbl) || isVNode(lbl) ? lbl : String(lbl),
+                  )
+                })(),
+              ]),
+              hasChildren
+                ? h(
+                    RightOne,
+                    { class: ['ml-2 transition-transform', isOpen(key) ? 'rotate-90' : ''] },
+                    [],
+                  )
+                : null,
+            ],
+          ),
 
           // children
           hasChildren
