@@ -10,6 +10,7 @@ import Dialog from './ui/Dialog/index.vue'
 import Divider from './ui/Divider/index.vue'
 import { Form, FormItem } from './ui/Form'
 import Input from './ui/Input/index.vue'
+import Loading from './ui/Loading/index.vue'
 import Menu from './ui/Menu/index.vue'
 import Message from './ui/Message'
 import Pagination from './ui/Pagination/index.vue'
@@ -82,6 +83,7 @@ const components = {
   Dialog,
   Divider,
   Form,
+  Loading,
   FormItem,
   Input,
   Pagination,
