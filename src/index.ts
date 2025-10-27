@@ -2,13 +2,6 @@ import './style.css'
 
 import Button from './ui/Button/index.vue'
 import Card from './ui/Card/index.vue'
-export type { CollapseItem, CollapseProps } from './ui/Collapse/types'
-export type {
-  DescriptionItem,
-  DescriptionLabelStyle,
-  DescriptionProps,
-} from './ui/Description/types'
-export type { TabsItem, TabsProps, TabsEmits, TabsSlots } from './ui/Tabs/types'
 import Checkbox from './ui/Checkbox/index.vue'
 import Collapse from './ui/Collapse/index.vue'
 import ContextMenu from './ui/ContextMenu/index.vue'
@@ -17,6 +10,7 @@ import Dialog from './ui/Dialog/index.vue'
 import Divider from './ui/Divider/index.vue'
 import { Form, FormItem } from './ui/Form'
 import Input from './ui/Input/index.vue'
+import Menu from './ui/Menu/index.vue'
 import Pagination from './ui/Pagination/index.vue'
 import Popover from './ui/Popover/index.vue'
 import Radio from './ui/Radio/index.vue'
@@ -27,6 +21,13 @@ import Tag from './ui/Tag/index.vue'
 import Textarea from './ui/Textarea/index.vue'
 import Tooltip from './ui/Tooltip/index.vue'
 import { CollapseTransition } from './ui/Transition'
+export type { CollapseItem, CollapseProps } from './ui/Collapse/types'
+export type {
+  DescriptionItem,
+  DescriptionLabelStyle,
+  DescriptionProps,
+} from './ui/Description/types'
+export type { TabsEmits, TabsItem, TabsProps, TabsSlots } from './ui/Tabs/types'
 
 // 命名导出
 export {
@@ -42,6 +43,7 @@ export {
   Form,
   FormItem,
   Input,
+  Menu,
   Pagination,
   Popover,
   Radio,
