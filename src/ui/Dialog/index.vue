@@ -4,7 +4,7 @@ import { isVNode, type VNodeChild } from 'vue'
 import { Close } from '@icon-park/vue-next'
 import { useToggle } from '@vueuse/core'
 
-defineOptions({ name: 'UiDialog', inheritAttrs: false })
+defineOptions({ name: 'SphereDialog', inheritAttrs: false })
 
 defineProps<{
   title?: VNodeChild
@@ -33,7 +33,7 @@ const toggleOpen = useToggle(modelValue)
     >
       <main
         v-if="modelValue"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60 backdrop-blur-sm"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm dark:bg-black/60"
         @click="toggleOpen(false)"
       >
         <div

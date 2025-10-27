@@ -5,7 +5,7 @@ import { isVNode, shallowRef, useTemplateRef } from 'vue'
 
 import { onKeyStroke, watchOnce } from '@vueuse/core'
 
-defineOptions({ name: 'UiRadio', inheritAttrs: true })
+defineOptions({ name: 'SphereRadio', inheritAttrs: true })
 
 const { options, disabled } = defineProps<{
   options: Array<{ label: VNodeChild; value: any; disabled?: boolean }>
@@ -86,7 +86,11 @@ watchOnce(
 </script>
 
 <template>
-  <div ref="root" class="glass inline-flex rounded-lg shadow dark:shadow-lg dark:shadow-black/20" role="group">
+  <div
+    ref="root"
+    class="glass inline-flex rounded-lg shadow dark:shadow-lg dark:shadow-black/20"
+    role="group"
+  >
     <button
       v-for="(option, index) in options"
       :key="index"

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { isVNode, type VNodeChild } from 'vue'
 
-defineOptions({ name: 'UiCard' })
+defineOptions({ name: 'SphereCard' })
 
 const { title, description, cover, footer } = defineProps<{
   title?: VNodeChild

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { RendererElement, VNodeChild } from 'vue'
 
-defineOptions({ name: 'TransitionCollapse', inheritAttrs: true })
+defineOptions({ name: 'SphereTransitionCollapse', inheritAttrs: true })
 
 defineSlots<{ default?: () => VNodeChild }>()
 

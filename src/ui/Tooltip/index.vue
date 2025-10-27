@@ -8,7 +8,7 @@ import { useToggle } from '@vueuse/core'
 
 import useFixedPosition from '../shared/hooks/useFixedPosition'
 
-defineOptions({ name: 'UiTooltip', inheritAttrs: true })
+defineOptions({ name: 'SphereTooltip', inheritAttrs: true })
 
 const {
   content,

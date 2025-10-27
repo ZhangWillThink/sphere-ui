@@ -6,7 +6,7 @@ import { computed, isVNode, watch } from 'vue'
 
 import { useFormContext } from './context'
 
-defineOptions({ name: 'UiFormItem', inheritAttrs: true })
+defineOptions({ name: 'SphereFormItem', inheritAttrs: true })
 
 const {
   name,

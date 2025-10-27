@@ -4,7 +4,7 @@ import type { VNodeChild } from 'vue'
 
 import { isVNode } from 'vue'
 
-defineOptions({ name: 'UiDescription', inheritAttrs: true })
+defineOptions({ name: 'SphereDescription', inheritAttrs: true })
 
 const {
   title,

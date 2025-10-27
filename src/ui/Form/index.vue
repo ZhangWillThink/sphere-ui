@@ -3,7 +3,7 @@ import type { VNodeChild } from 'vue'
 
 import { useFormProvider } from './context'
 
-defineOptions({ name: 'UiForm', inheritAttrs: true })
+defineOptions({ name: 'SphereForm', inheritAttrs: true })
 
 defineSlots<{
   default?: () => VNodeChild

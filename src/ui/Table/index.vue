@@ -35,7 +35,7 @@ import { isFunction, isNumber, isString } from 'lodash-es'
 import Checkbox from '../Checkbox/index.vue'
 import Loading from '../Loading/index.vue'
 
-defineOptions({ name: 'UiTable' })
+defineOptions({ name: 'SphereTable' })
 
 type SizeProp = VariantProps<typeof sizeClasses>
 

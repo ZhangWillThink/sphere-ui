@@ -5,7 +5,7 @@ import type { VNodeChild } from 'vue'
 import { CloseSmall } from '@icon-park/vue-next'
 import { cva } from 'class-variance-authority'
 
-defineOptions({ name: 'UiTag', inheritAttrs: true })
+defineOptions({ name: 'SphereTag', inheritAttrs: true })
 
 const tag = cva(
   'glass inline-flex flex-shrink-0 items-center gap-1 rounded-lg whitespace-nowrap shadow transition-all duration-200 ease-in-out',

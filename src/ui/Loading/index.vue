@@ -3,7 +3,7 @@ import type { VNodeChild } from 'vue'
 
 import { isVNode } from 'vue'
 
-defineOptions({ name: 'UiLoading', inheritAttrs: true })
+defineOptions({ name: 'SphereLoading', inheritAttrs: true })
 
 const classes = {
   sm: 'size-4 border-2',

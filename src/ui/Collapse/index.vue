@@ -9,7 +9,7 @@ import { cva } from 'class-variance-authority'
 
 import { CollapseTransition } from '../Transition'
 
-defineOptions({ name: 'UiCollapse' })
+defineOptions({ name: 'SphereCollapse' })
 
 const { items, accordion = false, bordered = true, ghost = false } = defineProps<CollapseProps>()
 

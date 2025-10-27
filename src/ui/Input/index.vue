@@ -9,7 +9,7 @@ import { computedAsync, useScroll } from '@vueuse/core'
 import '../shared/text/main.css'
 import { HighlighterManager } from '../shared/text/hgihtlighter'
 
-defineOptions({ name: 'UiInput', inheritAttrs: true })
+defineOptions({ name: 'SphereInput', inheritAttrs: true })
 
 const { type = 'text', language = 'markdown' } = defineProps<{
   placeholder?: VNodeChild

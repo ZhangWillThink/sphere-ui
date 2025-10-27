@@ -9,7 +9,7 @@ import { computedAsync, useElementSize, useScroll } from '@vueuse/core'
 import '../shared/text/main.css'
 import { HighlighterManager } from '../shared/text/hgihtlighter'
 
-defineOptions({ name: 'UiTextarea', inheritAttrs: true })
+defineOptions({ name: 'SphereTextarea', inheritAttrs: true })
 
 const { language = 'markdown', autoResize = true } = defineProps<{
   placeholder?: VNodeChild

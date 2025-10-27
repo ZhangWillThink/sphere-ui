@@ -11,7 +11,7 @@ import useFixedPosition from '../shared/hooks/useFixedPosition'
 import UiTag from '../Tag/index.vue'
 import { CollapseTransition } from '../Transition'
 
-defineOptions({ name: 'UiSelect', inheritAttrs: true })
+defineOptions({ name: 'SphereSelect', inheritAttrs: true })
 
 const { options, multiple, placeholder, searchable } = defineProps<{
   searchable?: boolean

@@ -21,7 +21,7 @@ import {
   useWindowSize,
 } from '@vueuse/core'
 
-defineOptions({ name: 'UiContextMenu', inheritAttrs: true })
+defineOptions({ name: 'SphereContextMenu', inheritAttrs: true })
 
 const { items = [] } = defineProps<{
   items?: Array<{ label: VNodeChild; value?: any; disabled?: boolean }>

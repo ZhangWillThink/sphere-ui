@@ -7,7 +7,7 @@ import { isNumber } from 'lodash-es'
 import Button from '../Button/index.vue'
 import Select from '../Select/index.vue'
 
-defineOptions({ name: 'UiPagination' })
+defineOptions({ name: 'SpherePagination' })
 
 const {
   total,

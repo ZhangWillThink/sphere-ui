@@ -8,7 +8,7 @@ import { onClickOutside, useToggle } from '@vueuse/core'
 
 import useFixedPosition from '../shared/hooks/useFixedPosition'
 
-defineOptions({ name: 'UiPopover', inheritAttrs: true })
+defineOptions({ name: 'SpherePopover', inheritAttrs: true })
 
 const {
   content,

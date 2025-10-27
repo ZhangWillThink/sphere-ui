@@ -8,7 +8,7 @@ import { Check } from '@icon-park/vue-next'
 import { onKeyStroke, useToggle } from '@vueuse/core'
 import { cva } from 'class-variance-authority'
 
-defineOptions({ name: 'UiCheckbox', inheritAttrs: true })
+defineOptions({ name: 'SphereCheckbox', inheritAttrs: true })
 
 const checkbox = cva(
   'relative inline-flex transform-gpu items-center justify-center rounded border-2 transition-all duration-200 ease-in-out will-change-transform focus-within:ring-4 focus-within:ring-blue-300/30',

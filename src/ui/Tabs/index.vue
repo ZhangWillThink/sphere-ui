@@ -3,7 +3,7 @@ import type { TabsProps, TabsSlots, TabsItem } from './types'
 
 import { computed, isVNode } from 'vue'
 
-defineOptions({ name: 'UiTabs', inheritAttrs: true })
+defineOptions({ name: 'SphereTabs', inheritAttrs: true })
 
 const { items } = defineProps<TabsProps>()
 
@@ -47,7 +47,7 @@ const isActive = (value: any) => {
           'focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:focus-visible:ring-blue-400',
           isActive(item.value)
             ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800 dark:text-blue-400 dark:shadow-lg dark:shadow-black/20'
-            : 'text-foreground/70 hover:text-foreground hover:bg-white/50 dark:hover:bg-gray-800/50 dark:text-gray-300',
+            : 'text-foreground/70 hover:text-foreground hover:bg-white/50 dark:text-gray-300 dark:hover:bg-gray-800/50',
           item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         ]"
         :disabled="item.disabled"
