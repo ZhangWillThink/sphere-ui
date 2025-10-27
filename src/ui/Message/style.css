@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+
+@layer components {
+  /* 容器样式 */
+  .sphere-message-container {
+    @apply pointer-events-none fixed z-9999 flex flex-col items-center gap-3;
+  }
+
+  .sphere-message-container--top {
+    @apply top-10 left-1/2 -translate-x-1/2;
+  }
+
+  .sphere-message-container--center {
+    @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .sphere-message-container--bottom {
+    @apply bottom-10 left-1/2 -translate-x-1/2;
+  }
+
+  /* 毛玻璃消息样式 */
+  .sphere-message {
+    @apply pointer-events-auto flex max-w-[80vw] min-w-74 items-center justify-between gap-3 rounded-2xl px-5 py-4 text-sm text-slate-900 dark:text-slate-100;
+    @apply border border-white/30 shadow-xl backdrop-blur-xl dark:border-slate-500/30;
+    @apply bg-white/70 dark:bg-slate-900/70;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .sphere-message__content {
+    @apply flex-1 leading-relaxed font-medium;
+  }
+
+  .sphere-message__close {
+    @apply size-7 shrink-0 cursor-pointer border-0 bg-transparent p-0 text-xl font-light text-current opacity-60 transition-all duration-200 hover:opacity-100;
+    @apply flex items-center justify-center;
+    line-height: 1;
+  }
+
+  /* 类型样式 - 毛玻璃配色 */
+  .sphere-message--success {
+    @apply bg-emerald-500/20 text-emerald-950 dark:bg-emerald-500/25 dark:text-emerald-50;
+    @apply border border-emerald-500/30 dark:border-emerald-500/35;
+    @apply shadow-[0_8px_32px_rgba(16,185,129,0.12)] dark:shadow-[0_8px_32px_rgba(16,185,129,0.18)];
+  }
+
+  .sphere-message--info {
+    @apply bg-blue-500/20 text-blue-950 dark:bg-blue-500/25 dark:text-blue-50;
+    @apply border border-blue-500/30 dark:border-blue-500/35;
+    @apply shadow-[0_8px_32px_rgba(59,130,246,0.12)] dark:shadow-[0_8px_32px_rgba(59,130,246,0.18)];
+  }
+
+  .sphere-message--warning {
+    @apply bg-amber-500/24 text-amber-950 dark:bg-amber-500/25 dark:text-amber-50;
+    @apply border border-amber-500/35 dark:border-amber-500/40;
+    @apply shadow-[0_8px_32px_rgba(245,158,11,0.14)] dark:shadow-[0_8px_32px_rgba(245,158,11,0.2)];
+  }
+
+  .sphere-message--error {
+    @apply bg-red-500/20 text-red-950 dark:bg-red-500/25 dark:text-red-50;
+    @apply border border-red-500/30 dark:border-red-500/35;
+    @apply shadow-[0_8px_32px_rgba(239,68,68,0.12)] dark:shadow-[0_8px_32px_rgba(239,68,68,0.18)];
+  }
+}
