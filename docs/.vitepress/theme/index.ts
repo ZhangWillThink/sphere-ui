@@ -8,8 +8,8 @@ import './style.css'
 
 // During docs development import the source stylesheet directly so styles
 // are available even when `dist/` hasn't been built yet.
-import '../../../src/style.css'
-import * as UI from '../../../src'
+import '/src/style.css'
+import * as UI from '/src/ui'
 
 export default {
   extends: DefaultTheme,

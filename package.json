@@ -26,13 +26,13 @@
   "author": "WillZhang",
   "license": "MIT",
   "peerDependencies": {
-    "@icon-park/vue-next": "1",
+    "@icon-park/vue-next": "^1.4.2",
     "@tailwindcss/vite": "4",
-    "@vueuse/core": "14",
+    "@vueuse/core": "^14.0.0",
     "class-variance-authority": "0.7.1",
-    "lodash-es": "4",
+    "lodash-es": "^4.17.21",
     "tailwindcss": "4",
-    "vue": "3"
+    "vue": "^3.5.22"
   },
   "files": [
     "dist",
@@ -48,7 +48,7 @@
     "./dist/sphere-ui.css": "./dist/sphere-ui.css"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "latest",
+    "@tailwindcss/vite": "^4.1.16",
     "@types/lodash-es": "latest",
     "@types/node": "latest",
     "@vitejs/plugin-vue": "latest",
@@ -63,7 +63,7 @@
     "prettier": "latest",
     "prettier-plugin-tailwindcss": "latest",
     "shiki": "latest",
-    "tailwindcss": "latest",
+    "tailwindcss": "^4.1.16",
     "typescript": "latest",
     "vite": "latest",
     "vite-plugin-dts": "latest",

@@ -34,13 +34,13 @@ const html = computedAsync(async () => {
 
 <template>
   <div
-    class="glass text-foreground hover:glass-light relative h-10 overflow-x-hidden rounded-lg font-mono shadow transition-all duration-200 ease-in-out focus-within:ring-3 focus-within:ring-blue-300/30"
+    class="glass text-foreground hover:glass-light relative h-11 overflow-hidden rounded-lg font-mono shadow transition-all duration-200 ease-in-out focus-within:ring-3 focus-within:ring-blue-300/30"
   >
     <div
       v-if="!modelValue"
       :class="[
         paddingClass,
-        'text-foreground/50 pointer-events-none absolute inset-0 flex size-full items-center',
+        'text-foreground/50 pointer-events-none absolute inset-0 flex size-full h-11 items-center',
       ]"
     >
       <slot name="placeholder">
@@ -55,7 +55,7 @@ const html = computedAsync(async () => {
       v-html="html"
       :class="[
         paddingClass,
-        'scrollbar-hide pointer-events-none absolute inset-0 flex size-full items-center',
+        'pointer-events-none absolute inset-0 flex size-full h-11 items-center',
       ]"
       :style="{
         transform: `translateX(${-x}px)`,
@@ -68,7 +68,7 @@ const html = computedAsync(async () => {
       :class="[
         paddingClass,
         type === 'password' ? 'text-foreground' : 'text-transparent',
-        'absolute z-10 w-full appearance-none bg-transparent outline-none',
+        'absolute z-10 h-11 w-full appearance-none bg-transparent outline-none',
         'caret-gray-900 dark:caret-blue-400',
       ]"
       :type
