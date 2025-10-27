@@ -1,9 +1,7 @@
 <script setup lang="tsx">
 import type { VNodeChild } from 'vue'
 
-import { computed, defineComponent, h, isVNode, ref, shallowRef, useTemplateRef } from 'vue'
-
-import { onKeyStroke } from '@vueuse/core'
+import { computed, defineComponent, h, isVNode, ref } from 'vue'
 
 import { CollapseTransition } from '../Transition'
 
@@ -37,8 +35,6 @@ const emit = defineEmits<{
 
 // Model for selected keys (single or multiple)
 const modelValue = defineModel<any>({ required: false })
-
-const root = useTemplateRef('root')
 
 // Track open submenu keys (local state with defaults)
 const openKeys = ref<Array<string | number>>(defaultOpenKeys ?? [])
@@ -84,106 +80,6 @@ function selectKey(item: { key?: string | number; value?: any; disabled?: boolea
   }
 }
 
-// Accessibility / keyboard navigation (simple implementation)
-const highlighted = shallowRef<{ key: string | number | null; path: number[] }>({
-  key: null,
-  path: [],
-})
-
-function walkVisibleItems(
-  list: any[],
-  path: number[] = [],
-  out: Array<{ item: any; path: number[]; key: string | number }>,
-) {
-  list.forEach((it, idx) => {
-    const p = [...path, idx]
-    const k = it.key ?? `${p.join('-')}`
-    out.push({ item: it, path: p, key: k })
-    if (it.children && isOpen(k)) {
-      walkVisibleItems(it.children, p, out)
-    }
-  })
-}
-
-function moveHighlight(dir: 1 | -1) {
-  const flat: Array<{ item: any; path: number[]; key: string | number }> = []
-  walkVisibleItems(items, [], flat)
-  if (!flat.length) return
-  let idx = flat.findIndex(f => String(f.key) === String(highlighted.value?.key))
-  if (idx === -1) idx = 0
-  else idx = (idx + dir + flat.length) % flat.length
-  const chosen = flat[idx]
-  if (!chosen) return
-  const { key: chosenKey, path: chosenPath } = chosen
-  highlighted.value = { key: chosenKey, path: chosenPath }
-}
-
-function onKeydown(e: KeyboardEvent) {
-  switch (e.key) {
-    case 'ArrowDown':
-      e.preventDefault()
-      moveHighlight(1)
-      break
-    case 'ArrowUp':
-      e.preventDefault()
-      moveHighlight(-1)
-      break
-    case 'Enter':
-      e.preventDefault()
-      if (highlighted.value?.key != null) {
-        // find item
-        const flat: Array<{ item: any; path: number[]; key: string | number }> = []
-        walkVisibleItems(items, [], flat)
-        const found = flat.find(f => String(f.key) === String(highlighted.value?.key))
-        if (found) {
-          const { item: foundItem, key: foundKey } = found
-          if (foundItem.children) toggleOpen(foundKey)
-          else selectKey(foundItem)
-        }
-      }
-      break
-    case 'ArrowRight':
-      e.preventDefault()
-      // open submenu if any
-      if (highlighted.value?.key != null) {
-        const flat: Array<{ item: any; path: number[]; key: string | number }> = []
-        walkVisibleItems(items, [], flat)
-        const found = flat.find(f => String(f.key) === String(highlighted.value?.key))
-        if (found) {
-          const { item: foundItem, key: foundKey } = found
-          if (foundItem.children) toggleOpen(foundKey)
-        }
-      }
-      break
-    case 'ArrowLeft':
-      e.preventDefault()
-      // close submenu containing highlighted
-      if (highlighted.value?.key != null) {
-        const flat: Array<{ item: any; path: number[]; key: string | number }> = []
-        walkVisibleItems(items, [], flat)
-        const found = flat.find(f => String(f.key) === String(highlighted.value?.key))
-        if (found) {
-          // Try to close parent: compute parent key from path
-          if (found.path.length > 1) {
-            const parentPath = found.path.slice(0, -1)
-            // find parent safely
-            let parent: any = { children: items }
-            for (const idx of parentPath) {
-              parent = parent?.children ? parent.children[idx] : undefined
-              if (!parent) break
-            }
-            if (parent) {
-              const { key: parentKey } = parent
-              const pk = parentKey ?? `${parentPath.join('-')}`
-              if (isOpen(pk)) toggleOpen(pk)
-            }
-          }
-        }
-      }
-      break
-  }
-}
-
 // Utility render helpers
 function renderLabel(label: VNodeChild) {
   if (isVNode(label)) return label
@@ -222,7 +118,6 @@ const MenuItem = defineComponent({
             'flex items-center justify-between rounded-md px-3 py-2 transition-all select-none',
             item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
             isSelectedKey(key) ? 'bg-blue-500/80 text-white' : '',
-            highlighted.value?.key === key ? 'bg-blue-100' : '',
           ],
           onClick,
         },
@@ -271,20 +166,10 @@ const MenuItem = defineComponent({
       )
   },
 })
-
-onKeyStroke(['ArrowDown', 'ArrowUp', 'Enter', 'ArrowRight', 'ArrowLeft'], onKeydown, {
-  target: root,
-})
 </script>
 
 <template>
-  <nav
-    ref="root"
-    v-bind="$attrs"
-    class="inline-block"
-    tabindex="0"
-    @keydown.prevent.stop="onKeydown"
-  >
+  <nav ref="root" v-bind="$attrs" class="inline-block" tabindex="0">
     <ul :class="[mode === 'horizontal' ? 'flex gap-2' : '', 'glass rounded-md p-1 text-sm']">
       <MenuItem v-for="(it, i) in items" :key="it.key ?? i" :item="it" :path="[i]" />
     </ul>
