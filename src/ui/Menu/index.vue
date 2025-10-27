@@ -82,21 +82,16 @@ function selectKey(item: { key?: string | number; value?: any; disabled?: boolea
   }
 }
 
-// Utility render helpers
-function renderLabel(label: VNodeChild) {
-  if (isVNode(label)) return label
-  return label
-}
-
 // Local recursive MenuItem component to keep file self-contained
 const MenuItem = defineComponent({
   name: 'SphereMenuItem',
+  inheritAttrs: true,
   props: {
     item: { type: Object as any, required: true },
     path: { type: Array as () => number[], required: true },
   },
-  setup(p) {
-    const { item, path } = p
+  setup(props) {
+    const { item, path } = props
     const key = item.key ?? path.join('-')
     const hasChildren = !!(item.children && item.children.length)
 
@@ -133,22 +128,12 @@ const MenuItem = defineComponent({
             [
               h('div', { class: 'flex items-center space-x-2' }, [
                 item.icon ? (isVNode(item.icon) ? item.icon : h('span', {}, item.icon)) : null,
-                (() => {
-                  const lbl = renderLabel(item.label)
-                  // h() accepts VNodeChild; wrap primitives in array to satisfy TS
-                  return h(
-                    'span',
-                    { class: 'truncate' },
-                    Array.isArray(lbl) || isVNode(lbl) ? lbl : String(lbl),
-                  )
-                })(),
+                h('span', { class: 'truncate' }, item.label),
               ]),
               hasChildren
-                ? h(
-                    RightOne,
-                    { class: ['ml-2 transition-transform', isOpen(key) ? 'rotate-90' : ''] },
-                    [],
-                  )
+                ? h(RightOne, {
+                    class: ['ml-2 transition-transform', isOpen(key) ? 'rotate-90' : ''],
+                  })
                 : null,
             ],
           ),

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { h } from 'vue'
 
-import { AssemblyLine, List } from '@icon-park/vue-next'
+import { AssemblyLine, List, DoneAll } from '@icon-park/vue-next'
 import { useColorMode } from '@vueuse/core'
 
 import { Button, Input, Select, Menu, Message } from '.'
@@ -43,8 +43,8 @@ const btnClick = () => {
             label: 'Flow',
             icon: h(AssemblyLine),
             children: [
-              { label: 'List', icon: h(List) },
-              { label: '123', icon: 'icon' },
+              { label: h('p', { class: 'text-green-400' }, 'List'), icon: h(List), value: '/flow' },
+              { label: 'Result', icon: h(DoneAll), value: '/flow/result' },
             ],
           },
           { label: '2', value: 2 },
