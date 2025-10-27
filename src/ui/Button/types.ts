@@ -1,6 +1,6 @@
 import type { ComponentPublicInstance } from 'vue'
 
-export type ButtonSize = 'sm' | 'md' | 'lg'
+export type ButtonSize = 'sm' | 'md' | 'lg' | 'icon'
 export type ButtonVariant = 'primary' | 'default' | 'ghost' | 'destructive'
 
 export interface ButtonProps {

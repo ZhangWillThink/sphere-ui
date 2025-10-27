@@ -4,7 +4,7 @@ import { h } from 'vue'
 import { AssemblyLine, List, DoneAll } from '@icon-park/vue-next'
 import { useColorMode } from '@vueuse/core'
 
-import { Button, Input, Select, Menu, Message } from '.'
+import { Button, Menu, Message, Pagination } from '.'
 
 defineOptions({ name: 'App' })
 
@@ -21,19 +21,7 @@ const btnClick = () => {
   <main class="h-svh w-svw">
     <Button variant="default" @click="btnClick">123</Button>
 
-    <div class="flex w-1/2 flex-col gap-4">
-      <Input />
-
-      <Select :options="[{ label: '123', value: 1 }]" />
-
-      <Select
-        multiple
-        :options="[
-          { label: '123', value: 1 },
-          { label: '123', value: 2 },
-        ]"
-      />
-    </div>
+    <Pagination :total="100" :pageSize="10" :current="1" />
 
     <div>
       <Menu

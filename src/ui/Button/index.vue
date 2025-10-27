@@ -15,6 +15,7 @@ const button = cva(
         sm: 'text-xs px-3 py-1.5 rounded-md',
         md: 'text-sm px-4 py-2 rounded-lg',
         lg: 'text-base px-5 py-2.5 rounded-xl',
+        icon: 'p-2.5 rounded-lg',
       },
       variant: {
         primary: [

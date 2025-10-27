@@ -149,6 +149,7 @@ const quickJumperValue = computed({
         :modelValue="pageSize"
         :options="pageSizeSelectOptions"
         :disabled="disabled"
+        class="min-w-40"
         size="sm"
         @update:modelValue="handlePageSizeChange"
       />
@@ -157,7 +158,7 @@ const quickJumperValue = computed({
     <!-- Pagination Controls -->
     <div class="flex items-center gap-1">
       <!-- Previous Button -->
-      <Button size="sm" variant="ghost" :disabled="!canGoPrev" @click="handlePrev">
+      <Button size="icon" variant="ghost" :disabled="!canGoPrev" @click="handlePrev">
         <template #icon> <Left /> </template>
       </Button>
 
@@ -179,7 +180,7 @@ const quickJumperValue = computed({
       </template>
 
       <!-- Next Button -->
-      <Button :disabled="!canGoNext" size="sm" variant="ghost" @click="handleNext">
+      <Button :disabled="!canGoNext" size="icon" variant="ghost" @click="handleNext">
         <template #icon> <Right /> </template>
       </Button>
     </div>
