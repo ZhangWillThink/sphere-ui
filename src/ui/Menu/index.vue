@@ -3,6 +3,8 @@ import type { VNodeChild } from 'vue'
 
 import { computed, defineComponent, h, isVNode, ref } from 'vue'
 
+import { RightOne } from '@icon-park/vue-next'
+
 import { CollapseTransition } from '../Transition'
 
 defineOptions({ name: 'SphereMenu', inheritAttrs: true })
@@ -115,7 +117,7 @@ const MenuItem = defineComponent({
         'li',
         {
           class: [
-            'flex items-center justify-between rounded-md px-3 py-2 transition-colors select-none',
+            'items-center justify-between rounded-md px-3 py-2 transition-colors select-none',
             item.disabled
               ? 'cursor-not-allowed opacity-50'
               : 'cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/40',
@@ -124,27 +126,28 @@ const MenuItem = defineComponent({
           onClick,
         },
         [
-          h('div', { class: 'flex items-center gap-2 truncate' }, [
-            item.icon ? (isVNode(item.icon) ? item.icon : h('span', {}, item.icon)) : null,
-            (() => {
-              const lbl = renderLabel(item.label)
-              // h() accepts VNodeChild; wrap primitives in array to satisfy TS
-              return h(
-                'span',
-                { class: 'truncate' },
-                Array.isArray(lbl) || isVNode(lbl) ? lbl : String(lbl),
-              )
-            })(),
+          h('div', { class: 'flex items-center truncate justify-between' }, [
+            h('div', { class: 'flex items-center space-x-2' }, [
+              item.icon ? (isVNode(item.icon) ? item.icon : h('span', {}, item.icon)) : null,
+              (() => {
+                const lbl = renderLabel(item.label)
+                // h() accepts VNodeChild; wrap primitives in array to satisfy TS
+                return h(
+                  'span',
+                  { class: 'truncate' },
+                  Array.isArray(lbl) || isVNode(lbl) ? lbl : String(lbl),
+                )
+              })(),
+            ]),
+            hasChildren
+              ? h(
+                  RightOne,
+                  { class: ['ml-2 transition-transform', isOpen(key) ? 'rotate-90' : ''] },
+                  [],
+                )
+              : null,
           ]),
-          hasChildren
-            ? h('div', { class: 'ml-2' }, [
-                h(
-                  'button',
-                  { type: 'button', class: 'text-xs text-foreground/60' },
-                  isOpen(key) ? '▾' : '▸',
-                ),
-              ])
-            : null,
+
           // children
           hasChildren
             ? h(CollapseTransition, null, {

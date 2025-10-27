@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { h } from 'vue'
 
+import { AssemblyLine, List } from '@icon-park/vue-next'
 import { useColorMode } from '@vueuse/core'
 
 import { Button, Input, Select, Menu } from '.'
@@ -32,8 +33,9 @@ colorMode.value = 'auto'
 
     <div>
       <Menu
+        class="w-70"
         :items="[
-          { label: '1', value: 1 },
+          { label: 'Flow', icon: h(AssemblyLine), children: [{ label: 'List', icon: h(List) }] },
           { label: '2', value: 2 },
           { label: h('p', { class: 'text-green-400' }, '123'), value: 3 },
         ]"
