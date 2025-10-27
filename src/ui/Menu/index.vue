@@ -115,8 +115,10 @@ const MenuItem = defineComponent({
         'li',
         {
           class: [
-            'flex items-center justify-between rounded-md px-3 py-2 transition-all select-none',
-            item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
+            'flex items-center justify-between rounded-md px-3 py-2 transition-colors select-none',
+            item.disabled
+              ? 'cursor-not-allowed opacity-50'
+              : 'cursor-pointer hover:bg-blue-100 dark:hover:bg-blue-900/40',
             isSelectedKey(key) ? 'bg-blue-500/80 text-white' : '',
           ],
           onClick,
