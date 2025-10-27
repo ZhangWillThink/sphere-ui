@@ -11,6 +11,7 @@ import Divider from './ui/Divider/index.vue'
 import { Form, FormItem } from './ui/Form'
 import Input from './ui/Input/index.vue'
 import Menu from './ui/Menu/index.vue'
+import Message from './ui/Message'
 import Pagination from './ui/Pagination/index.vue'
 import Popover from './ui/Popover/index.vue'
 import Radio from './ui/Radio/index.vue'
@@ -44,6 +45,7 @@ export {
   FormItem,
   Input,
   Menu,
+  Message,
   Pagination,
   Popover,
   Radio,

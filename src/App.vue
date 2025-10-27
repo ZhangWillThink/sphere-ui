@@ -4,9 +4,7 @@ import { h } from 'vue'
 import { AssemblyLine, List } from '@icon-park/vue-next'
 import { useColorMode } from '@vueuse/core'
 
-import SphereMessage from './ui/Message'
-
-import { Button, Input, Select, Menu } from '.'
+import { Button, Input, Select, Menu, Message } from '.'
 
 defineOptions({ name: 'App' })
 
@@ -15,7 +13,7 @@ const colorMode = useColorMode()
 colorMode.value = 'auto'
 
 const btnClick = () => {
-  SphereMessage.info('按钮点击成功消息')
+  Message.info('按钮点击成功消息')
 }
 </script>
 
