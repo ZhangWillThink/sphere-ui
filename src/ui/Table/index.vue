@@ -26,7 +26,7 @@ import type { SortState, TableColumn } from './types'
 import type { VariantProps } from 'class-variance-authority'
 import type { CSSProperties, VNodeChild } from 'vue'
 
-import { computed, ref } from 'vue'
+import { computed, isVNode, ref } from 'vue'
 
 import { DataNull, Down, Up } from '@icon-park/vue-next'
 import { cva } from 'class-variance-authority'
@@ -313,7 +313,8 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
               @click="handleSort(column)"
             >
               <div class="flex items-center gap-2" :class="getAlignClass(column.align)">
-                <span>{{ column.title }}</span>
+                <component v-if="isVNode(column.title)" :is="column.title" />
+                <span v-else>{{ column.title }}</span>
                 <span
                   v-if="column.sortable"
                   class="flex flex-col text-gray-400 transition-colors duration-200"

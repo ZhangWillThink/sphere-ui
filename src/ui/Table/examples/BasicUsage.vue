@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { TableColumn } from '../types'
 
-import { ref } from 'vue'
+import { h, ref } from 'vue'
 
 import Table from '../index.vue'
 
@@ -17,7 +17,7 @@ interface DataType {
 const columns: TableColumn<DataType>[] = [
   {
     key: 'name',
-    title: '姓名',
+    title: h('b', { class: 'text-green-400' }, 'Name123'),
     dataIndex: 'name',
     width: 150,
     sortable: true,

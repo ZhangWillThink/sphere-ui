@@ -7,7 +7,7 @@ export interface TableColumn<T = any> {
   /** 列的唯一标识 */
   key: string
   /** 列标题 */
-  title?: string
+  title?: string | VNodeChild
   /** 数据字段名，支持嵌套路径 */
   dataIndex?: string | string[]
   /** 列宽度 */
