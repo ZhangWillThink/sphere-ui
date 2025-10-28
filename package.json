@@ -17,7 +17,7 @@
   "main": "dist/sphere-ui.cjs.js",
   "module": "dist/sphere-ui.es.js",
   "type": "module",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "keywords": [
     "vue",
     "components",
@@ -53,6 +53,7 @@
     "@types/lodash-es": "latest",
     "@types/node": "latest",
     "@vitejs/plugin-vue": "latest",
+    "@vitejs/plugin-vue-jsx": "^5.1.1",
     "@vue/eslint-config-prettier": "latest",
     "@vue/eslint-config-typescript": "latest",
     "@vue/tsconfig": "latest",

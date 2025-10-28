@@ -1,7 +1,7 @@
 <script setup lang="tsx">
 import type { VNodeChild } from 'vue'
 
-import { computed, defineComponent, h, isVNode, ref } from 'vue'
+import { computed, defineComponent, isVNode, ref } from 'vue'
 
 import { RightOne } from '@icon-park/vue-next'
 
@@ -107,59 +107,43 @@ const MenuItem = defineComponent({
 
     const openLocal = computed(() => isOpen(key))
 
-    return () =>
-      h(
-        'li',
-        {
-          class: [
-            'items-center justify-between text-foreground transition-colors select-none',
-            item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-          ],
-          onClick,
-        },
-        [
-          h(
-            'div',
-            {
-              class: [
-                'flex items-center justify-between truncate px-3 rounded-md py-2 hover:bg-blue-100 dark:hover:bg-blue-900/40',
-                isSelectedKey(key) ? 'bg-blue-100 dark:bg-blue-900/40' : '',
-              ],
-            },
-            [
-              h('div', { class: 'flex items-center space-x-2' }, [
-                item.icon ? (isVNode(item.icon) ? item.icon : h('span', {}, item.icon)) : null,
-                h('span', { class: 'truncate' }, item.label),
-              ]),
-              hasChildren
-                ? h(RightOne, {
-                    class: ['ml-2 transition-transform', isOpen(key) ? 'rotate-90' : ''],
-                  })
-                : null,
-            ],
-          ),
+    return () => (
+      <li
+        class={[
+          'text-foreground items-center justify-between transition-colors select-none',
+          item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
+        ]}
+        onClick={onClick}
+      >
+        <div
+          class={[
+            'flex items-center justify-between truncate rounded-md px-3 py-2 hover:bg-blue-100 dark:hover:bg-blue-900/40',
+            isSelectedKey(key) ? 'bg-blue-100 dark:bg-blue-900/40' : '',
+          ]}
+        >
+          <div class="flex items-center space-x-2">
+            {item.icon ? isVNode(item.icon) ? item.icon : <span>{item.icon}</span> : null}
+            <span class="truncate">{item.label}</span>
+          </div>
 
-          // children
-          hasChildren
-            ? h(CollapseTransition, null, {
-                default: () =>
-                  openLocal.value
-                    ? h(
-                        'ul',
-                        { class: 'mt-1 ml-3 rounded-md p-1' },
-                        item.children.map((c: any, idx: number) =>
-                          h(MenuItem, {
-                            key: c.key ?? `${key}-${idx}`,
-                            item: c,
-                            path: [...path, idx],
-                          }),
-                        ),
-                      )
-                    : null,
-              })
-            : null,
-        ],
-      )
+          {hasChildren && (
+            <RightOne class={['ml-2 transition-transform', isOpen(key) ? 'rotate-90' : '']} />
+          )}
+        </div>
+
+        {hasChildren && (
+          <CollapseTransition>
+            {openLocal.value ? (
+              <ul class="mt-1 ml-3 rounded-md p-1">
+                {item.children.map((c: any, idx: number) => (
+                  <MenuItem key={c.key ?? `${key}-${idx}`} item={c} path={[...path, idx]} />
+                ))}
+              </ul>
+            ) : null}
+          </CollapseTransition>
+        )}
+      </li>
+    )
   },
 })
 </script>

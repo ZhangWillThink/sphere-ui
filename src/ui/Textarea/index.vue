@@ -35,8 +35,6 @@ const html = computedAsync(async () => {
 watch(
   [modelValue, () => autoResize],
   ([, enabled]) => {
-    console.log(modelValue.value)
-
     if (!enabled || !textarea.value) return
 
     textarea.value.style.height = 'auto'
@@ -55,13 +53,13 @@ watch(
       v-if="!modelValue"
       :class="[
         paddingClass,
-        'text-foreground/50 pointer-events-none absolute inset-0 flex items-center',
+        'text-foreground/30 pointer-events-none absolute inset-0 size-full wrap-break-word whitespace-pre-wrap select-none',
       ]"
     >
       <slot name="placeholder">
         <template v-if="placeholder">
           <component v-if="isVNode(placeholder)" :is="placeholder" />
-          <template v-else-if="placeholder">{{ placeholder }}</template>
+          <p v-else-if="placeholder">{{ placeholder }}</p>
         </template>
       </slot>
     </div>

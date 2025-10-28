@@ -7,7 +7,7 @@ import { useColorMode } from '@vueuse/core'
 import AdvancedUsage from './ui/Table/examples/AdvancedUsage.vue'
 import BasicUsage from './ui/Table/examples/BasicUsage.vue'
 
-import { Button, Menu, Message, Pagination } from '.'
+import { Button, Menu, Message, Pagination, Textarea } from '.'
 
 defineOptions({ name: 'App' })
 
@@ -24,6 +24,8 @@ const toggleDarkMode = () => {
 
 <template>
   <main class="min-h-svh w-svw bg-white transition-colors duration-300 dark:bg-gray-900">
+    <Textarea class="w-30" placeholder="123123asdfasdfsadfasdfasdfhahahah" />
+
     <div class="p-4">
       <div class="mb-4 flex items-center gap-4">
         <Button variant="default" @click="toggleDarkMode">

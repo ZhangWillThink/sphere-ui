@@ -4,6 +4,7 @@ import { promisify } from 'node:util'
 
 import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { defineConfig } from 'vite'
 
 const execAsync = promisify(exec)
@@ -33,7 +34,7 @@ function dts() {
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue(), tailwindcss(), dts()],
+  plugins: [vue(), vueJsx(), tailwindcss(), dts()],
 
   build: {
     lib: {
