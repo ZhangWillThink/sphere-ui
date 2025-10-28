@@ -4,6 +4,8 @@ import { h } from 'vue'
 import { AssemblyLine, List, DoneAll } from '@icon-park/vue-next'
 import { useColorMode } from '@vueuse/core'
 
+import AdvancedUsage from './ui/Table/examples/AdvancedUsage.vue'
+
 import { Button, Menu, Message, Pagination } from '.'
 
 defineOptions({ name: 'App' })
@@ -19,6 +21,7 @@ const btnClick = () => {
 
 <template>
   <main class="h-svh w-svw">
+    <AdvancedUsage />
     <Button variant="default" @click="btnClick">123</Button>
 
     <Pagination :total="100" :pageSize="10" :current="1" />

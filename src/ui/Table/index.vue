@@ -272,9 +272,9 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
       >
         <thead
           :class="[
-            'bg-gradient-to-br from-gray-50/90 to-gray-100/90 backdrop-blur-xl',
+            'bg-linear-to-br from-gray-50/90 to-gray-100/90 backdrop-blur-xl',
             'dark:from-gray-800/90 dark:to-gray-900/90',
-            sticky ? 'sticky top-0 z-[1] shadow-lg shadow-gray-200/20 dark:shadow-black/20' : '',
+            sticky ? 'sticky top-0 z-1 shadow-lg shadow-gray-200/20 dark:shadow-black/20' : '',
             bordered ? 'border-b border-white/30 dark:border-gray-700/50' : '',
           ]"
         >
@@ -356,15 +356,15 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
               v-for="(record, index) in sortedData"
               :key="getRowKey(record, index)"
               :class="[
-                'cursor-pointer transition-all duration-300',
+                'cursor-pointer transition-all',
                 hoverable
-                  ? 'hover:bg-gradient-to-r hover:from-gray-50/80 hover:to-transparent hover:shadow-md hover:shadow-gray-200/20 hover:backdrop-blur-sm dark:hover:from-gray-800/50 dark:hover:shadow-black/20'
+                  ? 'hover:bg-linear-to-r hover:from-gray-50/80 hover:to-transparent hover:shadow-md hover:shadow-gray-200/20 hover:backdrop-blur-sm dark:hover:from-gray-800/50 dark:hover:shadow-black/20'
                   : '',
                 striped && index % 2 === 1
-                  ? 'bg-gradient-to-r from-gray-50/30 to-transparent dark:from-gray-800/20'
+                  ? 'bg-linear-to-r from-gray-50/30 to-transparent dark:from-gray-800/20'
                   : '',
                 isRowSelected(record, index)
-                  ? 'bg-gradient-to-r from-blue-50/80 to-blue-50/20 shadow-md shadow-blue-200/30 backdrop-blur-sm dark:from-blue-900/30 dark:to-blue-900/10 dark:shadow-blue-900/20'
+                  ? 'bg-linear-to-r from-blue-50/80 to-blue-50/20 shadow-md shadow-blue-200/30 backdrop-blur-sm dark:from-blue-900/30 dark:to-blue-900/10 dark:shadow-blue-900/20'
                   : 'bg-transparent',
                 bordered ? 'border-b border-white/20 last:border-b-0 dark:border-gray-700/30' : '',
               ]"
