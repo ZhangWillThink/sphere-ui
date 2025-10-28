@@ -17,11 +17,16 @@ const tag = cva(
         lg: 'px-2.5 py-1 text-sm',
       },
       variant: {
-        default: 'bg-gray-100/80! text-gray-800 dark:bg-gray-700/80 dark:text-gray-200',
-        primary: 'bg-blue-100/80! text-blue-800 dark:bg-blue-900/20 dark:text-blue-200',
-        success: 'bg-green-100/80! text-green-800 dark:bg-green-900/20 dark:text-green-200',
-        warning: 'bg-yellow-100/80! text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-200',
-        error: 'bg-red-100/80! text-red-800 dark:bg-red-900/20 dark:text-red-200',
+        default:
+          'bg-white/20 text-gray-800 backdrop-blur-sm border border-white/30 dark:bg-gray-900/20 dark:text-gray-100 dark:border-gray-700/30',
+        primary:
+          'bg-blue-500/20 text-blue-800 backdrop-blur-sm border border-blue-300/30 dark:bg-blue-900/20 dark:text-blue-100 dark:border-blue-700/30',
+        success:
+          'bg-green-500/20 text-green-800 backdrop-blur-sm border border-green-300/30 dark:bg-green-900/20 dark:text-green-100 dark:border-green-700/30',
+        warning:
+          'bg-yellow-500/20 text-yellow-800 backdrop-blur-sm border border-yellow-300/30 dark:bg-yellow-900/20 dark:text-yellow-100 dark:border-yellow-700/30',
+        error:
+          'bg-red-500/20 text-red-800 backdrop-blur-sm border border-red-300/30 dark:bg-red-900/20 dark:text-red-100 dark:border-red-700/30',
       },
     },
     defaultVariants: {

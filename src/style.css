@@ -1,7 +1,5 @@
 @import 'tailwindcss';
 
-/* 定义深色模式变体 */
-/* @variant dark (.dark &); */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
