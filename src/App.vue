@@ -5,6 +5,7 @@ import { AssemblyLine, DoneAll, List } from '@icon-park/vue-next'
 import { useColorMode } from '@vueuse/core'
 
 import AdvancedUsage from './ui/Table/examples/AdvancedUsage.vue'
+import BasicUsage from './ui/Table/examples/BasicUsage.vue'
 
 import { Button, Menu, Message, Pagination } from '.'
 
@@ -40,6 +41,8 @@ const toggleDarkMode = () => {
         <p>这个区域应该在深色模式下显示为深色背景和浅色文字</p>
       </div>
     </div>
+
+    <BasicUsage />
 
     <AdvancedUsage />
 
