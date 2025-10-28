@@ -1,5 +1,3 @@
-import './style.css'
-
 import Button from './ui/Button/index.vue'
 import Card from './ui/Card/index.vue'
 import Checkbox from './ui/Checkbox/index.vue'

@@ -112,7 +112,7 @@ const MenuItem = defineComponent({
         'li',
         {
           class: [
-            'items-center justify-between  transition-colors select-none',
+            'items-center justify-between text-foreground transition-colors select-none',
             item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
           ],
           onClick,
