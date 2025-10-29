@@ -2,7 +2,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@theme {
+:root {
   /* 浅色主题 - 主色系蓝色 */
   --color-primary-50: #eff6ff;
   --color-primary-100: #dbeafe;
@@ -57,9 +57,8 @@
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
-}
 
-:root {
+  /* 语义化变量 */
   --foreground: var(--color-text-primary);
   --background: var(--color-bg-primary);
   --muted: var(--color-text-tertiary);
@@ -96,6 +95,63 @@
   --background: var(--color-bg-primary);
   --muted: var(--color-text-tertiary);
   --muted-foreground: var(--color-text-secondary);
+}
+
+@theme inline {
+  /* 主色系 - 使用 CSS 变量 */
+  --color-primary-50: var(--color-primary-50);
+  --color-primary-100: var(--color-primary-100);
+  --color-primary-200: var(--color-primary-200);
+  --color-primary-300: var(--color-primary-300);
+  --color-primary-400: var(--color-primary-400);
+  --color-primary-500: var(--color-primary-500);
+  --color-primary-600: var(--color-primary-600);
+  --color-primary-700: var(--color-primary-700);
+  --color-primary-800: var(--color-primary-800);
+  --color-primary-900: var(--color-primary-900);
+
+  /* 背景色 - 使用 CSS 变量 */
+  --color-bg-primary: var(--color-bg-primary);
+  --color-bg-secondary: var(--color-bg-secondary);
+  --color-bg-tertiary: var(--color-bg-tertiary);
+  --color-bg-overlay: var(--color-bg-overlay);
+
+  /* 前景色 - 使用 CSS 变量 */
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
+  --color-text-inverse: var(--color-text-inverse);
+
+  /* 边框色 - 使用 CSS 变量 */
+  --color-border-light: var(--color-border-light);
+  --color-border-default: var(--color-border-default);
+  --color-border-dark: var(--color-border-dark);
+
+  /* 毛玻璃效果 - 使用 CSS 变量 */
+  --glass-blur: var(--glass-blur);
+  --glass-opacity: var(--glass-opacity);
+  --glass-bg: var(--glass-bg);
+  --glass-border: var(--glass-border);
+  --glass-shadow: var(--glass-shadow);
+  --glass-shadow-hover: var(--glass-shadow-hover);
+
+  /* 阴影 - 使用 CSS 变量 */
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+
+  /* 过渡 - 使用 CSS 变量 */
+  --transition-fast: var(--transition-fast);
+  --transition-base: var(--transition-base);
+  --transition-slow: var(--transition-slow);
+
+  /* 圆角 - 使用 CSS 变量 */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
 }
 
 /* ============================================

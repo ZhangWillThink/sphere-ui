@@ -27,18 +27,18 @@ const button = cva(
           'dark:focus-visible:ring-blue-300',
         ],
         default: [
-          'glass text-foreground shadow',
+          'glass text-text-primary shadow',
           'hover:glass-light',
           'active:shadow-none active:scale-[0.99]',
           'focus-visible:ring-4 focus-visible:ring-blue-300',
-          'dark:text-foreground',
+          'dark:text-text-primary',
         ],
         ghost: [
-          'bg-transparent text-foreground',
+          'bg-transparent text-text-primary',
           'hover:glass',
           'active:scale-[0.99]',
           'focus-visible:ring-4 focus-visible:ring-blue-300',
-          'dark:text-foreground',
+          'dark:text-text-primary',
         ],
         destructive: [
           'bg-red-600 text-white shadow-md',

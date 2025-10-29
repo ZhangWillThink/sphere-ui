@@ -22,7 +22,7 @@ const slot = defineSlots<{
 <template>
   <div
     v-bind="$attrs"
-    class="glass text-foreground rounded-lg shadow-sm dark:shadow-lg dark:shadow-black/20"
+    class="glass text-text-primary rounded-lg shadow-sm dark:shadow-lg dark:shadow-black/20"
   >
     <header v-if="slot.cover" class="text-2xl leading-none font-semibold tracking-tight">
       <slot name="cover">
@@ -48,7 +48,7 @@ const slot = defineSlots<{
         </h3>
         <p
           v-if="description || slot.description"
-          class="text-foreground/70 text-sm leading-relaxed"
+          class="text-text-primary/70 text-sm leading-relaxed"
         >
           <slot name="description">
             <template v-if="description">

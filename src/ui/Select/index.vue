@@ -187,7 +187,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
     v-bind="$attrs"
     ref="trigger"
     type="button"
-    class="glass text-foreground flex w-full items-center justify-between rounded-lg px-3 py-2 shadow transition-all duration-150 ease-in-out focus-within:ring-3 focus-within:ring-blue-300/30 dark:focus-within:ring-blue-400/40"
+    class="glass text-text-primary flex w-full items-center justify-between rounded-lg px-3 py-2 shadow transition-all duration-150 ease-in-out focus-within:ring-3 focus-within:ring-blue-300/30 dark:focus-within:ring-blue-400/40"
     :aria-expanded="open"
     aria-haspopup="listbox"
     @click="openDropdown"
@@ -201,7 +201,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
           />
           <template v-else>{{ getLabelByValue(selectedValues) }}</template>
         </span>
-        <span v-else class="text-foreground/60">{{ placeholder ?? 'Select' }}</span>
+        <span v-else class="text-text-primary/60">{{ placeholder ?? 'Select' }}</span>
       </template>
 
       <template v-else>
@@ -216,7 +216,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
             {{ getLabelByValue(value) }}
           </UiTag>
         </template>
-        <span v-else class="text-foreground/60">{{ placeholder ?? 'Select' }}</span>
+        <span v-else class="text-text-primary/60">{{ placeholder ?? 'Select' }}</span>
       </template>
     </div>
 

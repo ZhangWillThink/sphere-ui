@@ -46,14 +46,14 @@ watch(
 
 <template>
   <div
-    class="glass text-foreground hover:glass-light relative min-h-30 overflow-hidden rounded-lg font-mono shadow backdrop-blur-sm transition-all duration-200 ease-in-out focus-within:ring-3 focus-within:ring-blue-300/30"
+    class="glass text-text-primary hover:glass-light relative min-h-30 overflow-hidden rounded-lg font-mono shadow backdrop-blur-sm transition-all duration-200 ease-in-out focus-within:ring-3 focus-within:ring-blue-300/30"
     :style="{ height: `${textareaHeight}px` }"
   >
     <div
       v-if="!modelValue"
       :class="[
         paddingClass,
-        'text-foreground/30 pointer-events-none absolute inset-0 size-full wrap-break-word whitespace-pre-wrap select-none',
+        'text-text-primary/50 pointer-events-none absolute inset-0 size-full wrap-break-word whitespace-pre-wrap select-none',
       ]"
     >
       <slot name="placeholder">

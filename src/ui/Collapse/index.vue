@@ -77,7 +77,7 @@ const isActive = (key: any) => activeKeys.value.has(key)
 
 // 容器样式 — 现代化毛玻璃风格（默认无边框）
 const containerClasses = cva(
-  'glass text-foreground rounded-lg shadow-sm dark:shadow-lg dark:shadow-black/20',
+  'glass text-text-primary rounded-lg shadow-sm dark:shadow-lg dark:shadow-black/20',
   {
     variants: {
       bordered: {
@@ -128,7 +128,7 @@ const headerClasses = cva(
       {
         ghost: false,
         active: true,
-        class: 'glass-strong text-foreground',
+        class: 'glass-strong text-text-primary',
       },
       // 非 ghost 非激活时 hover 使用轻微 glass-light
       {
@@ -142,7 +142,7 @@ const headerClasses = cva(
 
 // 内容盒子样式 — 留白与文本颜色保持项目一致
 const contentBoxClasses = cva(
-  'text-foreground/80 dark:text-gray-300 px-4 pt-0 pb-4 text-sm transition-colors duration-150',
+  'text-text-primary/80 dark:text-gray-300 px-4 pt-0 pb-4 text-sm transition-colors duration-150',
   {
     variants: {
       ghost: {
@@ -164,12 +164,12 @@ const contentBoxClasses = cva(
         <slot name="expandIcon" :is-active="isActive(item.key)">
           <Down
             :class="[
-              'text-foreground/60 shrink-0 transition-transform duration-200',
+              'text-text-primary/60 shrink-0 transition-transform duration-200',
               { 'rotate-180': isActive(item.key) },
             ]"
           />
         </slot>
-        <div class="text-foreground flex-1 text-sm font-medium">
+        <div class="text-text-primary flex-1 text-sm font-medium">
           <component v-if="isVNode(item.label)" :is="item.label" />
           <template v-else>{{ item.label }}</template>
         </div>

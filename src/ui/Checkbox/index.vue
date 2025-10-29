@@ -74,7 +74,7 @@ onKeyStroke(
     :class="[
       'inline-flex cursor-pointer items-center gap-3 select-none',
       'transition-all duration-200 ease-in-out',
-      'hover:text-foreground/90',
+      'hover:text-text-primary/90',
       disabled ? 'cursor-not-allowed opacity-50' : '',
     ]"
     :aria-disabled="disabled"
@@ -111,7 +111,7 @@ onKeyStroke(
     </div>
 
     <div class="flex flex-1 flex-col">
-      <div class="text-foreground font-medium">
+      <div class="text-text-primary font-medium">
         <slot name="default" />
       </div>
 

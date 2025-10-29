@@ -53,7 +53,7 @@ const toggleOpen = useToggle(modelValue)
                 </slot>
               </div>
 
-              <div v-if="description || slot.description" class="text-foreground/70 mt-1 text-xs">
+              <div v-if="description || slot.description" class="text-text-primary/70 mt-1 text-xs">
                 <slot name="description">
                   <template v-if="description">
                     <component v-if="isVNode(description)" :is="description" />
