@@ -8,8 +8,15 @@ import { Button } from '../..'
 
 defineOptions({ name: 'SphereUpload', inheritAttrs: true })
 
-const { accept, onChange } = defineProps<{
+const {
+  accept,
+  multiple = false,
+  directory = false,
+  onChange,
+} = defineProps<{
   accept?: string
+  directory?: boolean
+  multiple?: boolean
   onChange?: (files: FileList | null) => Promise<void>
 }>()
 
@@ -17,7 +24,7 @@ const slot = defineSlots<{
   default: () => VNodeChild
 }>()
 
-const { open, onChange: onFileDialogChange } = useFileDialog({ accept })
+const { open, onChange: onFileDialogChange } = useFileDialog({ accept, multiple, directory })
 
 const [loading, toggleLoading] = useToggle(false)
 
