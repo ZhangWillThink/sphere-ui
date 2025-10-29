@@ -48,7 +48,7 @@ watch(
     <label
       v-if="label || slot.label"
       :for="name"
-      class="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      class="leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
       :aria-describedby="name"
     >
       <slot name="label">
@@ -59,7 +59,7 @@ watch(
       </slot>
     </label>
 
-    <p v-if="description || slot.description" class="text-foreground/60 text-xs">
+    <p v-if="description || slot.description" class="text-foreground/40 text-xs">
       <slot name="description">
         <template v-if="description">
           <component v-if="isVNode(description)" :is="description" />
