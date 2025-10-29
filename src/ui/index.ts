@@ -16,6 +16,7 @@ import Popover from './Popover/index.vue'
 import Radio from './Radio/index.vue'
 import Select from './Select/index.vue'
 import Slider from './Slider/index.vue'
+import Switch from './Switch/index.vue'
 import Table from './Table/index.vue'
 import Tabs from './Tabs/index.vue'
 import Tag from './Tag/index.vue'
@@ -45,6 +46,7 @@ export {
   Radio,
   Select,
   Slider,
+  Switch,
   Table,
   Tabs,
   Tag,
