@@ -4,7 +4,7 @@ import { h } from 'vue'
 import { AssemblyLine, DoneAll, List } from '@icon-park/vue-next'
 import { useColorMode } from '@vueuse/core'
 
-import { Upload } from './ui'
+import { Input, Upload } from './ui'
 import AdvancedUsage from './ui/Table/examples/AdvancedUsage.vue'
 import BasicUsage from './ui/Table/examples/BasicUsage.vue'
 
@@ -26,6 +26,8 @@ const toggleDarkMode = () => {
 <template>
   <main class="min-h-svh w-svw bg-white p-7 transition-colors duration-300 dark:bg-gray-900">
     <Switch />
+
+    <Input class="w-1/4" placeholder="aslkdfjaslkdfjskaldfjlksad" />
 
     <Slider :max="200" :step="0.1" />
 

@@ -40,7 +40,7 @@ const html = computedAsync(async () => {
       v-if="!modelValue"
       :class="[
         paddingClass,
-        'text-text-primary/50 pointer-events-none absolute inset-0 flex size-full h-11 items-center',
+        'text-text-primary/50 pointer-events-none absolute inset-0 flex size-full h-11 items-center text-nowrap',
       ]"
     >
       <slot name="placeholder">
