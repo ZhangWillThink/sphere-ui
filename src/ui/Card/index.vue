@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { isVNode, type VNodeChild } from 'vue'
 
-defineOptions({ name: 'SphereCard' })
+defineOptions({ name: 'SphereCard', inheritAttrs: true })
 
 const { title, description, cover, footer } = defineProps<{
   title?: VNodeChild
@@ -20,7 +20,10 @@ const slot = defineSlots<{
 </script>
 
 <template>
-  <div class="glass text-foreground rounded-lg shadow-sm dark:shadow-lg dark:shadow-black/20">
+  <div
+    v-bind="$attrs"
+    class="glass text-foreground rounded-lg shadow-sm dark:shadow-lg dark:shadow-black/20"
+  >
     <header v-if="slot.cover" class="text-2xl leading-none font-semibold tracking-tight">
       <slot name="cover">
         <template v-if="cover">
