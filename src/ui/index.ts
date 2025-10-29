@@ -8,6 +8,9 @@ import Dialog from './Dialog/index.vue'
 import Divider from './Divider/index.vue'
 import { Form, FormItem } from './Form'
 import Input from './Input/index.vue'
+import Loading from './Loading/index.vue'
+import Menu from './Menu/index.vue'
+import Message from './Message'
 import Pagination from './Pagination/index.vue'
 import Popover from './Popover/index.vue'
 import Radio from './Radio/index.vue'
@@ -18,6 +21,7 @@ import Tag from './Tag/index.vue'
 import Textarea from './Textarea/index.vue'
 import Tooltip from './Tooltip/index.vue'
 import { CollapseTransition } from './Transition'
+import Upload from './Upload/index.vue'
 
 export {
   Button,
@@ -32,6 +36,9 @@ export {
   Form,
   FormItem,
   Input,
+  Loading,
+  Menu,
+  Message,
   Pagination,
   Popover,
   Radio,
@@ -41,6 +48,7 @@ export {
   Tag,
   Textarea,
   Tooltip,
+  Upload,
 }
 
 // 导出 Table 相关类型
