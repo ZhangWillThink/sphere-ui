@@ -224,7 +224,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
             {{ getLabelByValue(value) }}
           </UiTag>
         </template>
-        <span v-else class="text-text-primary/60">{{ placeholder ?? 'Select' }}</span>
+        <span v-else class="text-text-primary/60">{{ placeholder }}</span>
       </template>
     </div>
 
