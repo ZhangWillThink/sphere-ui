@@ -23,6 +23,7 @@ import Tag from './ui/Tag/index.vue'
 import Textarea from './ui/Textarea/index.vue'
 import Tooltip from './ui/Tooltip/index.vue'
 import { CollapseTransition } from './ui/Transition'
+import Upload from './ui/Upload/index.vue'
 export type { CollapseItem, CollapseProps } from './ui/Collapse/types'
 export type {
   DescriptionItem,
@@ -57,6 +58,7 @@ export {
   Tag,
   Textarea,
   Tooltip,
+  Upload,
 }
 
 // 导出组件类型
@@ -81,6 +83,7 @@ const components = {
   CollapseTransition,
   ContextMenu,
   Description,
+  Upload,
   Dialog,
   Divider,
   Form,
