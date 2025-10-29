@@ -69,6 +69,7 @@
     "typescript": "latest",
     "vite": "latest",
     "vite-plugin-dts": "latest",
+    "vite-plugin-vue-devtools": "^8.0.3",
     "vue-tsc": "latest"
   }
 }

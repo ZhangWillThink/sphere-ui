@@ -13,7 +13,12 @@ import { CollapseTransition } from '../Transition'
 
 defineOptions({ name: 'SphereSelect', inheritAttrs: true })
 
-const { options, multiple, placeholder, searchable } = defineProps<{
+const {
+  options,
+  multiple,
+  placeholder = undefined,
+  searchable,
+} = defineProps<{
   searchable?: boolean
   options: Array<{ label: VNodeChild; value: any; disabled?: boolean }>
   multiple?: boolean
@@ -201,7 +206,10 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
           />
           <template v-else>{{ getLabelByValue(selectedValues) }}</template>
         </span>
-        <span v-else class="text-text-primary/60">{{ placeholder ?? 'Select' }}</span>
+        <span v-else class="text-text-primary/60">
+          <template v-if="isVNode(placeholder)"><component :is="placeholder" /></template>
+          <template v-else>{{ placeholder ?? 'Select' }}</template>
+        </span>
       </template>
 
       <template v-else>
@@ -255,11 +263,12 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
           role="option"
           :aria-selected="isSelected(opt)"
           :class="[
-            'flex items-center space-x-2 rounded-md px-3 py-2 transition-all select-none',
+            'text-text-secondary flex items-center space-x-2 rounded-md px-3 py-2 transition-all select-none',
             opt.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-            highlighted === i && !opt.disabled
-              ? 'bg-blue-100 dark:bg-blue-900/40 dark:text-blue-100'
-              : '',
+            {
+              'text-text-primary bg-blue-100 dark:bg-blue-900/40':
+                highlighted === i && !opt.disabled,
+            },
           ]"
           @click="
             () => {

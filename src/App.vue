@@ -8,7 +8,7 @@ import { Input, Upload } from './ui'
 import AdvancedUsage from './ui/Table/examples/AdvancedUsage.vue'
 import BasicUsage from './ui/Table/examples/BasicUsage.vue'
 
-import { Button, Menu, Message, Pagination, Slider, Switch, Textarea } from '.'
+import { Button, Menu, Message, Pagination, Select, Slider, Switch, Textarea } from '.'
 
 defineOptions({ name: 'App' })
 
@@ -25,6 +25,13 @@ const toggleDarkMode = () => {
 
 <template>
   <main class="min-h-svh w-svw bg-white p-7 transition-colors duration-300 dark:bg-gray-900">
+    <Select
+      :options="[
+        { label: '迁移图片人物至视频', value: 'wan2.2-animate-mix' },
+        { label: '视频驱动图片', value: 'wan2.2-animate-move' },
+      ]"
+    />
+
     <Switch />
 
     <Input class="w-1/4" placeholder="aslkdfjaslkdfjskaldfjlksad" />
