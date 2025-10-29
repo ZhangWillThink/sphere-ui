@@ -8,7 +8,7 @@ import { Upload } from './ui'
 import AdvancedUsage from './ui/Table/examples/AdvancedUsage.vue'
 import BasicUsage from './ui/Table/examples/BasicUsage.vue'
 
-import { Button, Menu, Message, Pagination, Textarea } from '.'
+import { Button, Menu, Message, Pagination, Slider, Textarea } from '.'
 
 defineOptions({ name: 'App' })
 
@@ -24,7 +24,9 @@ const toggleDarkMode = () => {
 </script>
 
 <template>
-  <main class="min-h-svh w-svw bg-white transition-colors duration-300 dark:bg-gray-900">
+  <main class="min-h-svh w-svw bg-white p-7 transition-colors duration-300 dark:bg-gray-900">
+    <Slider :max="200" :step="0.1" />
+
     <Upload
       :onChange="
         async files => {

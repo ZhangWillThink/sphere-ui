@@ -17,6 +17,7 @@ import Pagination from './ui/Pagination/index.vue'
 import Popover from './ui/Popover/index.vue'
 import Radio from './ui/Radio/index.vue'
 import Select from './ui/Select/index.vue'
+import Slider from './ui/Slider/index.vue'
 import Table from './ui/Table/index.vue'
 import Tabs from './ui/Tabs/index.vue'
 import Tag from './ui/Tag/index.vue'
@@ -53,6 +54,7 @@ export {
   Popover,
   Radio,
   Select,
+  Slider,
   Table,
   Tabs,
   Tag,
@@ -83,7 +85,7 @@ const components = {
   CollapseTransition,
   ContextMenu,
   Description,
-  Upload,
+  // Upload,
   Dialog,
   Divider,
   Form,
@@ -95,6 +97,7 @@ const components = {
   Popover,
   Radio,
   Select,
+  Slider,
   Table,
   Tabs,
   Tag,
