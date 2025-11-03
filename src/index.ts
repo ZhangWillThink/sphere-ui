@@ -1,41 +1,10 @@
 import './style.css'
 
-import Button from './ui/Button/index.vue'
-import Card from './ui/Card/index.vue'
-import Checkbox from './ui/Checkbox/index.vue'
-import Collapse from './ui/Collapse/index.vue'
-import ContextMenu from './ui/ContextMenu/index.vue'
-import Description from './ui/Description/index.vue'
-import Dialog from './ui/Dialog/index.vue'
-import Divider from './ui/Divider/index.vue'
-import { Form, FormItem } from './ui/Form'
-import Input from './ui/Input/index.vue'
-import Loading from './ui/Loading/index.vue'
-import Menu from './ui/Menu/index.vue'
-import Message from './ui/Message'
-import Pagination from './ui/Pagination/index.vue'
-import Popover from './ui/Popover/index.vue'
-import Radio from './ui/Radio/index.vue'
-import Select from './ui/Select/index.vue'
-import Slider from './ui/Slider/index.vue'
-import Switch from './ui/Switch/index.vue'
-import Table from './ui/Table/index.vue'
-import Tabs from './ui/Tabs/index.vue'
-import Tag from './ui/Tag/index.vue'
-import Textarea from './ui/Textarea/index.vue'
-import Tooltip from './ui/Tooltip/index.vue'
-import { CollapseTransition } from './ui/Transition'
-import Upload from './ui/Upload/index.vue'
-export type { CollapseItem, CollapseProps } from './ui/Collapse/types'
-export type {
-  DescriptionItem,
-  DescriptionLabelStyle,
-  DescriptionProps,
-} from './ui/Description/types'
-export type { TabsEmits, TabsItem, TabsProps, TabsSlots } from './ui/Tabs/types'
+// 重新导出所有组件和类型
+export * from './ui'
 
-// 命名导出
-export {
+// 导入组件用于默认导出
+import {
   Button,
   Card,
   Checkbox,
@@ -50,33 +19,18 @@ export {
   Input,
   Loading,
   Menu,
-  Message,
   Pagination,
   Popover,
   Radio,
   Select,
-  Slider,
   Switch,
+  Slider,
   Table,
   Tabs,
   Tag,
   Textarea,
   Tooltip,
-  Upload,
-}
-
-// 导出组件类型
-export type {
-  RowSelection,
-  SortState,
-  TableColumn,
-  TableEmits,
-  TableProps,
-  TableSize,
-  TableSlotParams,
-} from './ui/Table/types'
-
-// 导出 Button 类型已在顶部导出
+} from './ui'
 
 // 默认导出（用于 Vue.use() 安装）
 const components = {
@@ -87,7 +41,6 @@ const components = {
   CollapseTransition,
   ContextMenu,
   Description,
-  // Upload,
   Dialog,
   Divider,
   Form,

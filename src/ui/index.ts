@@ -1,3 +1,4 @@
+import Breadcrumb from './Breadcrumb/index.vue'
 import Button from './Button/index.vue'
 import Card from './Card/index.vue'
 import Checkbox from './Checkbox/index.vue'
@@ -26,6 +27,7 @@ import { CollapseTransition } from './Transition'
 import Upload from './Upload/index.vue'
 
 export {
+  Breadcrumb,
   Button,
   Card,
   Checkbox,

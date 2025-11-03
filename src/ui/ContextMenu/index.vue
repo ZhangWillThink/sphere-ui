@@ -24,7 +24,7 @@ import {
 defineOptions({ name: 'SphereContextMenu', inheritAttrs: true })
 
 const { items = [] } = defineProps<{
-  items?: Array<{ label: VNodeChild; value?: any; disabled?: boolean }>
+  items?: Array<{ label: VNodeChild; value?: any; disabled?: boolean; onClick?: () => void }>
 }>()
 
 defineSlots<{
@@ -172,7 +172,12 @@ onMounted(() => {
         ]"
         role="menuitem"
         @blur="highlighted = -1"
-        @click="() => selectItem(it)"
+        @click="
+          () => {
+            if (it.disabled) return
+            it.onClick?.() || selectItem(it)
+          }
+        "
       >
         <component v-if="isVNode(it.label)" :is="it.label" />
         <template v-else>{{ it.label }}</template>
