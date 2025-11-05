@@ -10,7 +10,7 @@ export interface TabsItem {
 <script setup lang="ts">
 import type { VNodeChild } from 'vue'
 
-import { computed, isVNode, useTemplateRef } from 'vue'
+import { computed, isVNode } from 'vue'
 
 defineOptions({ name: 'SphereTabs', inheritAttrs: true })
 
@@ -28,8 +28,6 @@ defineSlots<{
 }>()
 
 const modelValue = defineModel<any>({ default: undefined })
-
-const root = useTemplateRef('root')
 
 // 初始化当前激活的标签
 const activeTab = computed({
@@ -49,8 +47,6 @@ const selectTab = (item: TabsItem) => {
 }
 
 const isActive = (value: any) => activeTab.value === value
-
-defineExpose({ root })
 </script>
 
 <template>
