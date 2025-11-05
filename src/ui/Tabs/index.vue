@@ -14,13 +14,9 @@ import { computed, isVNode } from 'vue'
 
 defineOptions({ name: 'SphereTabs', inheritAttrs: true })
 
-const { items } = defineProps<{
-  items: {
-    disabled?: boolean
-    label: VNodeChild
-    value: any
-    children?: VNodeChild
-  }[]
+const { items, keepAlive = false } = defineProps<{
+  items: TabsItem[]
+  keepAlive?: boolean
 }>()
 
 defineSlots<{
@@ -73,11 +69,13 @@ const isActive = (value: any) => activeTab.value === value
       </button>
     </div>
 
-    <template v-for="item in items" :key="item.value">
-      <slot v-if="isActive(item.value)" :name="`tab-${item.value}`">
-        <component v-if="isVNode(item.children)" :is="item.children" />
-        <template v-else-if="item.children">{{ item.children }}</template>
-      </slot>
-    </template>
+    <KeepAlive :max="keepAlive ? items.length : undefined">
+      <template v-for="item in items" :key="item.value">
+        <slot v-if="isActive(item.value)" :name="`tab-${item.value}`">
+          <component v-if="isVNode(item.children)" :is="item.children" />
+          <template v-else-if="item.children">{{ item.children }}</template>
+        </slot>
+      </template>
+    </KeepAlive>
   </div>
 </template>
