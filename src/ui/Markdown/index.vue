@@ -8,11 +8,12 @@ import { HighlighterManager } from '../shared/text/highlighter'
 defineOptions({ name: 'SphereMarkdown', inheritAttrs: true })
 
 const { content, language = 'markdown' } = defineProps<{
-  content: string
+  content?: string
   language?: BundledLanguage
 }>()
 
 const html = computedAsync(async () => {
+  if (!content) return ''
   const result = await HighlighterManager.renderCode(content, language)
   return result
 }, '')
