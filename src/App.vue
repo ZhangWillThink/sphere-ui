@@ -1,15 +1,23 @@
 <script setup lang="ts">
-import { Breadcrumb } from './ui'
+import { shallowRef } from 'vue'
+
+import { Select } from './ui'
 
 defineOptions({ name: 'App' })
+
+const cls = shallowRef('p-7')
+setTimeout(() => {
+  cls.value = 'p-10'
+}, 1000)
 </script>
 
 <template>
-  <Breadcrumb
-    :items="[
-      { title: 'Home' },
-      { title: 'Products', href: '/products' },
-      { title: 'Electronics', href: '/products/electronics' },
-    ]"
-  />
+  <div :class="cls">
+    <Select
+      :options="[
+        { label: '123', value: 1 },
+        { label: '456', value: 2 },
+      ]"
+    />
+  </div>
 </template>

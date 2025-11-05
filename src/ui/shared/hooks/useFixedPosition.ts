@@ -1,9 +1,9 @@
 import type { CSSProperties, ShallowRef } from 'vue'
 
-import { computed } from 'vue'
+import { computed, toValue } from 'vue'
 
 import { useElementBounding, useElementSize } from '@vueuse/core'
-import { isNil, isNumber } from 'lodash-es'
+import { isNil } from 'lodash-es'
 
 export type CornerPosition =
   | 'top-left'
@@ -25,17 +25,17 @@ export default function useFixedPosition(
   content: Readonly<ShallowRef<HTMLElement | null>>,
 ) {
   const triggerBounding = useElementBounding(trigger)
-  const contentSize = useElementSize(content, undefined, { box: 'border-box' })
+  const contentSize = useElementSize(content)
 
   const style = computed<CSSProperties>(() => {
-    const getNumber = (v: any) => (isNumber(v) ? v : v && isNumber(v.value) ? v.value : 0)
+    const tLeft = toValue(triggerBounding.left ?? triggerBounding.x)
+    const tTop = toValue(triggerBounding.top ?? triggerBounding.y)
+    const tWidth = toValue(triggerBounding.width)
+    const tHeight = toValue(triggerBounding.height)
+    const cWidth = toValue(contentSize.width)
+    const cHeight = toValue(contentSize.height)
 
-    const tLeft = getNumber(triggerBounding.left ?? triggerBounding.x)
-    const tTop = getNumber(triggerBounding.top ?? triggerBounding.y)
-    const tWidth = getNumber(triggerBounding.width)
-    const tHeight = getNumber(triggerBounding.height)
-    const cWidth = getNumber(contentSize.width)
-    const cHeight = getNumber(contentSize.height)
+    console.log(tLeft)
 
     let top: number | undefined
     let left: number | undefined
