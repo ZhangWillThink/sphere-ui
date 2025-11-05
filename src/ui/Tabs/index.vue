@@ -1,15 +1,33 @@
+<script lang="ts">
+export interface TabsItem {
+  disabled?: boolean
+  label: VNodeChild
+  value: any
+  children?: VNodeChild
+}
+</script>
+
 <script setup lang="ts">
-import type { TabsProps, TabsSlots, TabsItem } from './types'
+import type { VNodeChild } from 'vue'
 
 import { computed, isVNode } from 'vue'
 
 defineOptions({ name: 'SphereTabs', inheritAttrs: true })
 
-const { items } = defineProps<TabsProps>()
+const { items } = defineProps<{
+  items: {
+    disabled?: boolean
+    label: VNodeChild
+    value: any
+    children?: VNodeChild
+  }[]
+}>()
 
 const modelValue = defineModel<any>({ default: undefined })
 
-defineSlots<TabsSlots>()
+defineSlots<{
+  [key: `tab-${string}`]: () => VNodeChild
+}>()
 
 // 初始化当前激活的标签
 const activeTab = computed({
@@ -38,12 +56,14 @@ const isActive = (value: any) => {
 
 <template>
   <div class="w-full">
-    <div class="glass mb-4 inline-flex gap-1 rounded-lg p-1 dark:shadow-lg dark:shadow-black/20">
+    <div
+      class="glass mb-4 inline-flex w-full gap-1 rounded-lg p-1 dark:shadow-lg dark:shadow-black/20"
+    >
       <button
         v-for="item in items"
         :key="item.value"
         :class="[
-          'rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ease-in-out',
+          'flex-1 rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ease-in-out',
           'focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:focus-visible:ring-blue-400',
           isActive(item.value)
             ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800 dark:text-blue-400 dark:shadow-lg dark:shadow-black/20'
