@@ -17,7 +17,7 @@
   "main": "dist/sphere-ui.cjs.js",
   "module": "dist/sphere-ui.es.js",
   "type": "module",
-  "version": "0.1.52",
+  "version": "0.1.53",
   "keywords": [
     "vue",
     "components",
