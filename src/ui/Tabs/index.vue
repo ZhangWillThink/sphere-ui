@@ -78,13 +78,13 @@ const isActive = (value: any) => {
       </button>
     </div>
 
-    <div v-for="item in items" :key="item.value">
+    <template v-for="item in items" :key="item.value">
       <template v-if="isActive(item.value)">
         <slot :name="`tab-${item.value}`">
           <component v-if="isVNode(item.children)" :is="item.children" />
           <template v-else-if="item.children">{{ item.children }}</template>
         </slot>
       </template>
-    </div>
+    </template>
   </div>
 </template>
