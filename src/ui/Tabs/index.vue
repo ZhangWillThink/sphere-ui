@@ -32,16 +32,13 @@ defineSlots<{
 // 初始化当前激活的标签
 const activeTab = computed({
   get: () => {
-    if (modelValue.value !== undefined) {
-      return modelValue.value
-    }
+    if (modelValue.value !== undefined) return modelValue.value
+
     // 默认选择第一个未禁用的选项
     const firstEnabled = items.find(item => !item.disabled)
     return firstEnabled?.value
   },
-  set: value => {
-    modelValue.value = value
-  },
+  set: value => (modelValue.value = value),
 })
 
 const selectTab = (item: TabsItem) => {
@@ -49,15 +46,13 @@ const selectTab = (item: TabsItem) => {
   activeTab.value = item.value
 }
 
-const isActive = (value: any) => {
-  return activeTab.value === value
-}
+const isActive = (value: any) => activeTab.value === value
 </script>
 
 <template>
-  <div class="w-full">
+  <div v-bind="$attrs" class="w-full">
     <div
-      class="glass mb-4 inline-flex w-full gap-1 rounded-lg p-1 dark:shadow-lg dark:shadow-black/20"
+      class="glass sticky top-0 mb-4 inline-flex w-full gap-1 rounded-lg p-1 dark:shadow-lg dark:shadow-black/20"
     >
       <button
         v-for="item in items"
@@ -79,12 +74,10 @@ const isActive = (value: any) => {
     </div>
 
     <template v-for="item in items" :key="item.value">
-      <template v-if="isActive(item.value)">
-        <slot :name="`tab-${item.value}`">
-          <component v-if="isVNode(item.children)" :is="item.children" />
-          <template v-else-if="item.children">{{ item.children }}</template>
-        </slot>
-      </template>
+      <slot v-if="isActive(item.value)" :name="`tab-${item.value}`">
+        <component v-if="isVNode(item.children)" :is="item.children" />
+        <template v-else-if="item.children">{{ item.children }}</template>
+      </slot>
     </template>
   </div>
 </template>
