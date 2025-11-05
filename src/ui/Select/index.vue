@@ -51,9 +51,7 @@ const filteredOptions = computed(() => {
 
 const selectedValues = computed({
   get() {
-    if (multiple) {
-      return Array.isArray(modelValue.value) ? modelValue.value : []
-    }
+    if (multiple) return Array.isArray(modelValue.value) ? modelValue.value : []
     return modelValue.value
   },
   set(val) {
