@@ -10,6 +10,7 @@ import Divider from './Divider/index.vue'
 import { Form, FormItem } from './Form'
 import Input from './Input/index.vue'
 import Loading from './Loading/index.vue'
+import Markdown from './Markdown/index.vue'
 import Menu from './Menu/index.vue'
 import Message from './Message'
 import Pagination from './Pagination/index.vue'
@@ -41,6 +42,7 @@ export {
   FormItem,
   Input,
   Loading,
+  Markdown,
   Menu,
   Message,
   Pagination,

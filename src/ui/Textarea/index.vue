@@ -7,7 +7,7 @@ import { isVNode, useTemplateRef, watch } from 'vue'
 import { computedAsync, useElementSize, useScroll } from '@vueuse/core'
 
 import '../shared/text/main.css'
-import { HighlighterManager } from '../shared/text/hgihtlighter'
+import { HighlighterManager } from '../shared/text/highlighter'
 
 defineOptions({ name: 'SphereTextarea', inheritAttrs: true })
 

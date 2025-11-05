@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { shallowRef } from 'vue'
+import { useColorMode } from '@vueuse/core'
 
-import { Select } from './ui'
+import { Markdown, Select, Button } from './ui'
 
 defineOptions({ name: 'App' })
 
-const cls = shallowRef('p-7')
-setTimeout(() => {
-  cls.value = 'p-10'
-}, 1000)
+const colorMode = useColorMode()
 </script>
 
 <template>
-  <div :class="cls">
+  <div class="bg-black/70">
+    <Button @click="colorMode = colorMode === 'dark' ? 'light' : 'dark'">Toggle Color Mode</Button>
+
+    <Markdown content="### Hello, world!" />
     <Select
       :options="[
         { label: '123', value: 1 },

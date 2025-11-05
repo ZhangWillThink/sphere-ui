@@ -7,7 +7,7 @@ import { isVNode, useTemplateRef } from 'vue'
 import { computedAsync, useScroll } from '@vueuse/core'
 
 import '../shared/text/main.css'
-import { HighlighterManager } from '../shared/text/hgihtlighter'
+import { HighlighterManager } from '../shared/text/highlighter'
 
 defineOptions({ name: 'SphereInput', inheritAttrs: true })
 
