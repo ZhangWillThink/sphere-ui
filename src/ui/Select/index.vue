@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { VNodeChild } from 'vue'
 
-import { computed, isVNode, ref, shallowRef, useTemplateRef, watch } from 'vue'
+import { computed, isVNode, shallowRef, useTemplateRef, watch } from 'vue'
 
 import { Check, Down } from '@icon-park/vue-next'
 import { onClickOutside, onKeyStroke, useToggle } from '@vueuse/core'
@@ -34,7 +34,7 @@ const [contentPosition, triggerBounding] = useFixedPosition('bottom-center', tri
 
 const [open, toggleOpen] = useToggle(false)
 const highlighted = shallowRef<number>(-1)
-const searchQuery = ref('')
+const searchQuery = shallowRef('')
 
 const filteredOptions = computed(() => {
   if (!searchQuery.value) return options
