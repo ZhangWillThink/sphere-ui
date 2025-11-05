@@ -240,7 +240,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
           width: `${triggerBounding.width.value}px`,
           left: `${triggerBounding.left.value}px`,
         }"
-        class="glass mt-2 max-h-48 overflow-auto rounded-lg p-1 shadow dark:shadow-lg dark:shadow-black/30"
+        class="glass z-50 mt-2 max-h-48 overflow-auto rounded-lg p-1 shadow dark:shadow-lg dark:shadow-black/30"
       >
         <li
           v-if="searchable"

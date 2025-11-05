@@ -16,10 +16,16 @@ const colorMode = useColorMode()
 
     <Collapse
       :items="[
-        { key: 1, label: 'Item 1', children: 'Content 1' },
-        { key: 2, label: 'Item 2', children: 'Content 2' },
+        { key: 'item', label: 'Item 1' },
+        { key: 2, label: 'Item 2' },
       ]"
     >
+      <template #panel-item>
+        <div>Content 1</div>
+      </template>
+      <template #panel-2>
+        <div>Content 2</div>
+      </template>
     </Collapse>
   </div>
 </template>
