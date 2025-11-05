@@ -1,190 +1,133 @@
-<script setup lang="ts">
-import type { CollapseProps } from './types'
-import type { VNodeChild } from 'vue'
-
-import { computed, isVNode, ref } from 'vue'
-
-import { Down } from '@icon-park/vue-next'
-import { cva } from 'class-variance-authority'
-
-import { CollapseTransition } from '../Transition'
-
-defineOptions({ name: 'SphereCollapse' })
-
-const { items, accordion = false, bordered = true, ghost = false } = defineProps<CollapseProps>()
-
-const modelValue = defineModel<any | any[]>()
-
-const emit = defineEmits<{
-  change: [value: any | any[]]
-}>()
-
-defineSlots<{
-  expandIcon?: (props: { isActive: boolean }) => VNodeChild
-}>()
-
-// 内部状态管理
-const internalActiveKeys = ref<Set<any>>(new Set())
-
-// 计算当前激活的 keys
-const activeKeys = computed(() => {
-  if (modelValue.value !== undefined) {
-    if (accordion) {
-      return new Set(modelValue.value !== null ? [modelValue.value] : [])
-    } else {
-      return new Set(Array.isArray(modelValue.value) ? modelValue.value : [])
-    }
-  }
-  return internalActiveKeys.value
-})
-
-// 切换面板
-const togglePanel = (key: any, disabled?: boolean) => {
-  if (disabled) return
-
-  const newActiveKeys = new Set(activeKeys.value)
-
-  if (accordion) {
-    // 手风琴模式：只能展开一个
-    if (newActiveKeys.has(key)) {
-      newActiveKeys.delete(key)
-      const newValue = null
-      modelValue.value = newValue
-      emit('change', newValue)
-    } else {
-      newActiveKeys.clear()
-      newActiveKeys.add(key)
-      modelValue.value = key
-      emit('change', key)
-    }
-  } else {
-    // 普通模式：可以展开多个
-    if (newActiveKeys.has(key)) {
-      newActiveKeys.delete(key)
-    } else {
-      newActiveKeys.add(key)
-    }
-    const newValue = Array.from(newActiveKeys)
-    modelValue.value = newValue
-    emit('change', newValue)
-  }
-
-  internalActiveKeys.value = newActiveKeys
+<script lang="ts">
+interface CollapseItem {
+  key: any
+  children?: VNodeChild
+  label: VNodeChild
 }
 
-// 判断面板是否激活
-const isActive = (key: any) => activeKeys.value.has(key)
+const collapseItem = cva('transition-all duration-200 ease-in-out', {
+  variants: {
+    variant: {
+      bordered: [
+        '[&:not(:last-child)]:border-b [&:not(:last-child)]:border-gray-200 [&:not(:last-child)]:dark:border-gray-700',
+      ],
+      ghost: ['border-0', '[&:not(:last-child)]:mb-2'],
+    },
+  },
+  defaultVariants: {
+    variant: 'bordered',
+  },
+})
 
-// 容器样式 — 现代化毛玻璃风格（默认无边框）
-const containerClasses = cva(
-  'glass text-text-primary rounded-lg shadow-sm dark:shadow-lg dark:shadow-black/20',
+const collapseHeader = cva(
+  [
+    'flex cursor-pointer items-center justify-between px-4 py-3',
+    'font-medium transition-colors duration-200',
+  ],
   {
     variants: {
-      bordered: {
-        // 保留属性以兼容 API，但默认不显示边框
-        true: '',
-        false: '',
+      variant: {
+        bordered: 'hover:bg-gray-50 dark:hover:bg-gray-800/50',
+        ghost: ['glass rounded-md shadow dark:shadow-lg dark:shadow-black/20', 'hover:glass-light'],
       },
     },
     defaultVariants: {
-      bordered: false,
-    },
-  },
-)
-
-// 每个项目样式 — 毛玻璃风格，移除分隔线，使用间距与圆角进行分隔
-const itemClasses = cva('bg-transparent', {
-  variants: {
-    ghost: {
-      true: 'mb-2 last:mb-0 rounded-lg border-0',
-      false: 'mb-2 last:mb-0 rounded-lg',
-    },
-    bordered: {
-      true: '',
-      false: '',
-    },
-  },
-})
-
-// 头部样式 — 与 Card/Button 保持一致的内边距、圆角和交互反馈
-const headerClasses = cva(
-  'flex items-center gap-3 px-4 py-3 transition-all duration-200 ease-in-out select-none cursor-pointer',
-  {
-    variants: {
-      disabled: {
-        true: 'cursor-not-allowed opacity-50',
-      },
-      ghost: {
-        true: 'glass rounded-lg hover:glass-light',
-        false: '',
-      },
-      active: {
-        true: '',
-        false: '',
-      },
-    },
-    compoundVariants: [
-      // 非 ghost 激活时使用 stronger glass
-      {
-        ghost: false,
-        active: true,
-        class: 'glass-strong text-text-primary',
-      },
-      // 非 ghost 非激活时 hover 使用轻微 glass-light
-      {
-        ghost: false,
-        active: false,
-        class: 'hover:glass-light',
-      },
-    ],
-  },
-)
-
-// 内容盒子样式 — 留白与文本颜色保持项目一致
-const contentBoxClasses = cva(
-  'text-text-primary/80 dark:text-gray-300 px-4 pt-0 pb-4 text-sm transition-colors duration-150',
-  {
-    variants: {
-      ghost: {
-        true: 'pl-4',
-        false: 'pl-[52px]',
-      },
+      variant: 'bordered',
     },
   },
 )
 </script>
 
+<script setup lang="ts">
+import type { VariantProps } from 'class-variance-authority'
+import type { VNodeChild } from 'vue'
+
+import { computed, isVNode } from 'vue'
+
+import { DownOne } from '@icon-park/vue-next'
+import { cva } from 'class-variance-authority'
+
+import CollapseTransition from '../Transition/Collapse.vue'
+
+defineOptions({ name: 'SphereCollapse', inheritAttrs: true })
+
+type CollapseVariant = VariantProps<typeof collapseItem>['variant']
+
+const {
+  items,
+  accordion = false,
+  variant = 'bordered',
+} = defineProps<{
+  items: CollapseItem[]
+  accordion?: boolean
+  variant?: CollapseVariant
+}>()
+
+const modelValue = defineModel<any[] | any>({ required: false })
+
+const activeKeys = computed<any[]>({
+  get: () => {
+    const val = modelValue.value
+    if (accordion) return val ? [val] : []
+    return Array.isArray(val) ? val : val ? [val] : []
+  },
+  set: val => {
+    modelValue.value = accordion ? (val.length ? val[0] : undefined) : val
+  },
+})
+
+const toggleItem = (key: any) => {
+  let current: any[] = [...activeKeys.value]
+  if (current.includes(key)) {
+    current = current.filter(k => k !== key)
+  } else {
+    if (accordion) current = [key]
+    else current = [...current, key]
+  }
+  activeKeys.value = current
+}
+
+defineSlots<{
+  [key: `panel-${string}`]: () => VNodeChild
+}>()
+</script>
+
 <template>
-  <div :class="containerClasses({ bordered: bordered && !ghost })">
-    <div v-for="item in items" :key="item.key" :class="itemClasses({ ghost, bordered })">
-      <div
-        :class="headerClasses({ disabled: item.disabled, ghost, active: isActive(item.key) })"
-        @click="togglePanel(item.key, item.disabled)"
-      >
-        <slot name="expandIcon" :is-active="isActive(item.key)">
-          <Down
-            :class="[
-              'text-text-primary/60 shrink-0 transition-transform duration-200',
-              { 'rotate-180': isActive(item.key) },
-            ]"
-          />
-        </slot>
-        <div class="text-text-primary flex-1 text-sm font-medium">
+  <div
+    v-bind="$attrs"
+    :class="[
+      'text-text-primary w-full',
+      variant === 'bordered' &&
+        'glass overflow-hidden rounded-lg shadow dark:shadow-lg dark:shadow-black/20',
+    ]"
+  >
+    <div v-for="item in items" :key="item.key" :class="collapseItem({ variant })">
+      <div :class="collapseHeader({ variant })" @click="toggleItem(item.key)">
+        <span class="font-medium">
           <component v-if="isVNode(item.label)" :is="item.label" />
           <template v-else>{{ item.label }}</template>
-        </div>
+        </span>
+        <DownOne
+          :class="[
+            'transition-all duration-200 ease-in-out',
+            activeKeys.includes(item.key)
+              ? 'rotate-180 text-gray-600 dark:text-gray-400'
+              : 'text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-400',
+          ]"
+        />
       </div>
 
-      <KeepAlive>
-        <CollapseTransition>
-          <div v-if="isActive(item.key)" class="overflow-hidden">
-            <div :class="contentBoxClasses({ ghost })">
-              <component v-if="isVNode(item.children)" :is="item.children" />
-              <template v-else>{{ item.children }}</template>
-            </div>
-          </div>
-        </CollapseTransition>
-      </KeepAlive>
+      <CollapseTransition>
+        <div
+          v-show="activeKeys.includes(item.key)"
+          class="px-4 py-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400"
+        >
+          <slot :name="`panel-${item.key}`">
+            <component v-if="isVNode(item.children)" :is="item.children" />
+            <template v-else-if="item.children">{{ item.children }}</template>
+          </slot>
+        </div>
+      </CollapseTransition>
     </div>
   </div>
 </template>

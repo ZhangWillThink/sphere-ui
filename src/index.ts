@@ -33,7 +33,7 @@ import {
 } from './ui'
 
 // 默认导出（用于 Vue.use() 安装）
-const components = {
+const components: Record<string, any> = {
   Button,
   Card,
   Checkbox,
