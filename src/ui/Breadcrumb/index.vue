@@ -18,7 +18,7 @@ defineProps<{
         <li
           :class="[
             'flex cursor-pointer items-center gap-1.5',
-            i === items.length - 1 ? 'text-text-primary' : 'text-text-secondary',
+            i === items.length - 1 ? 'text-text-primary' : 'text-text-tertiary',
           ]"
         >
           <span v-if="i !== 0">
@@ -30,12 +30,17 @@ defineProps<{
           </span>
           <component
             :is="item.href ? 'a' : 'span'"
-            class="hover:bg-primary-300 rounded-lg px-1.5 py-1"
+            :class="[
+              'px-1.5 py-1',
+              i === items.length - 1
+                ? 'text-primary-600 hover:text-primary-400'
+                : 'text-text-secondary hover:text-text-primary',
+            ]"
             :href="item.href"
             @click="item.onClick?.()"
           >
             <component v-if="isVNode(item.title)" :is="item.title" />
-            <template v-else>{{ item.title }}</template>
+            <template v-else-if="item.title">{{ item.title }}</template>
           </component>
         </li>
       </template>
