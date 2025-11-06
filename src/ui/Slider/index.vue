@@ -16,9 +16,9 @@ const slider = cva('relative flex items-center h-6 touch-none select-none', {
 <script setup lang="ts">
 import type { VariantProps } from 'class-variance-authority'
 
-import { computed, ref, useTemplateRef } from 'vue'
+import { computed, useTemplateRef } from 'vue'
 
-import { useMouseInElement, useMousePressed } from '@vueuse/core'
+import { useMouseInElement, useMousePressed, useToggle } from '@vueuse/core'
 import { cva } from 'class-variance-authority'
 
 import useFixedPosition from '../shared/hooks/useFixedPosition'
@@ -55,7 +55,7 @@ const { pressed } = useMousePressed({ target: thumb })
 const showTooltip = computed(() => !isMouseOutsideTrack.value || pressed.value)
 
 // 拖动状态
-const isDragging = ref(false)
+const [isDragging, toggleDragging] = useToggle(false)
 
 // 计算百分比
 const percentage = computed(() => {
@@ -90,7 +90,7 @@ const handleTrackClick = (event: MouseEvent) => {
 // 处理拖拽开始
 const handleMouseDown = () => {
   if (disabled) return
-  isDragging.value = true
+  toggleDragging(true)
 
   // 添加全局鼠标移动和抬起事件
   const handleMouseMoveGlobal = (event: MouseEvent) => {
@@ -104,7 +104,7 @@ const handleMouseDown = () => {
   }
 
   const handleMouseUp = () => {
-    isDragging.value = false
+    toggleDragging(false)
     document.removeEventListener('mousemove', handleMouseMoveGlobal)
     document.removeEventListener('mouseup', handleMouseUp)
   }
