@@ -1,15 +1,4 @@
-<script setup lang="ts">
-import type { VariantProps } from 'class-variance-authority'
-
-import { computed, ref, useTemplateRef } from 'vue'
-
-import { useMouseInElement, useMousePressed } from '@vueuse/core'
-import { cva } from 'class-variance-authority'
-
-import useFixedPosition from '../shared/hooks/useFixedPosition'
-
-defineOptions({ name: 'SphereSlider', inheritAttrs: true })
-
+<script lang="ts">
 const slider = cva('relative flex items-center h-6 touch-none select-none', {
   variants: {
     size: {
@@ -22,6 +11,19 @@ const slider = cva('relative flex items-center h-6 touch-none select-none', {
     size: 'md',
   },
 })
+</script>
+
+<script setup lang="ts">
+import type { VariantProps } from 'class-variance-authority'
+
+import { computed, ref, useTemplateRef } from 'vue'
+
+import { useMouseInElement, useMousePressed } from '@vueuse/core'
+import { cva } from 'class-variance-authority'
+
+import useFixedPosition from '../shared/hooks/useFixedPosition'
+
+defineOptions({ name: 'SphereSlider', inheritAttrs: true })
 
 type SliderProps = VariantProps<typeof slider>
 
