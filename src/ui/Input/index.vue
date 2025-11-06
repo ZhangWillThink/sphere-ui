@@ -17,7 +17,7 @@ const { type = 'text', language = 'markdown' } = defineProps<{
   type?: InputTypeHTMLAttribute
 }>()
 
-const modelValue = defineModel<string | null>({ required: false })
+const modelValue = defineModel<any | null>({ required: false })
 
 const paddingClass = 'px-3 py-2'
 
@@ -26,7 +26,7 @@ const input = useTemplateRef('input')
 const { x } = useScroll(input)
 
 const html = computedAsync(async () => {
-  const result = await HighlighterManager.renderCode(modelValue.value ?? '', language)
+  const result = await HighlighterManager.renderCode(String(modelValue.value ?? ''), language)
 
   return result
 })

@@ -97,8 +97,10 @@ defineSlots<{
     v-bind="$attrs"
     :class="[
       'text-text-primary w-full',
-      variant === 'bordered' &&
-        'glass overflow-hidden rounded-lg shadow dark:shadow-lg dark:shadow-black/20',
+      {
+        'glass overflow-hidden rounded-lg shadow dark:shadow-lg dark:shadow-black/20':
+          variant === 'bordered',
+      },
     ]"
   >
     <div v-for="item in items" :key="item.key" :class="collapseItem({ variant })">
