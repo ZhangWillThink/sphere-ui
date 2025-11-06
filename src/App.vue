@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useColorMode, useToggle } from '@vueuse/core'
 
-import { Button, Dialog } from './ui'
+import { Button, ContextMenu, Dialog } from './ui'
 
 defineOptions({ name: 'App' })
 
@@ -53,7 +53,9 @@ const [open, toggleOpen] = useToggle(true)
       commodi vero.
 
       <template #footer>
-        <Button variant="primary" @click="toggleOpen(false)">Close</Button>
+        <ContextMenu :items="[{ label: 'Close', onClick: () => toggleOpen(false) }]">
+          <Button variant="primary" @click="toggleOpen(false)">Close</Button>
+        </ContextMenu>
       </template>
     </Dialog>
   </div>

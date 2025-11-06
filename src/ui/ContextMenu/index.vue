@@ -1,21 +1,12 @@
 <script setup lang="ts">
 import type { CSSProperties, VNodeChild } from 'vue'
 
-import {
-  computed,
-  isVNode,
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  shallowReactive,
-  shallowRef,
-  useTemplateRef,
-} from 'vue'
+import { computed, isVNode, shallowReactive, shallowRef, useTemplateRef } from 'vue'
 
 import {
   onClickOutside,
+  onKeyStroke,
   useElementSize,
-  useEventListener,
   useMouse,
   useToggle,
   useWindowSize,
@@ -89,9 +80,9 @@ const menuStyle = computed<CSSProperties>(() => {
 function openMenu() {
   toggleOpen(true)
   emit('open')
-  nextTick(() => {
-    highlighted.value = items.findIndex(i => !i.disabled)
-  })
+  // nextTick(() => {
+  //   highlighted.value = items.findIndex(i => !i.disabled)
+  // })
 }
 
 function closeMenu() {
@@ -108,28 +99,6 @@ function onContextMenu() {
   openMenu()
 }
 
-function onKeydown(e: KeyboardEvent) {
-  if (!open.value) return
-  switch (e.key) {
-    case 'ArrowDown':
-      e.preventDefault()
-      highlighted.value = Math.min(items.length - 1, highlighted.value + 1)
-      break
-    case 'ArrowUp':
-      e.preventDefault()
-      highlighted.value = Math.max(0, highlighted.value - 1)
-      break
-    case 'Enter':
-      e.preventDefault()
-      if (highlighted.value >= 0) selectItem(items[highlighted.value])
-      break
-    case 'Escape':
-      e.preventDefault()
-      closeMenu()
-      break
-  }
-}
-
 function selectItem(item: { label: VNodeChild; value?: any; disabled?: boolean } | undefined) {
   if (!item || item.disabled) return
   emit('select', item.value)
@@ -138,12 +107,24 @@ function selectItem(item: { label: VNodeChild; value?: any; disabled?: boolean }
 
 onClickOutside(menu, () => toggleOpen(false))
 
-onMounted(() => {
-  const keydownListenerCleanup = useEventListener(document, 'keydown', onKeydown)
+onKeyStroke(['ArrowDown', 'ArrowUp', 'Enter', 'Escape'], e => {
+  if (!open.value) return
+  e.preventDefault()
 
-  onBeforeUnmount(() => {
-    keydownListenerCleanup()
-  })
+  switch (e.key) {
+    case 'ArrowDown':
+      highlighted.value = Math.min(items.length - 1, highlighted.value + 1)
+      break
+    case 'ArrowUp':
+      highlighted.value = Math.max(0, highlighted.value - 1)
+      break
+    case 'Enter':
+      if (highlighted.value >= 0) selectItem(items[highlighted.value])
+      break
+    case 'Escape':
+      closeMenu()
+      break
+  }
 })
 </script>
 
@@ -160,33 +141,42 @@ onMounted(() => {
   </div>
 
   <Teleport to="body">
-    <ul
-      v-if="open"
-      ref="menu"
-      :style="menuStyle"
-      class="glass z-50 overflow-auto rounded-lg p-1.5 text-sm shadow"
-      role="menu"
+    <Transition
+      appear
+      enterActiveClass="animate__animated animate__fadeIn animate__faster"
+      leaveActiveClass="animate__animated animate__fadeOut animate__faster"
     >
-      <li
-        v-for="(it, i) in items"
-        :key="i"
-        :class="[
-          'cursor-pointer rounded-md px-3 py-2 transition-all select-none',
-          i === highlighted ? 'bg-blue-400/70' : '',
-          it.disabled ? 'cursor-not-allowed opacity-50' : '',
-        ]"
-        role="menuitem"
-        @blur="highlighted = -1"
-        @click="
-          () => {
-            if (it.disabled) return
-            it.onClick?.() || selectItem(it)
-          }
-        "
+      <ul
+        v-if="open"
+        ref="menu"
+        :style="menuStyle"
+        class="glass z-50 overflow-auto rounded-lg p-1.5 text-sm shadow"
+        role="menu"
       >
-        <component v-if="isVNode(it.label)" :is="it.label" />
-        <template v-else>{{ it.label }}</template>
-      </li>
-    </ul>
+        <li
+          v-for="(it, i) in items"
+          :key="i"
+          :class="[
+            'text-text-secondary hover:text-text-primary cursor-pointer rounded-md px-2 py-1 transition-all select-none',
+            {
+              'bg-primary-400/70': i === highlighted,
+              'cursor-not-allowed opacity-50': it.disabled,
+            },
+          ]"
+          role="menuitem"
+          @mouseenter.stop="highlighted = i"
+          @mouseleave.stop="highlighted = -1"
+          @click="
+            () => {
+              if (it.disabled) return
+              it.onClick?.() || selectItem(it)
+            }
+          "
+        >
+          <component v-if="isVNode(it.label)" :is="it.label" />
+          <template v-else>{{ it.label }}</template>
+        </li>
+      </ul>
+    </Transition>
   </Teleport>
 </template>
