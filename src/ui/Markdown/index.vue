@@ -20,5 +20,5 @@ const html = computedAsync(async () => {
 </script>
 
 <template>
-  <div v-html="html" />
+  <div v-bind="$attrs" v-html="html" />
 </template>
