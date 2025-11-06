@@ -98,7 +98,7 @@ watchOnce(modelValue, v => {
           ? 'bg-blue-600/80 text-white shadow-inner dark:bg-blue-600 dark:shadow-blue-900/30'
           : 'text-text-primary border-transparent bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800/50',
         option.disabled || disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-        focusedIndex === index ? 'ring-4 ring-blue-400/30' : '',
+        { 'ring-4 ring-blue-400/30': focusedIndex === index },
       ]"
       type="button"
       role="radio"
