@@ -6,8 +6,8 @@ import { isVNode, useTemplateRef } from 'vue'
 
 import { computedAsync, useScroll } from '@vueuse/core'
 
-import '../shared/text/main.css'
 import { HighlighterManager } from '../shared/text/highlighter'
+import '../shared/text/main.css'
 
 defineOptions({ name: 'SphereInput', inheritAttrs: true })
 
@@ -17,7 +17,7 @@ const { type = 'text', language = 'markdown' } = defineProps<{
   type?: InputTypeHTMLAttribute
 }>()
 
-const modelValue = defineModel<string>({ required: false })
+const modelValue = defineModel<string | null>({ required: false })
 
 const paddingClass = 'px-3 py-2'
 

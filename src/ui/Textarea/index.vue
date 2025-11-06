@@ -6,8 +6,8 @@ import { isVNode, useTemplateRef, watch } from 'vue'
 
 import { computedAsync, useElementSize, useScroll } from '@vueuse/core'
 
-import '../shared/text/main.css'
 import { HighlighterManager } from '../shared/text/highlighter'
+import '../shared/text/main.css'
 
 defineOptions({ name: 'SphereTextarea', inheritAttrs: true })
 
@@ -17,7 +17,7 @@ const { language = 'markdown', autoResize = true } = defineProps<{
   autoResize?: boolean
 }>()
 
-const modelValue = defineModel<string>({ required: false })
+const modelValue = defineModel<string | null>({ required: false })
 
 const paddingClass = 'px-3 py-2'
 
