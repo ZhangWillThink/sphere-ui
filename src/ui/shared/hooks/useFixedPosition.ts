@@ -35,8 +35,6 @@ export default function useFixedPosition(
     const cWidth = toValue(contentSize.width)
     const cHeight = toValue(contentSize.height)
 
-    console.log(tLeft)
-
     let top: number | undefined
     let left: number | undefined
     let right: number | undefined

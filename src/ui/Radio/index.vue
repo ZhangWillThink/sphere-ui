@@ -33,7 +33,6 @@ function moveFocus(dir: 1 | -1) {
 }
 
 function onKeydown(e: KeyboardEvent) {
-  console.log(e.key)
   switch (e.key) {
     case 'ArrowRight':
     case 'ArrowDown':
