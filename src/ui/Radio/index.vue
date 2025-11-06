@@ -83,6 +83,7 @@ watchOnce(modelValue, v => {
 
 <template>
   <div
+    v-bind="$attrs"
     ref="root"
     class="glass inline-flex rounded-lg shadow dark:shadow-lg dark:shadow-black/20"
     role="group"
