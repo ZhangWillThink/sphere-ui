@@ -76,12 +76,9 @@ onKeyStroke(
   { target: root },
 )
 
-watchOnce(
-  () => modelValue.value,
-  v => {
-    focusedIndex.value = options.findIndex(opt => opt.value === v)
-  },
-)
+watchOnce(modelValue, v => {
+  focusedIndex.value = options.findIndex(opt => opt.value === v)
+})
 </script>
 
 <template>
