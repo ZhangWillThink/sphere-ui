@@ -4,6 +4,8 @@ import { isVNode, type VNodeChild } from 'vue'
 import { Close } from '@icon-park/vue-next'
 import { useToggle } from '@vueuse/core'
 
+import { Button } from '..'
+
 defineOptions({ name: 'SphereDialog', inheritAttrs: false })
 
 defineProps<{
@@ -37,38 +39,31 @@ const toggleOpen = useToggle(modelValue)
         @click="toggleOpen(false)"
       >
         <div
-          class="glass flex max-h-[90vh] w-full max-w-md flex-col overflow-hidden rounded-lg shadow-xl dark:shadow-2xl dark:shadow-black/40"
+          class="glass text-text-primary flex max-h-[90vh] w-full max-w-md flex-col overflow-hidden rounded-lg shadow-xl dark:shadow-2xl dark:shadow-black/40"
           role="dialog"
           aria-modal="true"
           @click.stop
         >
-          <header class="flex items-center justify-between p-4">
-            <aside>
+          <header class="p-4">
+            <aside class="flex items-center justify-between">
               <div class="text-lg font-semibold">
                 <slot name="title">
-                  <template v-if="title">
-                    <component v-if="isVNode(title)" :is="title" />
-                    <template v-else>{{ title }}</template>
-                  </template>
+                  <component v-if="isVNode(title)" :is="title" />
+                  <template v-else-if="title">{{ title }}</template>
                 </slot>
               </div>
 
-              <div v-if="description || slot.description" class="text-text-primary/70 mt-1 text-xs">
-                <slot name="description">
-                  <template v-if="description">
-                    <component v-if="isVNode(description)" :is="description" />
-                    <template v-else>{{ description }}</template>
-                  </template>
-                </slot>
-              </div>
+              <Button variant="ghost" @click="toggleOpen(false)">
+                <template #icon><Close /></template>
+              </Button>
             </aside>
-            <button
-              type="button"
-              class="text-gray-400 transition-colors duration-150 ease-in-out hover:text-gray-500 focus:outline-none dark:text-gray-500 dark:hover:text-gray-300"
-              @click="toggleOpen(false)"
-            >
-              <Close />
-            </button>
+
+            <aside v-if="description || slot.description" class="text-text-secondary mt-1 text-xs">
+              <slot name="description">
+                <component v-if="isVNode(description)" :is="description" />
+                <template v-else-if="description">{{ description }}</template>
+              </slot>
+            </aside>
           </header>
 
           <div class="flex-1 space-y-4 overflow-y-auto p-4">
