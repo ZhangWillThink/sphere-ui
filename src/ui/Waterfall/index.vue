@@ -3,7 +3,7 @@ import { computed, shallowRef, useTemplateRef } from 'vue'
 
 import { useElementSize, watchDebounced, watchDeep } from '@vueuse/core'
 
-defineOptions({ name: 'WaterfallLayout' })
+defineOptions({ name: 'SphereWaterfall' })
 
 defineEmits<{
   itemClick: [item: T, index: number]
