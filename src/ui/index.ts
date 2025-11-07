@@ -26,6 +26,7 @@ import Textarea from './Textarea/index.vue'
 import Tooltip from './Tooltip/index.vue'
 import { CollapseTransition } from './Transition'
 import Upload from './Upload/index.vue'
+import Waterfall from './Waterfall/index.vue'
 
 export {
   Breadcrumb,
@@ -57,6 +58,7 @@ export {
   Textarea,
   Tooltip,
   Upload,
+  Waterfall,
 }
 
 // 导出 Table 相关类型

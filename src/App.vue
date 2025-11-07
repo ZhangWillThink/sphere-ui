@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useColorMode } from '@vueuse/core'
 
-import { Breadcrumb, Button } from './ui'
+import { Tag, Button } from './ui'
 
 defineOptions({ name: 'App' })
 
@@ -14,11 +14,10 @@ const colorMode = useColorMode()
       {{ colorMode === 'light' ? 'Dark' : 'Light' }}
     </Button>
 
-    <Breadcrumb
-      :items="[
-        { title: 'Home', href: '/' },
-        { title: 'About', href: '/about' },
-      ]"
-    />
+    <Tag variant="primary">Primary</Tag>
+    <Tag variant="success">Success</Tag>
+    <Tag variant="warning">Warning</Tag>
+    <Tag variant="error">Error</Tag>
+    <Tag variant="default">Default</Tag>
   </div>
 </template>

@@ -23,13 +23,14 @@ import {
   Popover,
   Radio,
   Select,
-  Switch,
   Slider,
+  Switch,
   Table,
   Tabs,
   Tag,
   Textarea,
   Tooltip,
+  Waterfall,
 } from './ui'
 
 // 默认导出（用于 Vue.use() 安装）
@@ -52,13 +53,14 @@ const components: Record<string, any> = {
   Popover,
   Radio,
   Select,
-  Switch,
   Slider,
+  Switch,
   Table,
   Tabs,
   Tag,
   Textarea,
   Tooltip,
+  Waterfall,
 }
 
 export default components
