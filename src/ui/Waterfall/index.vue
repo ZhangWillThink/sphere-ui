@@ -40,7 +40,7 @@ const actualColumnCount = shallowRef(columnCount)
 
 const { width: containerWidth } = useElementSize(containerRef)
 
-const gapClass = computed(() => gapMap[gap] || 'gap-4')
+const gapClass = computed(() => gapMap[gap] ?? 'gap-4')
 
 // 计算实际列数（根据容器宽度自适应）
 function calculateColumnCount(width: number) {
