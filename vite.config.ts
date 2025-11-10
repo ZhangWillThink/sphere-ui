@@ -57,10 +57,11 @@ export default defineConfig({
         },
         // 确保 CSS 文件名一致
         assetFileNames: assetInfo => {
-          if (assetInfo.name === 'style.css') {
+          if (assetInfo.names.includes('style.css')) {
             return 'sphere-ui.css'
           }
-          return assetInfo.name || 'assets/[name]-[hash][extname]'
+          const [name] = assetInfo.names
+          return name ? `${name}[extname]` : 'assets/[name]-[hash][extname]'
         },
         // 导出配置
         exports: 'named',
