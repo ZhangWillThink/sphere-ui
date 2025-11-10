@@ -228,7 +228,7 @@ const handleMore = (record: DataType) => {
                   'div',
                   {
                     class:
-                      'flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600 font-semibold dark:bg-blue-900 dark:text-blue-300',
+                      'flex h-8 w-8 items-center justify-center rounded-full bg-primary-100 text-primary-600 font-semibold dark:bg-primary-900 dark:text-primary-300',
                   },
                   text.charAt(0),
                 ),
@@ -252,7 +252,7 @@ const handleMore = (record: DataType) => {
                 'a',
                 {
                   href: `mailto:${text}`,
-                  class: 'text-blue-600 hover:underline dark:text-blue-400',
+                  class: 'text-primary-600 hover:underline dark:text-primary-400',
                 },
                 text,
               ),

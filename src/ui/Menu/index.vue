@@ -117,8 +117,8 @@ const MenuItem = defineComponent({
       >
         <div
           class={[
-            'flex items-center justify-between truncate rounded-md px-3 py-2 hover:bg-blue-100 dark:hover:bg-blue-900/40',
-            isSelectedKey(key) ? 'bg-blue-100 dark:bg-blue-900/40' : '',
+            'hover:bg-primary-100 dark:hover:bg-primary-900/40 flex items-center justify-between truncate rounded-md px-3 py-2',
+            isSelectedKey(key) ? 'bg-primary-100 dark:bg-primary-900/40' : '',
           ]}
         >
           <div class="flex items-center space-x-2">

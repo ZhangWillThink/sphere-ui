@@ -11,7 +11,7 @@ import { cva } from 'class-variance-authority'
 defineOptions({ name: 'SphereCheckbox', inheritAttrs: true })
 
 const checkbox = cva(
-  'relative inline-flex transform-gpu items-center justify-center rounded border-2 transition-all duration-200 ease-in-out will-change-transform focus-within:ring-4 focus-within:ring-blue-300/30',
+  'relative inline-flex transform-gpu items-center justify-center rounded border-2 transition-all duration-200 ease-in-out will-change-transform focus-within:ring-4 focus-within:ring-primary-300/30',
   {
     variants: {
       size: {
@@ -85,11 +85,11 @@ onKeyStroke(
       :class="[
         checkbox({ size }),
         modelValue
-          ? 'border-blue-600 bg-blue-600 text-white dark:border-blue-500 dark:bg-blue-600'
+          ? 'border-primary-600 bg-primary-600 dark:border-primary-500 dark:bg-primary-600 text-white'
           : 'border-gray-300 dark:border-gray-600 dark:bg-gray-800/50',
         disabled
           ? 'border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-800'
-          : 'hover:scale-105 active:scale-95 dark:hover:border-blue-500',
+          : 'dark:hover:border-primary-500 hover:scale-105 active:scale-95',
       ]"
     >
       <input

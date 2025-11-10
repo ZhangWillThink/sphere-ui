@@ -11,7 +11,7 @@ defineOptions({ name: 'SphereSwitch', inheritAttrs: true })
 const trackClasses = cva(
   [
     'relative inline-flex items-center rounded-full transition-colors duration-200 ease-in-out',
-    'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-300/30',
+    'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-300/30',
   ],
   {
     variants: {
@@ -21,7 +21,7 @@ const trackClasses = cva(
         lg: 'h-7 w-14',
       },
       checked: {
-        true: 'bg-blue-600 dark:bg-blue-500',
+        true: 'bg-primary-600 dark:bg-primary-500',
         false: 'bg-gray-200 dark:bg-gray-700',
       },
       disabled: {

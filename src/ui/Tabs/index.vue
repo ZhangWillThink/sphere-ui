@@ -55,9 +55,9 @@ const isActive = (value: any) => activeTab.value === value
         :key="item.value"
         :class="[
           'flex-1 rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ease-in-out',
-          'focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:outline-none dark:focus-visible:ring-blue-400',
+          'focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
           isActive(item.value)
-            ? 'bg-white text-blue-600 shadow-sm dark:bg-gray-800 dark:text-blue-400 dark:shadow-lg dark:shadow-black/20'
+            ? 'text-primary-600 dark:text-primary-400 bg-white shadow-sm dark:bg-gray-800 dark:shadow-lg dark:shadow-black/20'
             : 'text-text-primary/70 hover:text-text-primary hover:bg-white/50 dark:text-gray-300 dark:hover:bg-gray-800/50',
           item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         ]"

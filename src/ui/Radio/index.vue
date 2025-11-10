@@ -95,10 +95,10 @@ watchOnce(modelValue, v => {
         'flex items-center px-3 py-2 text-sm font-medium transition-all duration-150 ease-in-out outline-none',
         index === 0 ? 'rounded-l-lg' : index === options.length - 1 ? 'rounded-r-lg' : '',
         isSelected(option.value)
-          ? 'bg-blue-600/80 text-white shadow-inner dark:bg-blue-600 dark:shadow-blue-900/30'
+          ? 'bg-primary-600/80 dark:bg-primary-600 dark:shadow-primary-900/30 text-white shadow-inner'
           : 'text-text-primary border-transparent bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800/50',
         option.disabled || disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-        { 'ring-4 ring-blue-400/30': focusedIndex === index },
+        { 'ring-primary-400/30 ring-4': focusedIndex === index },
       ]"
       type="button"
       role="radio"

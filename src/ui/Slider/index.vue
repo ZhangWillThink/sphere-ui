@@ -172,7 +172,7 @@ const displayValue = computed(() => Math.round(modelValue.value * 100) / 100)
       <!-- 进度条 -->
       <div
         :class="[
-          'absolute h-full rounded-full bg-blue-600 dark:bg-blue-500',
+          'bg-primary-600 dark:bg-primary-500 absolute h-full rounded-full',
           disabled ? 'bg-gray-400 dark:bg-gray-600' : '',
         ]"
         :style="{ width: `${percentage}%` }"
@@ -183,7 +183,7 @@ const displayValue = computed(() => Math.round(modelValue.value * 100) / 100)
         ref="thumb"
         :class="[
           'absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full bg-white shadow-md',
-          'focus:ring-2 focus:ring-blue-500 focus:outline-none',
+          'focus:ring-primary-500 focus:ring-2 focus:outline-none',
           disabled
             ? 'cursor-not-allowed'
             : 'cursor-grab hover:scale-110 hover:shadow-lg active:cursor-grabbing',

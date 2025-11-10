@@ -320,7 +320,7 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
                   class="flex flex-col text-gray-400 transition-colors duration-200"
                   :class="
                     sortState.key === (column.dataIndex || column.key)
-                      ? 'text-blue-600 drop-shadow-sm dark:text-blue-400'
+                      ? 'text-primary-600 dark:text-primary-400 drop-shadow-sm'
                       : ''
                   "
                 >
@@ -328,7 +328,7 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
                     :class="
                       sortState.key === (column.dataIndex || column.key) &&
                       sortState.order === 'ascend'
-                        ? 'text-blue-600 dark:text-blue-400'
+                        ? 'text-primary-600 dark:text-primary-400'
                         : ''
                     "
                     :size="12"
@@ -338,7 +338,7 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
                     :class="
                       sortState.key === (column.dataIndex || column.key) &&
                       sortState.order === 'descend'
-                        ? 'text-blue-600 dark:text-blue-400'
+                        ? 'text-primary-600 dark:text-primary-400'
                         : ''
                     "
                     :size="12"
@@ -365,7 +365,7 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
                   ? 'bg-linear-to-r from-gray-50/30 to-transparent dark:from-gray-800/20'
                   : '',
                 isRowSelected(record, index)
-                  ? 'bg-linear-to-r from-blue-50/80 to-blue-50/20 shadow-md shadow-blue-200/30 backdrop-blur-sm dark:from-blue-900/30 dark:to-blue-900/10 dark:shadow-blue-900/20'
+                  ? 'from-primary-50/80 to-primary-50/20 shadow-primary-200/30 dark:from-primary-900/30 dark:to-primary-900/10 dark:shadow-primary-900/20 bg-linear-to-r shadow-md backdrop-blur-sm'
                   : 'bg-transparent',
                 bordered ? 'border-b border-white/20 last:border-b-0 dark:border-gray-700/30' : '',
               ]"

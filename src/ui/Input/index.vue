@@ -34,7 +34,7 @@ const html = computedAsync(async () => {
 
 <template>
   <div
-    class="glass text-text-primary hover:glass-light relative h-11 overflow-hidden rounded-lg font-mono shadow transition-all duration-200 ease-in-out focus-within:ring-3 focus-within:ring-blue-300/30"
+    class="glass text-text-primary hover:glass-light focus-within:ring-primary-300/30 relative h-11 overflow-hidden rounded-lg font-mono shadow transition-all duration-200 ease-in-out focus-within:ring-3"
   >
     <div
       v-if="!modelValue"
@@ -69,7 +69,7 @@ const html = computedAsync(async () => {
         paddingClass,
         type === 'password' ? 'text-text-primary' : 'text-transparent',
         'absolute z-10 h-11 w-full appearance-none bg-transparent outline-none',
-        'caret-gray-900 dark:caret-blue-400',
+        'dark:caret-primary-400 caret-gray-900',
       ]"
       :type
     />

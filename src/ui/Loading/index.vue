@@ -37,7 +37,7 @@ const { size = 'md', fullscreen = false } = defineProps<{
     >
       <span
         :class="[
-          'inline-block animate-spin rounded-full border-gray-300 border-t-blue-600 dark:border-gray-700 dark:border-t-blue-400',
+          'border-t-primary-600 dark:border-t-primary-400 inline-block animate-spin rounded-full border-gray-300 dark:border-gray-700',
           classes[size],
         ]"
       />

@@ -190,7 +190,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
     v-bind="$attrs"
     ref="trigger"
     type="button"
-    class="glass text-text-primary flex w-full items-center justify-between rounded-lg px-3 py-2 shadow transition-all duration-150 ease-in-out focus-within:ring-3 focus-within:ring-blue-300/30 dark:focus-within:ring-blue-400/40"
+    class="glass text-text-primary focus-within:ring-primary-300/30 dark:focus-within:ring-primary-400/40 flex w-full items-center justify-between rounded-lg px-3 py-2 shadow transition-all duration-150 ease-in-out focus-within:ring-3"
     :aria-expanded="open"
     aria-haspopup="listbox"
     @click="openDropdown"
@@ -250,7 +250,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
             v-model="searchQuery"
             type="text"
             placeholder="搜索选项..."
-            class="w-full rounded-md border border-gray-300 px-2 py-1 text-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-blue-300 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:focus:ring-blue-400"
+            class="focus:ring-primary-300 dark:focus:ring-primary-400 w-full rounded-md border border-gray-300 px-2 py-1 text-sm transition-all duration-150 ease-in-out focus:ring-2 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
             @keydown.stop
           />
         </li>
@@ -264,7 +264,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
             'text-text-secondary flex items-center space-x-2 rounded-md px-3 py-2 transition-all select-none',
             opt.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
             {
-              'text-text-primary bg-blue-100 dark:bg-blue-900/40':
+              'text-text-primary bg-primary-100 dark:bg-primary-900/40':
                 highlighted === i && !opt.disabled,
             },
           ]"

@@ -20,7 +20,7 @@ const tag = cva(
         default:
           'bg-white/20 text-gray-800 backdrop-blur-sm border border-white/30 dark:bg-gray-900/20 dark:text-gray-100 dark:border-gray-700/30',
         primary:
-          'bg-blue-500/20 text-blue-800 backdrop-blur-sm border border-blue-300/30 dark:bg-blue-900/20 dark:text-blue-100 dark:border-blue-700/30',
+          'bg-primary-500/20 text-primary-800 backdrop-blur-sm border border-primary-300/30 dark:bg-primary-900/20 dark:text-primary-100 dark:border-primary-700/30',
         success:
           'bg-green-500/20 text-green-800 backdrop-blur-sm border border-green-300/30 dark:bg-green-900/20 dark:text-green-100 dark:border-green-700/30',
         warning:

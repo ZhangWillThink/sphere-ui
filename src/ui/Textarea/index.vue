@@ -46,7 +46,7 @@ watch(
 
 <template>
   <div
-    class="glass text-text-primary hover:glass-light relative min-h-30 overflow-hidden rounded-lg font-mono shadow backdrop-blur-sm transition-all duration-200 ease-in-out focus-within:ring-3 focus-within:ring-blue-300/30"
+    class="glass text-text-primary hover:glass-light focus-within:ring-primary-300/30 relative min-h-30 overflow-hidden rounded-lg font-mono shadow backdrop-blur-sm transition-all duration-200 ease-in-out focus-within:ring-3"
     :style="{ height: `${textareaHeight}px` }"
   >
     <div
@@ -78,7 +78,7 @@ watch(
       :class="[
         paddingClass,
         'absolute z-10 min-h-30 w-full resize-none appearance-none bg-transparent text-transparent outline-none',
-        'caret-gray-900 dark:caret-blue-400',
+        'dark:caret-primary-400 caret-gray-900',
         autoResize ? 'overflow-hidden' : '',
       ]"
     />

@@ -180,11 +180,15 @@ const handleDelete = (record: Employee) => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 p-8 dark:from-gray-900 dark:via-blue-950 dark:to-purple-950">
+  <div
+    class="via-primary-50 dark:via-primary-950 min-h-screen bg-gradient-to-br from-gray-50 to-purple-50 p-8 dark:from-gray-900 dark:to-purple-950"
+  >
     <div class="mx-auto max-w-7xl space-y-8">
       <!-- 标题区域 -->
       <div class="text-center">
-        <h1 class="mb-3 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl font-bold text-transparent dark:from-blue-400 dark:to-purple-400">
+        <h1
+          class="from-primary-600 dark:from-primary-400 mb-3 bg-gradient-to-r to-purple-600 bg-clip-text text-4xl font-bold text-transparent dark:to-purple-400"
+        >
           现代化毛玻璃表格
         </h1>
         <p class="text-gray-600 dark:text-gray-400">
@@ -194,7 +198,9 @@ const handleDelete = (record: Employee) => {
 
       <!-- 统计卡片 -->
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div class="glass group cursor-pointer rounded-2xl border border-white/20 p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-gray-700/30">
+        <div
+          class="glass group cursor-pointer rounded-2xl border border-white/20 p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-gray-700/30"
+        >
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm text-gray-600 dark:text-gray-400">总员工</p>
@@ -202,13 +208,17 @@ const handleDelete = (record: Employee) => {
                 {{ dataSource.length }}
               </p>
             </div>
-            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100/80 backdrop-blur-sm dark:bg-blue-900/30">
+            <div
+              class="bg-primary-100/80 dark:bg-primary-900/30 flex h-12 w-12 items-center justify-center rounded-full backdrop-blur-sm"
+            >
               <span class="text-2xl">👥</span>
             </div>
           </div>
         </div>
 
-        <div class="glass group cursor-pointer rounded-2xl border border-white/20 p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-gray-700/30">
+        <div
+          class="glass group cursor-pointer rounded-2xl border border-white/20 p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-gray-700/30"
+        >
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm text-gray-600 dark:text-gray-400">在线人数</p>
@@ -216,27 +226,37 @@ const handleDelete = (record: Employee) => {
                 {{ dataSource.filter(e => e.status === 'online').length }}
               </p>
             </div>
-            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-green-100/80 backdrop-blur-sm dark:bg-green-900/30">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-full bg-green-100/80 backdrop-blur-sm dark:bg-green-900/30"
+            >
               <span class="text-2xl">🟢</span>
             </div>
           </div>
         </div>
 
-        <div class="glass group cursor-pointer rounded-2xl border border-white/20 p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-gray-700/30">
+        <div
+          class="glass group cursor-pointer rounded-2xl border border-white/20 p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-gray-700/30"
+        >
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm text-gray-600 dark:text-gray-400">平均评分</p>
               <p class="text-3xl font-bold text-yellow-600 dark:text-yellow-400">
-                {{ (dataSource.reduce((sum, e) => sum + e.rating, 0) / dataSource.length).toFixed(1) }}
+                {{
+                  (dataSource.reduce((sum, e) => sum + e.rating, 0) / dataSource.length).toFixed(1)
+                }}
               </p>
             </div>
-            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100/80 backdrop-blur-sm dark:bg-yellow-900/30">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100/80 backdrop-blur-sm dark:bg-yellow-900/30"
+            >
               <span class="text-2xl">⭐</span>
             </div>
           </div>
         </div>
 
-        <div class="glass group cursor-pointer rounded-2xl border border-white/20 p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-gray-700/30">
+        <div
+          class="glass group cursor-pointer rounded-2xl border border-white/20 p-6 shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-gray-700/30"
+        >
           <div class="flex items-center justify-between">
             <div>
               <p class="text-sm text-gray-600 dark:text-gray-400">已选中</p>
@@ -244,7 +264,9 @@ const handleDelete = (record: Employee) => {
                 {{ selectedRowKeys.length }}
               </p>
             </div>
-            <div class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100/80 backdrop-blur-sm dark:bg-purple-900/30">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100/80 backdrop-blur-sm dark:bg-purple-900/30"
+            >
               <span class="text-2xl">✓</span>
             </div>
           </div>
@@ -265,10 +287,10 @@ const handleDelete = (record: Employee) => {
           <template #column-contact="{ record }: { text: any; record: Employee; index: number }">
             <div class="flex flex-col gap-1">
               <div class="flex items-center gap-2 text-sm">
-                <Mail :size="14" class="text-blue-500" />
+                <Mail :size="14" class="text-primary-500" />
                 <a
                   :href="`mailto:${record.email}`"
-                  class="text-blue-600 transition-colors hover:text-blue-700 hover:underline dark:text-blue-400 dark:hover:text-blue-300"
+                  class="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors hover:underline"
                 >
                   {{ record.email }}
                 </a>
@@ -303,7 +325,7 @@ const handleDelete = (record: Employee) => {
           <template #column-projects="{ text }: { text: number; record: Employee; index: number }">
             <div class="flex items-center justify-center">
               <span
-                class="rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 px-3 py-1 text-sm font-semibold text-blue-700 backdrop-blur-sm dark:from-blue-500/30 dark:to-purple-500/30 dark:text-blue-300"
+                class="from-primary-500/20 text-primary-700 dark:from-primary-500/30 dark:text-primary-300 rounded-full bg-gradient-to-r to-purple-500/20 px-3 py-1 text-sm font-semibold backdrop-blur-sm dark:to-purple-500/30"
               >
                 {{ text }} 个
               </span>
@@ -311,7 +333,9 @@ const handleDelete = (record: Employee) => {
           </template>
 
           <!-- 状态列 -->
-          <template #column-status="{ text }: { text: Employee['status']; record: Employee; index: number }">
+          <template
+            #column-status="{ text }: { text: Employee['status']; record: Employee; index: number }"
+          >
             <div class="flex items-center justify-center">
               <Tag :variant="getStatusInfo(text).variant" size="md" :removable="false">
                 <span class="flex items-center gap-1">
@@ -328,11 +352,11 @@ const handleDelete = (record: Employee) => {
               <Button
                 variant="ghost"
                 size="sm"
-                class="hover:bg-blue-50 dark:hover:bg-blue-900/30"
+                class="hover:bg-primary-50 dark:hover:bg-primary-900/30"
                 @click.stop="handleEdit(record)"
               >
                 <template #icon>
-                  <Edit :size="16" class="text-blue-600 dark:text-blue-400" />
+                  <Edit :size="16" class="text-primary-600 dark:text-primary-400" />
                 </template>
               </Button>
               <Button
@@ -363,13 +387,15 @@ const handleDelete = (record: Employee) => {
       </div>
 
       <!-- 特性说明 -->
-      <div class="glass rounded-2xl border border-white/20 p-8 shadow-xl backdrop-blur-xl dark:border-gray-700/30">
-        <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
-          ✨ 毛玻璃效果特性
-        </h2>
+      <div
+        class="glass rounded-2xl border border-white/20 p-8 shadow-xl backdrop-blur-xl dark:border-gray-700/30"
+      >
+        <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">✨ 毛玻璃效果特性</h2>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <div class="flex gap-4">
-            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/20 backdrop-blur-sm">
+            <div
+              class="from-primary-500/20 to-primary-600/20 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br backdrop-blur-sm"
+            >
               <span class="text-2xl">🎨</span>
             </div>
             <div>
@@ -381,7 +407,9 @@ const handleDelete = (record: Employee) => {
           </div>
 
           <div class="flex gap-4">
-            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/20 backdrop-blur-sm">
+            <div
+              class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/20 backdrop-blur-sm"
+            >
               <span class="text-2xl">💎</span>
             </div>
             <div>
@@ -393,7 +421,9 @@ const handleDelete = (record: Employee) => {
           </div>
 
           <div class="flex gap-4">
-            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-green-500/20 to-green-600/20 backdrop-blur-sm">
+            <div
+              class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-green-500/20 to-green-600/20 backdrop-blur-sm"
+            >
               <span class="text-2xl">✨</span>
             </div>
             <div>
@@ -405,7 +435,9 @@ const handleDelete = (record: Employee) => {
           </div>
 
           <div class="flex gap-4">
-            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 backdrop-blur-sm">
+            <div
+              class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 backdrop-blur-sm"
+            >
               <span class="text-2xl">🌓</span>
             </div>
             <div>
@@ -417,7 +449,9 @@ const handleDelete = (record: Employee) => {
           </div>
 
           <div class="flex gap-4">
-            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20 backdrop-blur-sm">
+            <div
+              class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-red-500/20 to-red-600/20 backdrop-blur-sm"
+            >
               <span class="text-2xl">🎯</span>
             </div>
             <div>
@@ -429,25 +463,27 @@ const handleDelete = (record: Employee) => {
           </div>
 
           <div class="flex gap-4">
-            <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/20 to-indigo-600/20 backdrop-blur-sm">
+            <div
+              class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/20 to-indigo-600/20 backdrop-blur-sm"
+            >
               <span class="text-2xl">🚀</span>
             </div>
             <div>
               <h3 class="font-semibold text-gray-900 dark:text-gray-100">性能优化</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-400">
-                GPU 加速的动画，流畅不卡顿
-              </p>
+              <p class="text-sm text-gray-600 dark:text-gray-400">GPU 加速的动画，流畅不卡顿</p>
             </div>
           </div>
         </div>
       </div>
 
       <!-- 代码示例 -->
-      <div class="glass rounded-2xl border border-white/20 p-8 shadow-xl backdrop-blur-xl dark:border-gray-700/30">
+      <div
+        class="glass rounded-2xl border border-white/20 p-8 shadow-xl backdrop-blur-xl dark:border-gray-700/30"
+      >
         <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">💻 核心 CSS 类</h2>
         <div class="space-y-3 text-sm">
           <div class="rounded-lg bg-gray-900/90 p-4 font-mono text-gray-100 backdrop-blur-sm">
-            <span class="text-blue-400">backdrop-blur-xl</span>
+            <span class="text-primary-400">backdrop-blur-xl</span>
             <span class="text-gray-400"> - 毛玻璃模糊效果</span>
           </div>
           <div class="rounded-lg bg-gray-900/90 p-4 font-mono text-gray-100 backdrop-blur-sm">
