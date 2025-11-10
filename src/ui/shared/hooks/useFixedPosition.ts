@@ -37,8 +37,6 @@ export default function useFixedPosition(
 
     let top: number | undefined
     let left: number | undefined
-    let right: number | undefined
-    let bottom: number | undefined
 
     switch (position) {
       case 'top-left':
@@ -98,8 +96,6 @@ export default function useFixedPosition(
       position: 'fixed',
       top: !isNil(top) ? `${Math.round(top)}px` : undefined,
       left: !isNil(left) ? `${Math.round(left)}px` : undefined,
-      right: !isNil(right) ? `${Math.round(right)}px` : undefined,
-      bottom: !isNil(bottom) ? `${Math.round(bottom)}px` : undefined,
     }
 
     return style

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useColorMode } from '@vueuse/core'
 
-import { Button, Card, Menu } from './ui'
+import { Button, Select } from './ui'
 
 defineOptions({ name: 'App' })
 
@@ -14,60 +14,14 @@ const colorMode = useColorMode()
       {{ colorMode === 'light' ? 'Dark' : 'Light' }}
     </Button>
 
-    <Menu
-      :items="[
-        {
-          label: 'Option 1',
-          disabled: true,
-          children: [
-            {
-              label: 'Option 1-1',
-            },
-            {
-              label: 'Option 1-2',
-            },
-            {
-              label: 'Option 1-3',
-            },
-          ],
-        },
-        {
-          label: 'Option 2',
-          children: [
-            {
-              label: 'Option 2-1',
-            },
-            {
-              label: 'Option 2-2',
-            },
-            {
-              label: 'Option 2-3',
-            },
-          ],
-        },
-        {
-          label: 'Option 3',
-        },
-        {
-          label: 'Option 4',
-        },
-        {
-          label: 'Option 5',
-        },
-        {
-          label: 'Option 6',
-        },
-        {
-          label: 'Option 7',
-        },
-        {
-          label: 'Option 8',
-        },
-      ]"
-    />
-
-    <Card draggable class="cursor-move">
-      <Button>Button</Button>
-    </Card>
+    <div class="w-1/2">
+      <Select
+        :options="[
+          { label: 'Option 1', value: 1 },
+          { label: 'Option 2', value: 2 },
+          { label: 'Option 3', value: 3 },
+        ]"
+      />
+    </div>
   </div>
 </template>
