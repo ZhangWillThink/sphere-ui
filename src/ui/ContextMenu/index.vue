@@ -135,9 +135,7 @@ onKeyStroke(['ArrowDown', 'ArrowUp', 'Enter', 'Escape'], e => {
     class="relative inline-block"
     @contextmenu.prevent="onContextMenu"
   >
-    <slot name="default">
-      <button type="button" class="glass rounded-md px-3 py-1">···</button>
-    </slot>
+    <slot name="default" />
   </div>
 
   <Teleport to="body">

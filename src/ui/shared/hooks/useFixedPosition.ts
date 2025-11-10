@@ -1,8 +1,13 @@
 import type { CSSProperties, ShallowRef } from 'vue'
 
-import { computed, toValue } from 'vue'
+import { computed, toValue, watch } from 'vue'
 
-import { useElementBounding, useElementSize } from '@vueuse/core'
+import {
+  tryOnScopeDispose,
+  useElementBounding,
+  useElementSize,
+  useMouseInElement,
+} from '@vueuse/core'
 import { isNil } from 'lodash-es'
 
 export type CornerPosition =
@@ -26,6 +31,8 @@ export default function useFixedPosition(
 ) {
   const triggerBounding = useElementBounding(trigger)
   const contentSize = useElementSize(content)
+
+  const { isOutside } = useMouseInElement(trigger)
 
   const style = computed<CSSProperties>(() => {
     const tLeft = toValue(triggerBounding.left ?? triggerBounding.x)
@@ -99,6 +106,13 @@ export default function useFixedPosition(
     }
 
     return style
+  })
+
+  const unwatch = watch(isOutside, triggerBounding.update)
+
+  tryOnScopeDispose(() => {
+    unwatch()
+    contentSize.stop()
   })
 
   return [style, triggerBounding, contentSize] as const

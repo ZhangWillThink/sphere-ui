@@ -52,14 +52,15 @@ export default defineConfig({
     rollupOptions: {
       external: ['vue'],
       output: {
-        globals: { vue: 'Vue' },
+        globals: {
+          vue: 'Vue',
+        },
         // 确保 CSS 文件名一致
         assetFileNames: assetInfo => {
-          if (assetInfo.names.includes('style.css')) {
+          if (assetInfo.name === 'style.css') {
             return 'sphere-ui.css'
           }
-          const [name] = assetInfo.names
-          return name ? `${name}[extname]` : 'assets/[name]-[hash][extname]'
+          return assetInfo.name || 'assets/[name]-[hash][extname]'
         },
         // 导出配置
         exports: 'named',
@@ -67,6 +68,6 @@ export default defineConfig({
     },
   },
   server: {
-    port: 1024 * 7,
+    port: 3096,
   },
 })
