@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useColorMode } from '@vueuse/core'
 
-import { Tag, Button } from './ui'
+import { Button, Card, Menu } from './ui'
 
 defineOptions({ name: 'App' })
 
@@ -14,10 +14,60 @@ const colorMode = useColorMode()
       {{ colorMode === 'light' ? 'Dark' : 'Light' }}
     </Button>
 
-    <Tag variant="primary">Primary</Tag>
-    <Tag variant="success">Success</Tag>
-    <Tag variant="warning">Warning</Tag>
-    <Tag variant="error">Error</Tag>
-    <Tag variant="default">Default</Tag>
+    <Menu
+      :items="[
+        {
+          label: 'Option 1',
+          disabled: true,
+          children: [
+            {
+              label: 'Option 1-1',
+            },
+            {
+              label: 'Option 1-2',
+            },
+            {
+              label: 'Option 1-3',
+            },
+          ],
+        },
+        {
+          label: 'Option 2',
+          children: [
+            {
+              label: 'Option 2-1',
+            },
+            {
+              label: 'Option 2-2',
+            },
+            {
+              label: 'Option 2-3',
+            },
+          ],
+        },
+        {
+          label: 'Option 3',
+        },
+        {
+          label: 'Option 4',
+        },
+        {
+          label: 'Option 5',
+        },
+        {
+          label: 'Option 6',
+        },
+        {
+          label: 'Option 7',
+        },
+        {
+          label: 'Option 8',
+        },
+      ]"
+    />
+
+    <Card draggable class="cursor-move">
+      <Button>Button</Button>
+    </Card>
   </div>
 </template>

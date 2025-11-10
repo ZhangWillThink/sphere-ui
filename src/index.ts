@@ -26,7 +26,7 @@ import {
   Tag,
   Textarea,
   Tooltip,
-  Waterfall,
+  // Waterfall,
 } from './ui'
 
 export * from './ui'
@@ -57,7 +57,7 @@ const Components: Record<string, any> = {
   Tag,
   Textarea,
   Tooltip,
-  Waterfall,
+  // Waterfall,
 }
 
 export default Components

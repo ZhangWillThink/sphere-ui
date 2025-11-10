@@ -52,9 +52,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['vue'],
       output: {
-        globals: {
-          vue: 'Vue',
-        },
+        globals: { vue: 'Vue' },
         // 确保 CSS 文件名一致
         assetFileNames: assetInfo => {
           if (assetInfo.names.includes('style.css')) {
@@ -69,6 +67,6 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3096,
+    port: 1024 * 7,
   },
 })
