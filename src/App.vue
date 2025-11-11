@@ -4,7 +4,7 @@ import { h } from 'vue'
 import { Moon } from '@icon-park/vue-next'
 import { useColorMode } from '@vueuse/core'
 
-import { Button, Select } from './ui'
+import { Button, Select, Tooltip } from './ui'
 
 defineOptions({ name: 'App' })
 
@@ -17,7 +17,11 @@ const colorMode = useColorMode()
       {{ colorMode === 'light' ? 'Dark' : 'Light' }}
     </Button>
 
-    <Button :icon="h(Moon)">123</Button>
+    <Tooltip>
+      <Button :icon="h(Moon)">123</Button>
+
+      <template #content> Tooltip </template>
+    </Tooltip>
 
     <div class="w-1/2">
       <Select
