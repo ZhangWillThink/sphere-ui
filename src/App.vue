@@ -18,7 +18,7 @@ const colorMode = useColorMode()
     </Button>
 
     <Tooltip>
-      <Button :icon="h(Moon)">123</Button>
+      <Button :icon="h(Moon)" variant="ghost">123</Button>
 
       <template #content> Tooltip </template>
     </Tooltip>

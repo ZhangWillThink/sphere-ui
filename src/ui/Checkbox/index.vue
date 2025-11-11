@@ -118,7 +118,7 @@ onKeyStroke(
       <div
         v-if="description || slot.description"
         :id="`${$attrs.id || 'checkbox'}-description`"
-        class="text-muted-foreground mt-1 text-sm"
+        class="text-text-secondary mt-1 text-sm"
       >
         <slot name="description">
           <template v-if="description">

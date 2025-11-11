@@ -1,6 +1,6 @@
 <script lang="ts">
 const button = cva(
-  'inline-flex cursor-pointer items-center justify-center gap-2.5 leading-6 transition-all duration-150 ease-in-out select-none focus-visible:outline-none disabled:scale-100 disabled:cursor-default disabled:bg-gray-200 disabled:text-gray-700 disabled:shadow-none disabled:dark:bg-gray-700 disabled:dark:text-gray-200',
+  'inline-flex cursor-pointer border border-transparent items-center justify-center gap-2.5 leading-6 transition-all duration-150 ease-in-out select-none focus-visible:outline-none disabled:scale-100 disabled:cursor-default disabled:bg-gray-200 disabled:text-gray-700 disabled:shadow-none disabled:dark:bg-gray-700 disabled:dark:text-gray-200',
   {
     variants: {
       size: {
