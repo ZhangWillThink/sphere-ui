@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { h } from 'vue'
+
+import { Moon } from '@icon-park/vue-next'
 import { useColorMode } from '@vueuse/core'
 
 import { Button, Select } from './ui'
@@ -13,6 +16,8 @@ const colorMode = useColorMode()
     <Button variant="primary" @click="colorMode = colorMode === 'light' ? 'dark' : 'light'">
       {{ colorMode === 'light' ? 'Dark' : 'Light' }}
     </Button>
+
+    <Button :icon="h(Moon)">123</Button>
 
     <div class="w-1/2">
       <Select

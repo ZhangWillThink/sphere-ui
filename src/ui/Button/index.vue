@@ -49,7 +49,9 @@ const button = cva(
 </script>
 
 <script setup lang="ts">
-import type { ButtonProps, ButtonSlots, ButtonEmits } from './types'
+import type { ButtonEmits, ButtonProps, ButtonSlots } from './types'
+
+import { isVNode } from 'vue'
 
 import { cva } from 'class-variance-authority'
 
@@ -57,7 +59,7 @@ import Loading from '../Loading/index.vue'
 
 defineOptions({ name: 'SphereButton', inheritAttrs: true })
 
-const { size = 'md', variant = 'default', loading, disabled } = defineProps<ButtonProps>()
+const { size = 'md', variant = 'default', loading, disabled, icon } = defineProps<ButtonProps>()
 
 const slot = defineSlots<ButtonSlots>()
 
@@ -76,12 +78,14 @@ const handleClick = (evt: Event) => {
 <template>
   <button
     v-bind="$attrs"
-    :class="button({ size, variant })"
+    :class="button({ size: slot?.default ? size : slot?.icon || icon ? 'icon' : size, variant })"
     :disabled="disabled || loading"
     @click="handleClick"
   >
     <Loading v-if="loading" size="sm" />
-    <slot v-else-if="slot.icon" name="icon" />
+    <slot name="icon">
+      <component v-if="isVNode(icon)" :is="icon" />
+    </slot>
 
     <slot name="default" />
   </button>
