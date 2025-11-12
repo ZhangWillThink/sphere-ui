@@ -44,22 +44,24 @@ watch(
 </script>
 
 <template>
-  <div v-bind="$attrs" class="flex flex-col gap-2">
+  <div
+    v-bind="$attrs"
+    class="group/field data-[invalid=true]:text-destructive flex w-full flex-col gap-3 *:w-full [&>.sr-only]:w-auto"
+  >
     <label
       v-if="label || slot.label"
       :for="name"
-      class="leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+      data-slot="field-label"
+      class="group/field-label peer/field-label has-data-[state=checked]:bg-primary/5 has-data-[state=checked]:border-primary dark:has-data-[state=checked]:bg-primary/10 flex w-fit items-center gap-2 text-sm leading-snug font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 group-data-[disabled=true]/field:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col has-[>[data-slot=field]]:rounded-md has-[>[data-slot=field]]:border *:data-[slot=field]:p-4"
       :aria-describedby="name"
     >
       <slot name="label">
-        <template v-if="label">
-          <component v-if="isVNode(label)" :is="label" />
-          <template v-else>{{ label }}</template>
-        </template>
+        <component v-if="isVNode(label)" :is="label" />
+        <template v-else-if="label">{{ label }}</template>
       </slot>
     </label>
 
-    <p v-if="description || slot.description" class="text-text-primary/40 text-xs">
+    <p v-if="description || slot.description" class="text-card-foreground/40 text-xs">
       <slot name="description">
         <template v-if="description">
           <component v-if="isVNode(description)" :is="description" />
@@ -76,7 +78,7 @@ watch(
       v-if="rule && rule.length > 0 && name"
       :class="[
         'text-xs transition-[color] select-none',
-        isError ? 'text-red-500' : 'text-transparent',
+        isError ? 'text-destructive' : 'text-transparent',
       ]"
     >
       {{

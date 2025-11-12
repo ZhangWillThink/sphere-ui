@@ -190,7 +190,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
     v-bind="$attrs"
     ref="trigger"
     type="button"
-    class="glass text-text-primary focus-within:ring-primary-300/30 dark:focus-within:ring-primary-400/40 flex w-full items-center justify-between rounded-lg px-3 py-2 shadow transition-all duration-150 ease-in-out focus-within:ring-3"
+    class="glass text-card-foreground focus-within:ring-primary-300/30 dark:focus-within:ring-primary-400/40 flex w-full items-center justify-between rounded-lg px-3 py-2 shadow transition-all duration-150 ease-in-out focus-within:ring-3"
     :aria-expanded="open"
     aria-haspopup="listbox"
     @click="openDropdown"
@@ -204,7 +204,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
           />
           <template v-else>{{ getLabelByValue(selectedValues) }}</template>
         </span>
-        <span v-else class="text-text-primary/60">
+        <span v-else class="text-card-foreground/60">
           <template v-if="isVNode(placeholder)"><component :is="placeholder" /></template>
           <template v-else>{{ placeholder ?? 'Select' }}</template>
         </span>
@@ -222,7 +222,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
             {{ getLabelByValue(value) }}
           </UiTag>
         </template>
-        <span v-else class="text-text-primary/60">{{ placeholder }}</span>
+        <span v-else class="text-card-foreground/60">{{ placeholder }}</span>
       </template>
     </div>
 
@@ -264,7 +264,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
             'text-text-secondary flex items-center space-x-2 rounded-md px-3 py-2 transition-all select-none',
             opt.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
             {
-              'text-text-primary bg-primary-100 dark:bg-primary-900/40':
+              'text-card-foreground bg-primary-100 dark:bg-primary-900/40':
                 highlighted === i && !opt.disabled,
             },
           ]"

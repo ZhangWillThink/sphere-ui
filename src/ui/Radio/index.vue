@@ -96,7 +96,7 @@ watchOnce(modelValue, v => {
         index === 0 ? 'rounded-l-lg' : index === options.length - 1 ? 'rounded-r-lg' : '',
         isSelected(option.value)
           ? 'bg-primary-600/80 dark:bg-primary-600 dark:shadow-primary-900/30 text-white shadow-inner'
-          : 'text-text-primary border-transparent bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800/50',
+          : 'text-card-foreground border-transparent bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800/50',
         option.disabled || disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         { 'ring-primary-400/30 ring-4': focusedIndex === index },
       ]"

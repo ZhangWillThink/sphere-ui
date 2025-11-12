@@ -58,7 +58,7 @@ const isActive = (value: any) => activeTab.value === value
           'focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
           isActive(item.value)
             ? 'text-primary-600 dark:text-primary-400 bg-white shadow-sm dark:bg-gray-800 dark:shadow-lg dark:shadow-black/20'
-            : 'text-text-primary/70 hover:text-text-primary hover:bg-white/50 dark:text-gray-300 dark:hover:bg-gray-800/50',
+            : 'text-card-foreground/70 hover:text-card-foreground hover:bg-white/50 dark:text-gray-300 dark:hover:bg-gray-800/50',
           item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         ]"
         :disabled="item.disabled"

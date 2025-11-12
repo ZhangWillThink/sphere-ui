@@ -2,20 +2,60 @@
 import { h } from 'vue'
 
 import { Moon } from '@icon-park/vue-next'
-import { useColorMode } from '@vueuse/core'
+import { useColorMode, useToggle } from '@vueuse/core'
 
-import { Breadcrumb, Button, Card, Checkbox, Collapse, Select, Tooltip } from './ui'
+import {
+  Breadcrumb,
+  Button,
+  Card,
+  Checkbox,
+  Collapse,
+  Dialog,
+  Form,
+  FormItem,
+  Input,
+  Select,
+  Tooltip,
+} from './ui'
 
 defineOptions({ name: 'App' })
 
 const colorMode = useColorMode()
+
+const [open, toggleOpen] = useToggle()
 </script>
 
 <template>
   <div class="bg-background relative h-svh w-svw space-y-10 p-10">
-    <Button variant="default" @click="colorMode = colorMode === 'light' ? 'dark' : 'light'">
-      {{ colorMode === 'light' ? 'Dark' : 'Light' }}
-    </Button>
+    <div>
+      <Button variant="default" @click="colorMode = colorMode === 'light' ? 'dark' : 'light'">
+        {{ colorMode === 'light' ? 'Dark' : 'Light' }}
+      </Button>
+    </div>
+
+    <Card>
+      <Form>
+        <FormItem label="username" name="name">
+          <Input class="w-full" type="text" placeholder="Placeholder" />
+        </FormItem>
+
+        <FormItem label="password" name="name">
+          <Input class="w-full" type="text" placeholder="Placeholder" />
+        </FormItem>
+      </Form>
+    </Card>
+
+    <div>
+      <Button @click="toggleOpen()"> Toggle dialog open </Button>
+
+      <Dialog v-model="open" title="title" description="description">
+        12312
+        <template #footer>
+          <Button variant="destructive">Cancel</Button>
+          <Button variant="default">Save</Button>
+        </template>
+      </Dialog>
+    </div>
 
     <Collapse
       :items="[
@@ -23,7 +63,7 @@ const colorMode = useColorMode()
         { label: 'Collapse 2', key: '2', children: 'Collapse Content' },
         { label: 'Collapse 3', key: '3', children: 'Collapse Content' },
       ]"
-    ></Collapse>
+    />
 
     <Breadcrumb
       :items="[

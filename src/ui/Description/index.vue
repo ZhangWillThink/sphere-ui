@@ -83,7 +83,7 @@ const getBorderedColSpan = (span?: number) => Math.min(span || 1, column)
       class="mb-5 border-b border-gray-200 pb-3 dark:border-gray-700"
     >
       <slot name="title">
-        <h3 class="text-text-primary text-base font-semibold">
+        <h3 class="text-card-foreground text-base font-semibold">
           <component v-if="isVNode(title)" :is="title" />
           <template v-else>{{ title }}</template>
         </h3>
@@ -102,7 +102,7 @@ const getBorderedColSpan = (span?: number) => Math.min(span || 1, column)
       >
         <dt
           :class="[
-            'text-text-primary/60 text-sm font-medium',
+            'text-card-foreground/60 text-sm font-medium',
             labelStyle === 'inline' ? 'shrink-0' : '',
           ]"
         >
@@ -112,7 +112,7 @@ const getBorderedColSpan = (span?: number) => Math.min(span || 1, column)
             <template v-if="colon">:</template>
           </slot>
         </dt>
-        <dd class="text-text-primary text-sm leading-relaxed">
+        <dd class="text-card-foreground text-sm leading-relaxed">
           <slot :name="`item-${item.key}`">
             <component v-if="isVNode(item.children)" :is="item.children" />
             <template v-else>{{ item.children }}</template>
@@ -137,7 +137,7 @@ const getBorderedColSpan = (span?: number) => Math.min(span || 1, column)
           >
             <template v-for="item in row" :key="item.key">
               <th
-                class="text-text-primary/60 bg-gray-50/80 px-4 py-3 text-left text-sm font-medium dark:bg-gray-800/30"
+                class="text-card-foreground/60 bg-gray-50/80 px-4 py-3 text-left text-sm font-medium dark:bg-gray-800/30"
               >
                 <slot :name="`label-${item.key}`">
                   <component v-if="isVNode(item.label)" :is="item.label" />
@@ -147,7 +147,7 @@ const getBorderedColSpan = (span?: number) => Math.min(span || 1, column)
               </th>
               <td
                 :colspan="getBorderedColSpan(item.span)"
-                class="text-text-primary border-l border-gray-200 bg-white px-4 py-3 text-sm leading-relaxed dark:border-gray-700 dark:bg-gray-900/50"
+                class="text-card-foreground border-l border-gray-200 bg-white px-4 py-3 text-sm leading-relaxed dark:border-gray-700 dark:bg-gray-900/50"
               >
                 <slot :name="`item-${item.key}`">
                   <component v-if="isVNode(item.children)" :is="item.children" />
