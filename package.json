@@ -36,7 +36,7 @@
     "class-variance-authority": "latest",
     "lodash-es": "latest",
     "tailwindcss": "latest",
-    "vue": "latest"
+    "vue": "^3.5.24"
   },
   "files": [
     "dist",
@@ -66,9 +66,8 @@
     "eslint-plugin-import": "latest",
     "eslint-plugin-vue": "latest",
     "prettier": "latest",
-    "prettier-plugin-tailwindcss": "latest",
+    "prettier-plugin-tailwindcss": "^0.7.1",
     "shiki": "latest",
-    "tailwindcss": "^4.1.17",
     "typescript": "latest",
     "vite": "latest",
     "vite-plugin-dts": "latest",

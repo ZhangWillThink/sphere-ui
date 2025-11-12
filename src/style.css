@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --radius: 0.7rem;
+  --radius: 1rem;
 
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);

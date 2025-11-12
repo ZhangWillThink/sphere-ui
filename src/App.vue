@@ -4,7 +4,7 @@ import { h } from 'vue'
 import { Moon } from '@icon-park/vue-next'
 import { useColorMode } from '@vueuse/core'
 
-import { Button, Select, Tooltip } from './ui'
+import { Breadcrumb, Button, Select, Tooltip } from './ui'
 
 defineOptions({ name: 'App' })
 
@@ -12,10 +12,17 @@ const colorMode = useColorMode()
 </script>
 
 <template>
-  <div class="bg-bg-primary h-svh w-svw">
-    <Button variant="primary" @click="colorMode = colorMode === 'light' ? 'dark' : 'light'">
+  <div class="relative h-svh w-svw">
+    <Button variant="default" @click="colorMode = colorMode === 'light' ? 'dark' : 'light'">
       {{ colorMode === 'light' ? 'Dark' : 'Light' }}
     </Button>
+
+    <Breadcrumb
+      :items="[
+        { title: 'Home', href: '/' },
+        { title: 'About', href: '/about' },
+      ]"
+    />
 
     <Tooltip>
       <Button :icon="h(Moon)" variant="ghost">123</Button>
