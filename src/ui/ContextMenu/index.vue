@@ -1,3 +1,14 @@
+<script lang="ts">
+interface ContextMenuItem {
+  children: VNodeChild
+  value?: any
+  disabled?: boolean
+  suffix?: VNodeChild
+  variant: 'default' | 'destructive'
+  onClick?: () => void
+}
+</script>
+
 <script setup lang="ts">
 import type { CSSProperties, VNodeChild } from 'vue'
 
@@ -15,7 +26,7 @@ import {
 defineOptions({ name: 'SphereContextMenu', inheritAttrs: true })
 
 const { items = [] } = defineProps<{
-  items?: Array<{ label: VNodeChild; value?: any; disabled?: boolean; onClick?: () => void }>
+  items?: Array<ContextMenuItem>
 }>()
 
 defineSlots<{
@@ -96,7 +107,7 @@ function onContextMenu() {
   openMenu()
 }
 
-function selectItem(item: { label: VNodeChild; value?: any; disabled?: boolean } | undefined) {
+function selectItem(item: ContextMenuItem | undefined) {
   if (!item || item.disabled) return
   emit('select', item.value)
   closeMenu()
@@ -141,37 +152,45 @@ onKeyStroke(['ArrowDown', 'ArrowUp', 'Enter', 'Escape'], e => {
       enterActiveClass="animate__animated animate__fadeIn animate__faster"
       leaveActiveClass="animate__animated animate__fadeOut animate__faster"
     >
-      <ul
+      <div
         v-if="open"
         ref="menu"
+        dir="ltr"
         :style="menuStyle"
-        class="glass z-50 overflow-auto rounded-lg p-1.5 text-sm shadow"
+        class="bg-popover text-popover-foreground border-border z-50 w-52 min-w-32 overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md outline-none"
+        data-side="right"
+        data-align="start"
         role="menu"
+        aria-orientation="vertical"
+        data-slot="context-menu-content"
+        tabindex="-1"
+        data-orientation="vertical"
       >
-        <li
-          v-for="(it, i) in items"
-          :key="i"
-          :class="[
-            'text-text-secondary hover:text-text-primary cursor-pointer rounded-md px-2 py-1 transition-all select-none',
-            {
-              'bg-primary-400/70': i === highlighted,
-              'cursor-not-allowed opacity-50': it.disabled,
-            },
-          ]"
+        <div
+          v-for="(item, index) in items"
+          :key="index"
           role="menuitem"
-          @mouseenter.stop="highlighted = i"
-          @mouseleave.stop="highlighted = -1"
-          @click="
-            () => {
-              if (it.disabled) return
-              it.onClick?.() || selectItem(it)
-            }
-          "
+          data-slot="context-menu-item"
+          data-inset="true"
+          :data-variant="item?.variant"
+          class="focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:text-destructive! [&amp;_svg:not([class*='text-'])]:text-muted-foreground [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-8"
+          tabindex="-1"
+          data-orientation="vertical"
+          @click.stop="item.onClick?.()"
         >
-          <component v-if="isVNode(it.label)" :is="it.label" />
-          <template v-else>{{ it.label }}</template>
-        </li>
-      </ul>
+          <component v-if="isVNode(item.children)" :is="item.children" />
+          <template v-else-if="item.children"> {{ item.children }} </template>
+
+          <span
+            v-if="item?.suffix"
+            data-slot="context-menu-shortcut"
+            class="text-muted-foreground ml-auto text-xs tracking-widest"
+          >
+            <component v-if="isVNode(item.suffix)" :is="item.suffix" />
+            <template v-else-if="item.suffix"> {{ item.suffix }} </template>
+          </span>
+        </div>
+      </div>
     </Transition>
   </Teleport>
 </template>
