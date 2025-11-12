@@ -4,7 +4,7 @@ interface ContextMenuItem {
   value?: any
   disabled?: boolean
   suffix?: VNodeChild
-  variant: 'default' | 'destructive'
+  variant?: 'default' | 'destructive'
   onClick?: () => void
 }
 </script>
@@ -174,7 +174,7 @@ onKeyStroke(['ArrowDown', 'ArrowUp', 'Enter', 'Escape'], e => {
           data-slot="context-menu-item"
           data-inset="true"
           :data-disabled="item?.disabled"
-          :data-variant="item?.variant"
+          :data-variant="item?.variant ?? 'default'"
           data-orientation="vertical"
           tabindex="-1"
           @click.stop="item.onClick?.()"
