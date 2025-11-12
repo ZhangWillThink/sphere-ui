@@ -250,12 +250,12 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
           width: `${triggerBounding.width.value}px`,
           left: `${triggerBounding.left.value}px`,
         }"
-        class="bg-popover border-border text-popover-foreground relative z-50 min-w-32 overflow-x-hidden overflow-y-auto rounded-md border p-px shadow-md"
+        class="bg-popover/70 border-border text-popover-foreground relative z-50 min-w-32 overflow-x-hidden overflow-y-auto rounded-md border p-px shadow-md backdrop-blur-lg"
       >
         <li
           v-if="searchable"
           data-slot="select-search"
-          class="sticky top-0 z-10 bg-white/70 p-2 backdrop-blur-sm dark:bg-gray-800/70"
+          class="sticky top-0 z-10 p-2 backdrop-blur-lg"
         >
           <Input
             v-model="searchQuery"
@@ -272,7 +272,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
           role="option"
           data-slot="select-item"
           :aria-selected="isSelected(opt)"
-          class="hover:bg-accent focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-pointer items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden transition-[background] select-none disabled:cursor-not-allowed data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2"
+          class="hover:bg-accent/70 focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-pointer items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden transition-[background] select-none disabled:cursor-not-allowed data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2"
           @click="
             () => {
               if (!opt.disabled) toggleOption(opt)

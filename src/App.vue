@@ -20,6 +20,7 @@ import {
   Slider,
   Switch,
   Tabs,
+  Textarea,
   Tooltip,
 } from './ui'
 import AdvancedUsage from './ui/Table/examples/AdvancedUsage.vue'
@@ -42,13 +43,17 @@ const radio = shallowRef()
     </div>
 
     <div>
+      <Textarea />
+    </div>
+
+    <div>
       <Tabs
         :items="[
           { label: 'Tab 1', value: '1' },
           { label: 'Tab 2', value: '2' },
         ]"
       >
-        <template #item-1>Tab 1 Content></template>
+        <template #item-1>Tab 1 Content</template>
       </Tabs>
     </div>
 

@@ -35,7 +35,8 @@ const html = computedAsync(async () => {
 
 <template>
   <div
-    class="glass text-card-foreground relative h-9 overflow-hidden rounded-lg font-mono text-base shadow transition-all duration-200 ease-in-out md:text-sm"
+    data-slot="input"
+    class="text-card-foreground relative h-9 overflow-hidden rounded-lg font-mono text-base shadow transition-all duration-200 ease-in-out md:text-sm"
   >
     <div
       v-if="!modelValue"
