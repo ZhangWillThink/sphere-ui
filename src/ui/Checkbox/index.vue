@@ -1,50 +1,24 @@
 <script setup lang="ts">
-import type { VariantProps } from 'class-variance-authority'
 import type { VNodeChild } from 'vue'
 
 import { isVNode, useTemplateRef } from 'vue'
 
 import { Check } from '@icon-park/vue-next'
 import { onKeyStroke, useToggle } from '@vueuse/core'
-import { cva } from 'class-variance-authority'
 
 defineOptions({ name: 'SphereCheckbox', inheritAttrs: true })
 
-const checkbox = cva(
-  'relative inline-flex transform-gpu items-center justify-center rounded border-2 transition-all duration-200 ease-in-out will-change-transform focus-within:ring-4 focus-within:ring-primary-300/30',
-  {
-    variants: {
-      size: {
-        sm: 'size-4 text-xs',
-        md: 'size-5 text-sm',
-        lg: 'size-6 text-base',
-      },
-    },
-    defaultVariants: {
-      size: 'md',
-    },
-  },
-)
-
-type CheckProps = VariantProps<typeof checkbox>
-
-const {
-  disabled,
-  size = 'md',
-  label,
-} = defineProps<{
-  label?: string
+const { disabled } = defineProps<{
   disabled?: boolean
-  size?: CheckProps['size']
   description?: VNodeChild
 }>()
 
-const slot = defineSlots<{
+defineSlots<{
   default?: () => VNodeChild
   description?: () => VNodeChild
 }>()
 
-const modelValue = defineModel<boolean>({ required: false })
+const modelValue = defineModel<boolean>({ required: false, default: false })
 
 const root = useTemplateRef('root')
 
@@ -68,65 +42,41 @@ onKeyStroke(
 </script>
 
 <template>
-  <label
-    v-bind="$attrs"
-    ref="root"
-    :class="[
-      'inline-flex cursor-pointer items-center gap-3 select-none',
-      'transition-all duration-200 ease-in-out',
-      'hover:text-text-primary/90',
-      disabled ? 'cursor-not-allowed opacity-50' : '',
-    ]"
-    :aria-disabled="disabled"
-    :aria-describedby="String(description) || label || 'checkbox'"
-    tabindex="0"
-  >
-    <div
-      :class="[
-        checkbox({ size }),
-        modelValue
-          ? 'border-primary-600 bg-primary-600 dark:border-primary-500 dark:bg-primary-600 text-white'
-          : 'border-gray-300 dark:border-gray-600 dark:bg-gray-800/50',
-        disabled
-          ? 'border-gray-300 bg-gray-100 dark:border-gray-600 dark:bg-gray-800'
-          : 'dark:hover:border-primary-500 hover:scale-105 active:scale-95',
-      ]"
+  <div ref="root" class="flex items-start gap-3" @click="handleToggle">
+    <button
+      type="button"
+      role="checkbox"
+      :aria-checked="modelValue"
+      :data-state="modelValue ? 'checked' : ''"
+      value="on"
+      data-slot="checkbox"
+      class="border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive size-4 shrink-0 cursor-pointer rounded-lg border shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50"
+      :disabled
+      id="terms-2"
     >
-      <input
-        v-bind="$attrs"
-        type="checkbox"
-        :checked="modelValue"
-        :disabled="disabled"
-        :aria-label="label"
-        :aria-describedby="description ? `${$attrs.id || 'checkbox'}-description` : undefined"
-        class="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
-        @change="handleToggle"
-      />
-
-      <Check
-        v-if="modelValue"
-        :strokeWidth="7"
-        class="font-bold transition-all duration-200 ease-out"
-      />
-    </div>
-
-    <div class="flex flex-1 flex-col">
-      <div class="text-text-primary font-medium">
-        <slot name="default" />
-      </div>
-
-      <div
-        v-if="description || slot.description"
-        :id="`${$attrs.id || 'checkbox'}-description`"
-        class="text-text-secondary mt-1 text-sm"
+      <span
+        :data-state="modelValue ? 'checked' : ''"
+        data-slot="checkbox-indicator"
+        class="pointer-events-none grid place-content-center text-current transition-none"
       >
+        <Check v-show="modelValue" size="10" :stroke-width="10" />
+      </span>
+    </button>
+
+    <div class="grid gap-2">
+      <label
+        data-slot="label"
+        class="flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+        for="terms-2"
+      >
+        <slot name="default" />
+      </label>
+      <p v-if="description || $slots.description" class="text-muted-foreground text-sm">
         <slot name="description">
-          <template v-if="description">
-            <component v-if="isVNode(description)" :is="description" />
-            <template v-else>{{ description }}</template>
-          </template>
+          <component v-if="isVNode(description)" :is="description" />
+          <template v-else-if="description">{{ description }}</template>
         </slot>
-      </div>
+      </p>
     </div>
-  </label>
+  </div>
 </template>
