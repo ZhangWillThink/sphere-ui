@@ -22,7 +22,7 @@ const slot = defineSlots<{
 <template>
   <div
     v-bind="$attrs"
-    class="bg-card/70 text-card-foreground border-accent flex flex-col gap-4 rounded-xl border py-4 shadow-sm backdrop-blur-lg"
+    class="bg-card/70 text-card-foreground border-border flex flex-col gap-4 rounded-xl border py-4 shadow-sm backdrop-blur-lg"
   >
     <header v-if="slot.cover" class="text-2xl leading-none font-semibold tracking-tight">
       <slot name="cover">

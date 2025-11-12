@@ -4,7 +4,7 @@ import { h } from 'vue'
 import { Moon } from '@icon-park/vue-next'
 import { useColorMode } from '@vueuse/core'
 
-import { Breadcrumb, Button, Card, Checkbox, Select, Tooltip } from './ui'
+import { Breadcrumb, Button, Card, Checkbox, Collapse, Select, Tooltip } from './ui'
 
 defineOptions({ name: 'App' })
 
@@ -16,6 +16,14 @@ const colorMode = useColorMode()
     <Button variant="default" @click="colorMode = colorMode === 'light' ? 'dark' : 'light'">
       {{ colorMode === 'light' ? 'Dark' : 'Light' }}
     </Button>
+
+    <Collapse
+      :items="[
+        { label: 'Collapse 1', key: '1', children: 'Collapse Content' },
+        { label: 'Collapse 2', key: '2', children: 'Collapse Content' },
+        { label: 'Collapse 3', key: '3', children: 'Collapse Content' },
+      ]"
+    ></Collapse>
 
     <Breadcrumb
       :items="[
