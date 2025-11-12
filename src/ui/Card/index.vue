@@ -22,51 +22,44 @@ const slot = defineSlots<{
 <template>
   <div
     v-bind="$attrs"
-    class="glass text-text-primary rounded-lg shadow-sm dark:shadow-lg dark:shadow-black/20"
+    class="bg-card/70 text-card-foreground border-border flex flex-col gap-4 rounded-xl border py-4 shadow-sm backdrop-blur-lg"
   >
     <header v-if="slot.cover" class="text-2xl leading-none font-semibold tracking-tight">
       <slot name="cover">
-        <template v-if="cover">
-          <component v-if="isVNode(cover)" :is="cover" />
-          <template v-else>{{ cover }}</template>
-        </template>
+        <component v-if="isVNode(cover)" :is="cover" />
+        <template v-else-if="cover">{{ cover }}</template>
       </slot>
     </header>
 
-    <div class="space-y-6 p-6">
+    <div class="space-y-4 p-4">
       <header
         v-if="title || slot.title || description || slot.description"
-        class="flex flex-col space-y-1.5"
+        class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-4 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-4"
       >
-        <h3 v-if="title || slot.title" class="text-xl leading-none font-semibold">
+        <h3 v-if="title || slot.title" class="leading-none font-semibold">
           <slot name="title">
-            <template v-if="title">
-              <component v-if="isVNode(title)" :is="title" />
-              <template v-else>{{ title }}</template>
-            </template>
+            <component v-if="isVNode(title)" :is="title" />
+            <template v-else-if="title">{{ title }}</template>
           </slot>
         </h3>
-        <p
-          v-if="description || slot.description"
-          class="text-text-primary/70 text-sm leading-relaxed"
-        >
+        <p v-if="description || slot.description" class="text-muted-foreground text-sm">
           <slot name="description">
-            <template v-if="description">
-              <component v-if="isVNode(description)" :is="description" />
-              <template v-else>{{ description }}</template>
-            </template>
+            <component v-if="isVNode(description)" :is="description" />
+            <template v-else-if="description">{{ description }}</template>
           </slot>
         </p>
       </header>
 
-      <slot name="default" />
+      <div v-if="slot.default" class="px-4">
+        <slot name="default" />
+      </div>
 
-      <slot name="footer">
-        <template v-if="footer">
+      <footer v-if="footer || slot.footer" class="flex items-center px-4 [.border-t]:pt-4">
+        <slot name="footer">
           <component v-if="isVNode(footer)" :is="footer" />
-          <template v-else>{{ footer }}</template>
-        </template>
-      </slot>
+          <template v-else-if="footer">{{ footer }}</template>
+        </slot>
+      </footer>
     </div>
   </div>
 </template>

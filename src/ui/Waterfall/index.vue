@@ -1,3 +1,16 @@
+<script lang="ts">
+const gapMap: Record<number, string> = {
+  0: 'gap-0',
+  4: 'gap-1',
+  8: 'gap-2',
+  12: 'gap-3',
+  16: 'gap-4',
+  20: 'gap-5',
+  24: 'gap-6',
+  32: 'gap-8',
+} as const
+</script>
+
 <script setup lang="ts" generic="T extends Record<string, any>">
 import { computed, shallowRef, useTemplateRef } from 'vue'
 
@@ -17,7 +30,7 @@ const {
 } = defineProps<{
   items: T[]
   columnCount?: number
-  gap?: number
+  gap?: keyof typeof gapMap
   minColumnWidth?: number
 }>()
 
@@ -27,21 +40,7 @@ const actualColumnCount = shallowRef(columnCount)
 
 const { width: containerWidth } = useElementSize(containerRef)
 
-// 计算间距类名
-const gapClass = computed(() => {
-  // 将 px 值映射到 Tailwind 的间距类
-  const gapMap: Record<number, string> = {
-    0: 'gap-0',
-    4: 'gap-1',
-    8: 'gap-2',
-    12: 'gap-3',
-    16: 'gap-4',
-    20: 'gap-5',
-    24: 'gap-6',
-    32: 'gap-8',
-  }
-  return gapMap[gap] || 'gap-4'
-})
+const gapClass = computed(() => gapMap[gap] ?? 'gap-4')
 
 // 计算实际列数（根据容器宽度自适应）
 function calculateColumnCount(width: number) {

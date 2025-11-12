@@ -82,7 +82,6 @@ function selectKey(item: { key?: string | number; value?: any; disabled?: boolea
   }
 }
 
-// Local recursive MenuItem component to keep file self-contained
 const MenuItem = defineComponent({
   name: 'SphereMenuItem',
   inheritAttrs: true,
@@ -110,15 +109,15 @@ const MenuItem = defineComponent({
     return () => (
       <li
         class={[
-          'text-text-primary items-center justify-between transition-colors select-none',
+          'text-card-foreground items-center justify-between transition-colors select-none',
           item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         ]}
         onClick={onClick}
       >
         <div
           class={[
-            'flex items-center justify-between truncate rounded-md px-3 py-2 hover:bg-blue-100 dark:hover:bg-blue-900/40',
-            isSelectedKey(key) ? 'bg-blue-100 dark:bg-blue-900/40' : '',
+            'hover:bg-primary flex items-center justify-between truncate rounded-md px-3 py-2',
+            isSelectedKey(key) ? 'bg-primary' : '',
           ]}
         >
           <div class="flex items-center space-x-2">
@@ -127,7 +126,7 @@ const MenuItem = defineComponent({
           </div>
 
           {hasChildren && (
-            <RightOne class={['ml-2 transition-transform', isOpen(key) ? 'rotate-90' : '']} />
+            <RightOne class={['ml-2 transition-transform', { 'rotate-90': isOpen(key) }]} />
           )}
         </div>
 
@@ -150,7 +149,12 @@ const MenuItem = defineComponent({
 
 <template>
   <nav ref="root" v-bind="$attrs" class="inline-block" tabindex="0">
-    <ul :class="[mode === 'horizontal' ? 'flex gap-2' : '', 'glass rounded-md p-1 text-sm']">
+    <ul
+      :class="[
+        mode === 'horizontal' ? 'flex gap-2' : '',
+        'bg-default/70 rounded-md p-1 text-sm backdrop-blur-lg',
+      ]"
+    >
       <MenuItem v-for="(it, i) in items" :key="it.key ?? i" :item="it" :path="[i]" />
     </ul>
   </nav>

@@ -8,29 +8,19 @@ import { cva } from 'class-variance-authority'
 defineOptions({ name: 'SphereTag', inheritAttrs: true })
 
 const tag = cva(
-  'glass inline-flex flex-shrink-0 items-center gap-1 rounded-lg whitespace-nowrap shadow transition-all duration-200 ease-in-out',
+  'inline-flex items-center border-border justify-center rounded-full border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden',
   {
     variants: {
-      size: {
-        sm: 'px-1.5 py-0.5 text-xs',
-        md: 'px-2 py-0.5 text-xs',
-        lg: 'px-2.5 py-1 text-sm',
-      },
       variant: {
-        default:
-          'bg-white/20 text-gray-800 backdrop-blur-sm border border-white/30 dark:bg-gray-900/20 dark:text-gray-100 dark:border-gray-700/30',
-        primary:
-          'bg-blue-500/20 text-blue-800 backdrop-blur-sm border border-blue-300/30 dark:bg-blue-900/20 dark:text-blue-100 dark:border-blue-700/30',
-        success:
-          'bg-green-500/20 text-green-800 backdrop-blur-sm border border-green-300/30 dark:bg-green-900/20 dark:text-green-100 dark:border-green-700/30',
-        warning:
-          'bg-yellow-500/20 text-yellow-800 backdrop-blur-sm border border-yellow-300/30 dark:bg-yellow-900/20 dark:text-yellow-100 dark:border-yellow-700/30',
-        error:
-          'bg-red-500/20 text-red-800 backdrop-blur-sm border border-red-300/30 dark:bg-red-900/20 dark:text-red-100 dark:border-red-700/30',
+        default: 'border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90',
+        secondary:
+          'border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90',
+        destructive:
+          'border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
+        outline: 'text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground',
       },
     },
     defaultVariants: {
-      size: 'md',
       variant: 'default',
     },
   },
@@ -38,13 +28,8 @@ const tag = cva(
 
 type TagProps = VariantProps<typeof tag>
 
-const {
-  removable = false,
-  size = 'md',
-  variant = 'primary',
-} = defineProps<{
+const { removable = false, variant = 'default' } = defineProps<{
   removable?: boolean
-  size?: TagProps['size']
   variant?: TagProps['variant']
 }>()
 
@@ -54,14 +39,12 @@ defineSlots<{
 
 const emit = defineEmits<{ remove: [] }>()
 
-const handleRemove = () => {
-  emit('remove')
-}
+const handleRemove = () => emit('remove')
 </script>
 
 <template>
-  <span v-bind="$attrs" :class="tag({ size, variant })">
-    <span class="max-w-30 truncate">
+  <span v-bind="$attrs" data-slot="tag" :class="tag({ variant })">
+    <span class="truncate">
       <slot name="default" />
     </span>
 

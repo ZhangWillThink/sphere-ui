@@ -4,7 +4,7 @@ import type { VNodeChild } from 'vue'
 
 import { isVNode, useTemplateRef } from 'vue'
 
-import { useToggle } from '@vueuse/core'
+import { useMouseInElement, useToggle, watchDebounced } from '@vueuse/core'
 
 import useFixedPosition from '../shared/hooks/useFixedPosition'
 
@@ -13,7 +13,7 @@ defineOptions({ name: 'SphereTooltip', inheritAttrs: true })
 const {
   content,
   position = 'bottom-center',
-  disabled,
+  disabled = false,
 } = defineProps<{
   content?: VNodeChild
   disabled?: boolean
@@ -30,28 +30,23 @@ const tooltip = useTemplateRef('tooltip')
 
 const [visible, toggleVisible] = useToggle(false)
 
+const { isOutside: isOutsideTrigger } = useMouseInElement(trigger)
+const { isOutside: isOutsideTooltip } = useMouseInElement(tooltip)
+
 const [tooltipStyle] = useFixedPosition(position, trigger, tooltip)
 
-const showTooltip = () => {
-  if (disabled) return
-  toggleVisible(true)
-}
-
-const hideTooltip = () => {
-  toggleVisible(false)
-}
+watchDebounced(
+  [isOutsideTrigger, isOutsideTooltip] as const,
+  ([isOutsideTrigger, isOutsideTooltip]) => {
+    const shouldShow = (!isOutsideTrigger || !isOutsideTooltip) && !disabled
+    toggleVisible(shouldShow)
+  },
+  { debounce: 300, deep: true },
+)
 </script>
 
 <template>
-  <div
-    v-bind="$attrs"
-    ref="trigger"
-    class="inline-block"
-    @mouseenter="showTooltip"
-    @mouseleave="hideTooltip"
-    @focus="showTooltip"
-    @blur="hideTooltip"
-  >
+  <div v-bind="$attrs" ref="trigger" class="inline-block">
     <slot name="default" />
   </div>
 
@@ -65,7 +60,8 @@ const hideTooltip = () => {
         v-if="visible && (content || slot.content)"
         ref="tooltip"
         :style="tooltipStyle"
-        class="glass rounded-lg p-2 shadow-lg dark:shadow-xl dark:shadow-black/40"
+        class="bg-foreground/70 text-background z-50 w-fit rounded-md px-3 py-1.5 text-xs text-balance backdrop-blur-lg"
+        data-slot="tooltip-content"
       >
         <slot name="content">
           <template v-if="content">

@@ -1,9 +1,5 @@
 import './style.css'
 
-// 重新导出所有组件和类型
-export * from './ui'
-
-// 导入组件用于默认导出
 import {
   Button,
   Card,
@@ -30,11 +26,12 @@ import {
   Tag,
   Textarea,
   Tooltip,
-  Waterfall,
+  // Waterfall,
 } from './ui'
 
-// 默认导出（用于 Vue.use() 安装）
-const components: Record<string, any> = {
+export * from './ui'
+
+const Components: Record<string, any> = {
   Button,
   Card,
   Checkbox,
@@ -60,7 +57,7 @@ const components: Record<string, any> = {
   Tag,
   Textarea,
   Tooltip,
-  Waterfall,
+  // Waterfall,
 }
 
-export default components
+export default Components

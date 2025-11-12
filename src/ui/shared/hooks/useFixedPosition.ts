@@ -1,8 +1,13 @@
 import type { CSSProperties, ShallowRef } from 'vue'
 
-import { computed, toValue } from 'vue'
+import { computed, toValue, watch } from 'vue'
 
-import { useElementBounding, useElementSize } from '@vueuse/core'
+import {
+  tryOnScopeDispose,
+  useElementBounding,
+  useElementSize,
+  useMouseInElement,
+} from '@vueuse/core'
 import { isNil } from 'lodash-es'
 
 export type CornerPosition =
@@ -27,6 +32,8 @@ export default function useFixedPosition(
   const triggerBounding = useElementBounding(trigger)
   const contentSize = useElementSize(content)
 
+  const { isOutside } = useMouseInElement(trigger)
+
   const style = computed<CSSProperties>(() => {
     const tLeft = toValue(triggerBounding.left ?? triggerBounding.x)
     const tTop = toValue(triggerBounding.top ?? triggerBounding.y)
@@ -37,8 +44,6 @@ export default function useFixedPosition(
 
     let top: number | undefined
     let left: number | undefined
-    let right: number | undefined
-    let bottom: number | undefined
 
     switch (position) {
       case 'top-left':
@@ -98,11 +103,16 @@ export default function useFixedPosition(
       position: 'fixed',
       top: !isNil(top) ? `${Math.round(top)}px` : undefined,
       left: !isNil(left) ? `${Math.round(left)}px` : undefined,
-      right: !isNil(right) ? `${Math.round(right)}px` : undefined,
-      bottom: !isNil(bottom) ? `${Math.round(bottom)}px` : undefined,
     }
 
     return style
+  })
+
+  const unwatch = watch(isOutside, triggerBounding.update)
+
+  tryOnScopeDispose(() => {
+    unwatch()
+    contentSize.stop()
   })
 
   return [style, triggerBounding, contentSize] as const

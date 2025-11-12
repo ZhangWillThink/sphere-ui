@@ -5,8 +5,9 @@ import { computed, isVNode, shallowRef, useTemplateRef, watch } from 'vue'
 
 import { Check, Down } from '@icon-park/vue-next'
 import { onClickOutside, onKeyStroke, useToggle } from '@vueuse/core'
-import { isString } from 'lodash-es'
+import { isNil, isString } from 'lodash-es'
 
+import { Input } from '..'
 import useFixedPosition from '../shared/hooks/useFixedPosition'
 import UiTag from '../Tag/index.vue'
 import { CollapseTransition } from '../Transition'
@@ -19,6 +20,7 @@ const {
   placeholder = undefined,
   searchable,
 } = defineProps<{
+  disabled?: boolean
   searchable?: boolean
   options: Array<{ label: VNodeChild; value: any; disabled?: boolean }>
   multiple?: boolean
@@ -189,22 +191,29 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
   <button
     v-bind="$attrs"
     ref="trigger"
-    type="button"
-    class="glass text-text-primary flex w-full items-center justify-between rounded-lg px-3 py-2 shadow transition-all duration-150 ease-in-out focus-within:ring-3 focus-within:ring-blue-300/30 dark:focus-within:ring-blue-400/40"
+    class="border-input data-placeholder:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-[180px] cursor-pointer items-center justify-between gap-2 rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
+    role="combobox"
     :aria-expanded="open"
+    aria-autocomplete="none"
     aria-haspopup="listbox"
+    dir="ltr"
+    :data-placeholder="String(placeholder)"
+    data-slot="select-trigger"
+    data-size="default"
+    :disabled
+    type="button"
     @click="openDropdown"
   >
     <div class="flex flex-wrap items-center gap-1">
       <template v-if="!multiple">
-        <span v-if="selectedValues !== undefined && selectedValues !== null">
+        <span v-if="!isNil(selectedValues)">
           <component
             v-if="getLabelByValue(selectedValues) === 'object'"
             :is="getLabelByValue(selectedValues)"
           />
           <template v-else>{{ getLabelByValue(selectedValues) }}</template>
         </span>
-        <span v-else class="text-text-primary/60">
+        <span v-else class="text-card-foreground/60">
           <template v-if="isVNode(placeholder)"><component :is="placeholder" /></template>
           <template v-else>{{ placeholder ?? 'Select' }}</template>
         </span>
@@ -222,7 +231,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
             {{ getLabelByValue(value) }}
           </UiTag>
         </template>
-        <span v-else class="text-text-primary/60">{{ placeholder }}</span>
+        <span v-else class="text-card-foreground/60">{{ placeholder }}</span>
       </template>
     </div>
 
@@ -235,22 +244,24 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
         v-if="open"
         ref="content"
         role="listbox"
+        data-slot="select-content"
         :style="{
           ...contentPosition,
           width: `${triggerBounding.width.value}px`,
           left: `${triggerBounding.left.value}px`,
         }"
-        class="glass z-50 mt-2 max-h-48 overflow-auto rounded-lg p-1 shadow dark:shadow-lg dark:shadow-black/30"
+        class="bg-popover/70 border-border text-popover-foreground relative z-50 min-w-32 overflow-x-hidden overflow-y-auto rounded-md border p-px shadow-md backdrop-blur-lg"
       >
         <li
           v-if="searchable"
-          class="sticky top-0 z-10 bg-white/80 p-2 backdrop-blur-sm dark:bg-gray-800/80"
+          data-slot="select-search"
+          class="sticky top-0 z-10 p-2 backdrop-blur-lg"
         >
-          <input
+          <Input
             v-model="searchQuery"
             type="text"
             placeholder="搜索选项..."
-            class="w-full rounded-md border border-gray-300 px-2 py-1 text-sm transition-all duration-150 ease-in-out focus:ring-2 focus:ring-blue-300 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:focus:ring-blue-400"
+            class="focus:ring-primary-300 dark:focus:ring-primary-400 w-full rounded-md border border-gray-300 px-2 py-1 text-sm transition-all duration-150 ease-in-out focus:ring-2 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
             @keydown.stop
           />
         </li>
@@ -259,15 +270,9 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
           v-for="(opt, i) in filteredOptions"
           :key="i"
           role="option"
+          data-slot="select-item"
           :aria-selected="isSelected(opt)"
-          :class="[
-            'text-text-secondary flex items-center space-x-2 rounded-md px-3 py-2 transition-all select-none',
-            opt.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-            {
-              'text-text-primary bg-blue-100 dark:bg-blue-900/40':
-                highlighted === i && !opt.disabled,
-            },
-          ]"
+          class="hover:bg-accent/70 focus:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex w-full cursor-pointer items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden transition-[background] select-none disabled:cursor-not-allowed data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2"
           @click="
             () => {
               if (!opt.disabled) toggleOption(opt)
@@ -280,6 +285,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
           "
         >
           <Check :class="[isSelected(opt) ? 'opacity-100' : 'opacity-0', 'transition-opacity']" />
+
           <p class="truncate">
             <component v-if="isVNode(opt.label)" :is="opt.label" />
             <template v-else>{{ opt.label }}</template>

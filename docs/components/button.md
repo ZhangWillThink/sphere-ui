@@ -11,7 +11,7 @@ title: Button
 ```vue
 <template>
   <Button>默认</Button>
-  <Button variant="primary">主操作</Button>
+  <Button variant="default">主操作</Button>
   <Button variant="destructive">危险</Button>
 </template>
 

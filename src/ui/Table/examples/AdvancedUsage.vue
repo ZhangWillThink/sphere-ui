@@ -110,11 +110,11 @@ const dataSource = ref<DataType[]>([
   },
 ])
 
-const getStatusVariant = (status: string): 'success' | 'error' | 'warning' | 'default' => {
-  const variantMap: Record<string, 'success' | 'error' | 'warning' | 'default'> = {
-    active: 'success',
-    inactive: 'error',
-    pending: 'warning',
+const getStatusVariant = (status: string): 'default' | 'outline' | 'destructive' | 'secondary' => {
+  const variantMap: Record<string, 'default' | 'outline' | 'destructive' | 'secondary'> = {
+    active: 'default',
+    inactive: 'destructive',
+    pending: 'outline',
   }
   return variantMap[status] || 'default'
 }
@@ -158,7 +158,7 @@ const handleMore = (record: DataType) => {
             <Tag
               v-for="(tag, index) in text"
               :key="index"
-              :variant="(['primary', 'success', 'warning', 'error'] as const)[index % 4]"
+              :variant="(['default', 'default', 'default', 'destructive'] as const)[index % 4]"
               size="sm"
             >
               {{ tag }}
@@ -201,7 +201,7 @@ const handleMore = (record: DataType) => {
           <div class="flex flex-col items-center gap-4 py-12">
             <div class="text-6xl">📭</div>
             <div class="text-lg font-medium text-gray-500 dark:text-gray-400">暂无数据</div>
-            <Button variant="primary" size="sm">
+            <Button variant="default" size="sm">
               <template #icon>➕</template>
               添加数据
             </Button>
@@ -228,7 +228,7 @@ const handleMore = (record: DataType) => {
                   'div',
                   {
                     class:
-                      'flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600 font-semibold dark:bg-blue-900 dark:text-blue-300',
+                      'flex h-8 w-8 items-center justify-center rounded-full bg-primary-100 text-primary-600 font-semibold dark:bg-primary-900 dark:text-primary-300',
                   },
                   text.charAt(0),
                 ),
@@ -252,7 +252,7 @@ const handleMore = (record: DataType) => {
                 'a',
                 {
                   href: `mailto:${text}`,
-                  class: 'text-blue-600 hover:underline dark:text-blue-400',
+                  class: 'text-primary-600 hover:underline dark:text-primary-400',
                 },
                 text,
               ),

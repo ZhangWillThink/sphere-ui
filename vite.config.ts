@@ -50,14 +50,7 @@ export default defineConfig({
 
     // Rollup options
     rollupOptions: {
-      external: [
-        'vue',
-        '@icon-park/vue-next',
-        '@vueuse/core',
-        'class-variance-authority',
-        'lodash-es',
-        'tailwindcss',
-      ],
+      external: ['vue'],
       output: {
         globals: {
           vue: 'Vue',

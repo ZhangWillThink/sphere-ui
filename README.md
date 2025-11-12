@@ -72,7 +72,7 @@ import 'sphere-ui/style.css'
 <template>
   <Card>
     <Input placeholder="Enter your name" />
-    <Button variant="primary">Submit</Button>
+    <Button variant="default">Submit</Button>
   </Card>
 </template>
 ```
@@ -163,7 +163,7 @@ export default defineConfig({
 
 ```vue
 <template>
-  <Button variant="primary" size="md">Primary Button</Button>
+  <Button variant="default" size="md">Primary Button</Button>
   <Button variant="secondary">Secondary Button</Button>
   <Button variant="outline">Outline Button</Button>
 </template>

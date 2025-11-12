@@ -19,10 +19,10 @@ const { language = 'markdown', autoResize = true } = defineProps<{
 
 const modelValue = defineModel<string | null>({ required: false })
 
-const paddingClass = 'px-3 py-2'
+const paddingClass = 'px-3 py-1'
 
 const textarea = useTemplateRef('textarea')
-const { height: textareaHeight } = useElementSize(textarea)
+const { height: textareaHeight } = useElementSize(textarea, undefined, { box: 'border-box' })
 
 const { x, y } = useScroll(textarea)
 
@@ -35,10 +35,11 @@ const html = computedAsync(async () => {
 watch(
   [modelValue, () => autoResize],
   ([, enabled]) => {
-    if (!enabled || !textarea.value) return
-
-    textarea.value.style.height = 'auto'
-    textarea.value.style.height = `${textarea.value.scrollHeight}px`
+    setTimeout(() => {
+      if (!enabled || !textarea.value) return
+      textarea.value.style.height = 'auto'
+      textarea.value.style.height = `${textarea.value.scrollHeight}px`
+    })
   },
   { immediate: true },
 )
@@ -46,14 +47,15 @@ watch(
 
 <template>
   <div
-    class="glass text-text-primary hover:glass-light relative min-h-30 overflow-hidden rounded-lg font-mono shadow backdrop-blur-sm transition-all duration-200 ease-in-out focus-within:ring-3 focus-within:ring-blue-300/30"
+    data-slot="textarea"
+    class="text-card-foreground relative overflow-hidden rounded-lg font-mono text-base shadow transition-all duration-200 ease-in-out md:text-sm"
     :style="{ height: `${textareaHeight}px` }"
   >
     <div
       v-if="!modelValue"
       :class="[
         paddingClass,
-        'text-text-primary/50 pointer-events-none absolute inset-0 size-full wrap-break-word whitespace-pre-wrap select-none',
+        'text-card-foreground/50 pointer-events-none absolute inset-0 size-full wrap-break-word whitespace-pre-wrap select-none',
       ]"
     >
       <slot name="placeholder">
@@ -66,10 +68,9 @@ watch(
     <div
       v-else
       v-html="html"
+      data-slot="content"
       :class="[paddingClass, 'scrollbar-hide pointer-events-none absolute inset-0']"
-      :style="{
-        transform: `translate(${-x}px, ${-y}px)`,
-      }"
+      :style="{ transform: `translate(${-x}px, ${-y}px)` }"
     />
 
     <textarea
@@ -77,10 +78,10 @@ watch(
       v-model="modelValue"
       :class="[
         paddingClass,
-        'absolute z-10 min-h-30 w-full resize-none appearance-none bg-transparent text-transparent outline-none',
-        'caret-gray-900 dark:caret-blue-400',
-        autoResize ? 'overflow-hidden' : '',
+        'border-input placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 absolute flex field-sizing-content min-h-16 w-full rounded-lg border bg-transparent shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
+        { 'overflow-hidden': autoResize },
       ]"
+      :placeholder="String(placeholder)"
     />
   </div>
 </template>

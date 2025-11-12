@@ -4,8 +4,6 @@ import { isVNode, type VNodeChild } from 'vue'
 import { Close } from '@icon-park/vue-next'
 import { useToggle } from '@vueuse/core'
 
-import { Button } from '..'
-
 defineOptions({ name: 'SphereDialog', inheritAttrs: false })
 
 defineProps<{
@@ -35,49 +33,58 @@ const toggleOpen = useToggle(modelValue)
     >
       <main
         v-if="modelValue"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm dark:bg-black/60"
+        class="bg-default/60 fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm"
         @click="toggleOpen(false)"
       >
         <div
-          class="glass text-text-primary flex max-h-[90vh] w-full max-w-md flex-col overflow-hidden rounded-lg shadow-xl dark:shadow-2xl dark:shadow-black/40"
           role="dialog"
-          aria-modal="true"
+          data-slot="dialog-content"
+          class="bg-background/70 border-border pointer-events-auto fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-lg border p-6 shadow-lg backdrop-blur-lg sm:max-w-105"
+          tabindex="-1"
           @click.stop
         >
-          <header class="p-4">
-            <aside class="flex items-center justify-between">
-              <div class="text-lg font-semibold">
-                <slot name="title">
-                  <component v-if="isVNode(title)" :is="title" />
-                  <template v-else-if="title">{{ title }}</template>
-                </slot>
-              </div>
-
-              <Button variant="ghost" @click="toggleOpen(false)">
-                <template #icon><Close /></template>
-              </Button>
-            </aside>
-
-            <aside v-if="description || slot.description" class="text-text-secondary mt-1 text-xs">
+          <div data-slot="dialog-header" class="flex flex-col gap-2 text-center sm:text-left">
+            <h2
+              v-if="title || slot.title"
+              data-slot="dialog-title"
+              class="text-lg leading-none font-semibold"
+            >
+              <slot name="title">
+                <component v-if="isVNode(title)" :is="title" />
+                <template v-else-if="title">{{ title }}</template>
+              </slot>
+            </h2>
+            <p
+              v-if="description || slot.description"
+              data-slot="dialog-description"
+              class="text-muted-foreground text-sm"
+            >
               <slot name="description">
                 <component v-if="isVNode(description)" :is="description" />
-                <template v-else-if="description">{{ description }}</template>
+                <template v-else-if="description">{{ title }}</template>
               </slot>
-            </aside>
-          </header>
-
-          <div class="flex-1 space-y-4 overflow-y-auto p-4">
-            <slot name="default" />
+            </p>
           </div>
 
-          <footer v-if="slot.footer || footer" class="p-4">
+          <slot name="default" />
+
+          <div
+            data-slot="dialog-footer"
+            class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end"
+          >
             <slot name="footer">
-              <template v-if="footer">
-                <component v-if="isVNode(footer)" :is="footer" />
-                <template v-else>{{ footer }}</template>
-              </template>
+              <component v-if="isVNode(footer)" :is="footer" />
+              <template v-else-if="footer">{{ footer }}</template>
             </slot>
-          </footer>
+          </div>
+          <button
+            type="button"
+            data-slot="dialog-close"
+            class="ring-offset-background focus:ring-ring [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 absolute top-4 right-4 cursor-pointer rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none"
+          >
+            <Close />
+            <span class="sr-only">Close</span>
+          </button>
         </div>
       </main>
     </Transition>

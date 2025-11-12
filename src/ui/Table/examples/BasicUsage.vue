@@ -166,7 +166,7 @@ const loadData = () => {
     <div>
       <h2 class="mb-4 text-2xl font-bold text-gray-900 dark:text-gray-100">加载状态</h2>
       <button
-        class="mb-4 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+        class="bg-primary-600 hover:bg-primary-700 mb-4 rounded-lg px-4 py-2 text-white"
         @click="loadData"
       >
         加载数据

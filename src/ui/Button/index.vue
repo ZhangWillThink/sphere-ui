@@ -1,56 +1,42 @@
 <script lang="ts">
 const button = cva(
-  'inline-flex cursor-pointer items-center justify-center gap-2.5 leading-6 transition-all duration-150 ease-in-out select-none focus-visible:outline-none disabled:scale-100 disabled:cursor-default disabled:bg-gray-200 disabled:text-gray-700 disabled:shadow-none disabled:dark:bg-gray-700 disabled:dark:text-gray-200',
+  "inline-flex shrink-0 text-card-foreground cursor-pointer items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
-      size: {
-        sm: 'text-xs px-3 py-1.5 rounded-md',
-        md: 'text-sm px-4 py-2 rounded-lg',
-        lg: 'text-base px-5 py-2.5 rounded-xl',
-        icon: 'p-2.5 rounded-lg',
-      },
       variant: {
-        primary: [
-          'bg-blue-600 text-white shadow-md',
-          'hover:bg-blue-700',
-          'active:bg-blue-800 active:shadow-sm active:scale-[0.99]',
-          'focus-visible:ring-4 focus-visible:ring-blue-300',
-          'dark:bg-blue-500 dark:hover:bg-blue-600 dark:active:bg-blue-700',
-          'dark:focus-visible:ring-blue-300',
-        ],
-        default: [
-          'glass text-text-primary shadow',
-          'hover:glass-light',
-          'active:shadow-none active:scale-[0.99]',
-          'focus-visible:ring-4 focus-visible:ring-blue-300',
-          'dark:text-text-primary',
-        ],
-        ghost: [
-          'bg-transparent text-text-primary',
-          'hover:glass',
-          'active:scale-[0.99]',
-          'focus-visible:ring-4 focus-visible:ring-blue-300',
-          'dark:text-text-primary',
-        ],
-        destructive: [
-          'bg-red-600 text-white shadow-md',
-          'hover:bg-red-700',
-          'active:bg-red-800 active:shadow-sm active:scale-[0.99]',
-          'focus-visible:ring-4 focus-visible:ring-red-300',
-          'dark:bg-red-500 dark:hover:bg-red-600',
-        ],
+        default: 'bg-primary backdrop-blur-lg text-primary-foreground hover:bg-primary/90',
+        destructive:
+          'bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40',
+        outline:
+          'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
+        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/70',
+        ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
+        link: 'text-primary underline-offset-4 hover:underline',
+      },
+      size: {
+        default: 'h-9 px-4 py-2 has-[>svg]:px-3',
+        sm: 'h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5',
+        lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
+        icon: 'size-9',
+        'icon-sm': 'size-8',
+        'icon-lg': 'size-10',
       },
     },
     defaultVariants: {
-      size: 'md',
       variant: 'default',
+      size: 'default',
     },
   },
 )
+
+type ButtonVariant = VariantProps<typeof button>
 </script>
 
 <script setup lang="ts">
-import type { ButtonProps, ButtonSlots, ButtonEmits } from './types'
+import type { VariantProps } from 'class-variance-authority'
+import type { VNodeChild } from 'vue'
+
+import { isVNode } from 'vue'
 
 import { cva } from 'class-variance-authority'
 
@@ -58,11 +44,28 @@ import Loading from '../Loading/index.vue'
 
 defineOptions({ name: 'SphereButton', inheritAttrs: true })
 
-const { size = 'md', variant = 'default', loading, disabled } = defineProps<ButtonProps>()
+const {
+  size = 'default',
+  variant = 'default',
+  loading,
+  disabled,
+  icon,
+} = defineProps<{
+  size?: ButtonVariant['size']
+  variant?: ButtonVariant['variant']
+  loading?: boolean
+  disabled?: boolean
+  icon?: VNodeChild
+}>()
 
-const slot = defineSlots<ButtonSlots>()
+const slot = defineSlots<{
+  default?: () => VNodeChild
+  icon?: () => VNodeChild
+}>()
 
-const emit = defineEmits<ButtonEmits>()
+const emit = defineEmits<{
+  click: [Event]
+}>()
 
 const handleClick = (evt: Event) => {
   if (disabled || loading) {
@@ -77,12 +80,14 @@ const handleClick = (evt: Event) => {
 <template>
   <button
     v-bind="$attrs"
-    :class="button({ size, variant })"
+    :class="button({ size: slot?.default ? size : slot?.icon || icon ? 'icon' : size, variant })"
     :disabled="disabled || loading"
     @click="handleClick"
   >
     <Loading v-if="loading" size="sm" />
-    <slot v-else-if="slot.icon" name="icon" />
+    <slot name="icon">
+      <component v-if="isVNode(icon)" :is="icon" />
+    </slot>
 
     <slot name="default" />
   </button>
