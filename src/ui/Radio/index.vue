@@ -84,7 +84,7 @@ watchOnce(modelValue, v => {
 </script>
 
 <template>
-  <div v-bind="$attrs" ref="root" class="inline-flex rounded-lg p-px shadow" role="group">
+  <div v-bind="$attrs" ref="root" class="bg-accent inline-flex rounded-lg p-px shadow" role="group">
     <Button
       v-for="(option, index) in options"
       :key="index"
@@ -93,6 +93,7 @@ watchOnce(modelValue, v => {
       role="radio"
       :aria-checked="isSelected(option.value)"
       :tabindex="option.disabled || disabled ? -1 : 0"
+      size="sm"
       @click="
         () => {
           if (!option.disabled && !disabled) handleChange(option.value)

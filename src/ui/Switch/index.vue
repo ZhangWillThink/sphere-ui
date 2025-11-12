@@ -11,7 +11,7 @@ defineOptions({ name: 'SphereSwitch', inheritAttrs: true })
 const trackClasses = cva(
   [
     'relative inline-flex items-center rounded-full transition-colors duration-200 ease-in-out',
-    'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary-300/30',
+    'focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30',
   ],
   {
     variants: {
@@ -21,8 +21,8 @@ const trackClasses = cva(
         lg: 'h-7 w-14',
       },
       checked: {
-        true: 'bg-primary-600 dark:bg-primary-500',
-        false: 'bg-gray-200 dark:bg-gray-700',
+        true: 'bg-primary',
+        false: 'bg-accent',
       },
       disabled: {
         true: 'opacity-50 cursor-not-allowed',
@@ -40,10 +40,7 @@ const trackClasses = cva(
 type TrackProps = VariantProps<typeof trackClasses>
 
 const knobClasses = cva(
-  [
-    'absolute rounded-full bg-white shadow transition-all duration-200 ease-in-out left-0.5',
-    'dark:bg-gray-300',
-  ],
+  'absolute rounded-full bg-white shadow transition-all duration-200 ease-in-out left-0.5',
   {
     variants: {
       size: {

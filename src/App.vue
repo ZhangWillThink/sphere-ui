@@ -17,8 +17,12 @@ import {
   Pagination,
   Radio,
   Select,
+  Slider,
+  Switch,
+  Tabs,
   Tooltip,
 } from './ui'
+import AdvancedUsage from './ui/Table/examples/AdvancedUsage.vue'
 
 defineOptions({ name: 'App' })
 
@@ -30,12 +34,31 @@ const radio = shallowRef()
 </script>
 
 <template>
-  <div class="bg-background relative h-svh w-svw space-y-10 p-10">
+  <div class="bg-background relative h-svh w-svw space-y-10 overflow-auto p-10">
     <div>
       <Button variant="default" @click="colorMode = colorMode === 'light' ? 'dark' : 'light'">
         {{ colorMode === 'light' ? 'Dark' : 'Light' }}
       </Button>
     </div>
+
+    <div>
+      <Tabs
+        :items="[
+          { label: 'Tab 1', value: '1' },
+          { label: 'Tab 2', value: '2' },
+        ]"
+      >
+        <template #item-1>Tab 1 Content></template>
+      </Tabs>
+    </div>
+
+    <AdvancedUsage />
+
+    <div>
+      <Switch />
+    </div>
+
+    <Slider />
 
     <Radio
       v-model="radio"

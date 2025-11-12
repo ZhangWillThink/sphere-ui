@@ -163,7 +163,7 @@ const displayValue = computed(() => Math.round(modelValue.value * 100) / 100)
     <div
       ref="track"
       :class="[
-        'relative h-2 w-full cursor-pointer rounded-full bg-gray-200 dark:bg-gray-700',
+        'bg-accent relative h-2 w-full cursor-pointer rounded-full',
         disabled ? 'cursor-not-allowed opacity-50' : '',
       ]"
       @click="handleTrackClick"
@@ -171,10 +171,7 @@ const displayValue = computed(() => Math.round(modelValue.value * 100) / 100)
     >
       <!-- 进度条 -->
       <div
-        :class="[
-          'bg-primary-600 dark:bg-primary-500 absolute h-full rounded-full',
-          disabled ? 'bg-gray-400 dark:bg-gray-600' : '',
-        ]"
+        :class="['bg-primary absolute h-full rounded-full', disabled ? 'bg-accent' : '']"
         :style="{ width: `${percentage}%` }"
       />
 
@@ -183,7 +180,7 @@ const displayValue = computed(() => Math.round(modelValue.value * 100) / 100)
         ref="thumb"
         :class="[
           'absolute top-1/2 h-4 w-4 -translate-y-1/2 rounded-full bg-white shadow-md',
-          'focus:ring-primary-500 focus:ring-2 focus:outline-none',
+          'focus:ring-primary focus:ring-2 focus:outline-none',
           disabled
             ? 'cursor-not-allowed'
             : 'cursor-grab hover:scale-110 hover:shadow-lg active:cursor-grabbing',
@@ -210,7 +207,7 @@ const displayValue = computed(() => Math.round(modelValue.value * 100) / 100)
               v-if="showTooltip"
               ref="tooltip"
               :style="tooltipStyle"
-              class="pointer-events-none rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white dark:bg-gray-700"
+              class="bg-foreground pointer-events-none rounded px-2 py-1 text-xs whitespace-nowrap text-white dark:bg-gray-700"
             >
               {{ displayValue }}
             </div>

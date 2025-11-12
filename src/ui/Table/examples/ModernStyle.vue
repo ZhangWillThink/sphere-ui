@@ -209,7 +209,7 @@ const handleDelete = (record: Employee) => {
               </p>
             </div>
             <div
-              class="bg-primary-100/80 dark:bg-primary-900/30 flex h-12 w-12 items-center justify-center rounded-full backdrop-blur-sm"
+              class="bg-primary-100/70 dark:bg-primary-900/30 flex h-12 w-12 items-center justify-center rounded-full backdrop-blur-sm"
             >
               <span class="text-2xl">👥</span>
             </div>
@@ -227,7 +227,7 @@ const handleDelete = (record: Employee) => {
               </p>
             </div>
             <div
-              class="flex h-12 w-12 items-center justify-center rounded-full bg-green-100/80 backdrop-blur-sm dark:bg-green-900/30"
+              class="flex h-12 w-12 items-center justify-center rounded-full bg-green-100/70 backdrop-blur-sm dark:bg-green-900/30"
             >
               <span class="text-2xl">🟢</span>
             </div>
@@ -247,7 +247,7 @@ const handleDelete = (record: Employee) => {
               </p>
             </div>
             <div
-              class="flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100/80 backdrop-blur-sm dark:bg-yellow-900/30"
+              class="flex h-12 w-12 items-center justify-center rounded-full bg-yellow-100/70 backdrop-blur-sm dark:bg-yellow-900/30"
             >
               <span class="text-2xl">⭐</span>
             </div>
@@ -265,7 +265,7 @@ const handleDelete = (record: Employee) => {
               </p>
             </div>
             <div
-              class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100/80 backdrop-blur-sm dark:bg-purple-900/30"
+              class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100/70 backdrop-blur-sm dark:bg-purple-900/30"
             >
               <span class="text-2xl">✓</span>
             </div>
@@ -487,7 +487,7 @@ const handleDelete = (record: Employee) => {
             <span class="text-gray-400"> - 毛玻璃模糊效果</span>
           </div>
           <div class="rounded-lg bg-gray-900/90 p-4 font-mono text-gray-100 backdrop-blur-sm">
-            <span class="text-purple-400">bg-white/80</span>
+            <span class="text-purple-400">bg-white/70</span>
             <span class="text-gray-400"> - 半透明背景（80% 不透明度）</span>
           </div>
           <div class="rounded-lg bg-gray-900/90 p-4 font-mono text-gray-100 backdrop-blur-sm">

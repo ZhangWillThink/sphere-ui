@@ -20,17 +20,15 @@ const { items, keepAlive = false } = defineProps<{
 }>()
 
 defineSlots<{
-  [key: `tab-${string}`]: () => VNodeChild
+  [key: `item-${string}`]: () => VNodeChild
 }>()
 
 const modelValue = defineModel<any>({ default: undefined })
 
-// 初始化当前激活的标签
 const activeTab = computed({
   get: () => {
     if (modelValue.value !== undefined) return modelValue.value
 
-    // 默认选择第一个未禁用的选项
     const firstEnabled = items.find(item => !item.disabled)
     return firstEnabled?.value
   },
@@ -46,22 +44,31 @@ const isActive = (value: any) => activeTab.value === value
 </script>
 
 <template>
-  <div v-bind="$attrs" ref="root" class="w-full">
+  <div
+    v-bind="$attrs"
+    ref="root"
+    class="text-card-foreground flex flex-col gap-2"
+    dir="ltr"
+    data-orientation="horizontal"
+    data-slots="tabs"
+  >
     <div
-      class="glass sticky top-0 mb-4 inline-flex w-full gap-1 rounded-lg p-1 dark:shadow-lg dark:shadow-black/20"
+      role="tablist"
+      aria-orientation="horizontal"
+      data-slot="tabs-list"
+      class="bg-muted/70 text-muted-foreground sticky top-0 mb-4 inline-flex h-9 w-full items-center justify-center gap-1 rounded-lg p-1 dark:shadow-lg dark:shadow-black/20"
     >
       <button
         v-for="item in items"
         :key="item.value"
-        :class="[
-          'flex-1 rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 ease-in-out',
-          'focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
-          isActive(item.value)
-            ? 'text-primary-600 dark:text-primary-400 bg-white shadow-sm dark:bg-gray-800 dark:shadow-lg dark:shadow-black/20'
-            : 'text-card-foreground/70 hover:text-card-foreground hover:bg-white/50 dark:text-gray-300 dark:hover:bg-gray-800/50',
-          item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-        ]"
+        class="data-[state=active]:bg-background dark:data-[state=active]:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 text-foreground dark:text-muted-foreground inline-flex h-[calc(100%-1px)] flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow,background-color] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 data-[state=active]:shadow-sm [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
         :disabled="item.disabled"
+        type="button"
+        role="tab"
+        :aria-selected="isActive(item.value)"
+        :data-state="isActive(item.value) ? 'active' : ''"
+        data-orientation="horizontal"
+        tabindex="0"
         @click="selectTab(item)"
       >
         <component v-if="isVNode(item.label)" :is="item.label" />
@@ -71,7 +78,7 @@ const isActive = (value: any) => activeTab.value === value
 
     <KeepAlive :max="keepAlive ? items.length : undefined">
       <template v-for="item in items" :key="item.value">
-        <slot v-if="isActive(item.value)" :name="`tab-${item.value}`">
+        <slot v-if="isActive(item.value)" :name="`item-${item.value}`">
           <component v-if="isVNode(item.children)" :is="item.children" />
           <template v-else-if="item.children">{{ item.children }}</template>
         </slot>

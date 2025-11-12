@@ -43,7 +43,6 @@ const {
   columns = [],
   bordered = false,
   striped = false,
-  hoverable = true,
   size = 'md',
   loading = false,
   emptyText = '暂无数据',
@@ -54,7 +53,6 @@ const {
   columns?: TableColumn<T>[]
   bordered?: boolean
   striped?: boolean
-  hoverable?: boolean
   size?: SizeProp['size']
   loading?: boolean
   emptyText?: string
@@ -247,35 +245,30 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
 <template>
   <div class="relative w-full">
     <!-- Loading 遮罩 -->
-    <div
-      v-if="loading"
-      class="absolute inset-0 z-10 flex items-center justify-center bg-white/70 backdrop-blur-md dark:bg-gray-900/70"
-    >
-      <Loading size="md" message="加载中..." />
+    <div v-if="loading" class="absolute inset-0 z-10 flex items-center justify-center">
+      <Loading size="md" />
     </div>
 
     <div
       :class="[
-        'w-full overflow-auto rounded-xl backdrop-blur-xl',
-        'bg-white/80 dark:bg-gray-900/80',
-        'shadow-xl shadow-gray-200/50 dark:shadow-black/50',
-        bordered ? 'border border-white/20 dark:border-gray-700/50' : '',
+        'bg-background/70 w-full overflow-auto rounded-xl shadow-xl backdrop-blur-lg',
+        { 'border-border border': bordered },
       ]"
     >
       <table
         :class="[
-          'w-full border-collapse',
+          'w-full border-collapse transition-opacity duration-300',
           sizeClasses({ size: size }),
-          'transition-opacity duration-300',
-          loading ? 'opacity-50' : '',
+          { 'opacity-50': loading },
         ]"
       >
         <thead
           :class="[
-            'bg-linear-to-br from-gray-50/90 to-gray-100/90 backdrop-blur-xl',
-            'dark:from-gray-800/90 dark:to-gray-900/90',
-            sticky ? 'sticky top-0 z-1 shadow-lg shadow-gray-200/20 dark:shadow-black/20' : '',
-            bordered ? 'border-b border-white/30 dark:border-gray-700/50' : '',
+            'from-secondary/70 to-background/70 bg-linear-to-br backdrop-blur-lg',
+            {
+              'sticky top-0 z-1 shadow-lg': sticky,
+              'border-border border-b': bordered,
+            },
           ]"
         >
           <tr>
@@ -283,9 +276,8 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
               v-if="rowSelection"
               :class="[
                 cellPaddingClasses({ size }),
-                'font-medium text-gray-700 dark:text-gray-300',
-                bordered ? 'border-r border-white/20 dark:border-gray-700/30' : '',
-                'w-12',
+                'w-12 font-medium text-gray-700 dark:text-gray-300',
+                { bordered: 'border-r border-white/20 dark:border-gray-700/30' },
               ]"
             >
               <div class="flex items-center justify-center">
@@ -304,10 +296,11 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
                 cellPaddingClasses({ size }),
                 'font-semibold text-gray-700 dark:text-gray-300',
                 getAlignClass(column.align),
-                bordered ? 'border-r border-white/20 last:border-r-0 dark:border-gray-700/30' : '',
-                column.sortable
-                  ? 'cursor-pointer transition-all duration-200 select-none hover:bg-white/60 hover:backdrop-blur-lg dark:hover:bg-gray-700/60'
-                  : '',
+                {
+                  'border-r border-white/20 last:border-r-0 dark:border-gray-700/30': bordered,
+                  'hover:bg-background/60 cursor-pointer backdrop-blur-lg transition-all duration-200 select-none':
+                    column.sortable,
+                },
               ]"
               :style="getColumnStyle(column)"
               @click="handleSort(column)"
@@ -317,31 +310,28 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
                 <span v-else>{{ column.title }}</span>
                 <span
                   v-if="column.sortable"
-                  class="flex flex-col text-gray-400 transition-colors duration-200"
-                  :class="
-                    sortState.key === (column.dataIndex || column.key)
-                      ? 'text-primary-600 dark:text-primary-400 drop-shadow-sm'
-                      : ''
-                  "
+                  class="text-accent-foreground flex flex-col transition-colors duration-200"
+                  :class="{
+                    'text-primary drop-shadow-sm':
+                      sortState.key === (column.dataIndex || column.key),
+                  }"
                 >
                   <Up
-                    :class="
-                      sortState.key === (column.dataIndex || column.key) &&
-                      sortState.order === 'ascend'
-                        ? 'text-primary-600 dark:text-primary-400'
-                        : ''
-                    "
-                    :size="12"
+                    :class="{
+                      'text-primary':
+                        sortState.key === (column.dataIndex || column.key) &&
+                        sortState.order === 'ascend',
+                    }"
+                    :size="10"
                     :strokeWidth="4"
                   />
                   <Down
-                    :class="
-                      sortState.key === (column.dataIndex || column.key) &&
-                      sortState.order === 'descend'
-                        ? 'text-primary-600 dark:text-primary-400'
-                        : ''
-                    "
-                    :size="12"
+                    :class="{
+                      'text-primary':
+                        sortState.key === (column.dataIndex || column.key) &&
+                        sortState.order === 'descend',
+                    }"
+                    :size="10"
                     :strokeWidth="4"
                   />
                 </span>
@@ -350,7 +340,6 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
           </tr>
         </thead>
 
-        <!-- Table Body -->
         <tbody>
           <template v-if="sortedData.length > 0">
             <tr
@@ -358,16 +347,14 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
               :key="getRowKey(record, index)"
               :class="[
                 'cursor-pointer transition-all',
-                hoverable
-                  ? 'hover:bg-linear-to-r hover:from-gray-50/80 hover:to-transparent hover:shadow-md hover:shadow-gray-200/20 hover:backdrop-blur-sm dark:hover:from-gray-800/50 dark:hover:shadow-black/20'
-                  : '',
-                striped && index % 2 === 1
-                  ? 'bg-linear-to-r from-gray-50/30 to-transparent dark:from-gray-800/20'
-                  : '',
+                'hover:from-secondary/70 hover:to-default hover:bg-linear-to-r hover:shadow-md hover:backdrop-blur-lg',
                 isRowSelected(record, index)
-                  ? 'from-primary-50/80 to-primary-50/20 shadow-primary-200/30 dark:from-primary-900/30 dark:to-primary-900/10 dark:shadow-primary-900/20 bg-linear-to-r shadow-md backdrop-blur-sm'
+                  ? 'from-primary-50/70 to-primary-50/20 shadow-primary-200/30 dark:from-primary-900/30 dark:to-primary-900/10 dark:shadow-primary-900/20 bg-linear-to-r shadow-md backdrop-blur-sm'
                   : 'bg-transparent',
-                bordered ? 'border-b border-white/20 last:border-b-0 dark:border-gray-700/30' : '',
+                {
+                  'from-secondary/30 to-secondary/30 bg-linear-to-r': striped && index % 2 === 1,
+                  'border-b border-white/20 last:border-b-0 dark:border-gray-700/30': bordered,
+                },
               ]"
               @click="handleRowClick(record, index)"
             >
@@ -375,8 +362,8 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
                 v-if="rowSelection"
                 :class="[
                   cellPaddingClasses({ size }),
-                  'text-gray-900 dark:text-gray-100',
-                  bordered ? 'border-r border-white/20 dark:border-gray-700/30' : '',
+                  'text-secondary',
+                  { bordered: 'border-border border-r' },
                 ]"
               >
                 <div class="flex items-center justify-center">
@@ -396,10 +383,10 @@ const getAlignClass = (align?: 'left' | 'center' | 'right') => {
                   cellPaddingClasses({ size }),
                   'text-gray-900 dark:text-gray-100',
                   getAlignClass(column.align),
-                  bordered
-                    ? 'border-r border-white/20 last:border-r-0 dark:border-gray-700/30'
-                    : '',
-                  column.ellipsis ? 'truncate' : '',
+                  {
+                    'border-r border-white/20 last:border-r-0 dark:border-gray-700/30': bordered,
+                    truncate: column.ellipsis,
+                  },
                 ]"
                 :style="getColumnStyle(column)"
               >

@@ -137,7 +137,7 @@ const getBorderedColSpan = (span?: number) => Math.min(span || 1, column)
           >
             <template v-for="item in row" :key="item.key">
               <th
-                class="text-card-foreground/60 bg-gray-50/80 px-4 py-3 text-left text-sm font-medium dark:bg-gray-800/30"
+                class="text-card-foreground/60 bg-gray-50/70 px-4 py-3 text-left text-sm font-medium dark:bg-gray-800/30"
               >
                 <slot :name="`label-${item.key}`">
                   <component v-if="isVNode(item.label)" :is="item.label" />

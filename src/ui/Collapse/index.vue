@@ -12,7 +12,7 @@ import type { VNodeChild } from 'vue'
 
 import { isVNode } from 'vue'
 
-import { DownOne } from '@icon-park/vue-next'
+import { Down } from '@icon-park/vue-next'
 
 import TransitionCollapse from '../Transition/Collapse.vue'
 
@@ -49,7 +49,7 @@ defineSlots<{
       :key="item.key"
       data-orientation="vertical"
       data-slot="accordion-item"
-      class="border-border border-b last:border-b-0"
+      class="border-border text-card-foreground border-b last:border-b-0"
     >
       <h3
         data-orientation="vertical"
@@ -69,7 +69,7 @@ defineSlots<{
           <component v-if="isVNode(item.label)" :is="item.label" />
           <template v-else-if="item.label">{{ item.label }}</template>
 
-          <DownOne
+          <Down
             :class="[{ 'rotate-180': modelValue.includes(item.key) }, 'transition-transform']"
           />
         </button>
