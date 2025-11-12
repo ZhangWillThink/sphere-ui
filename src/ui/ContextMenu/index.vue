@@ -169,13 +169,14 @@ onKeyStroke(['ArrowDown', 'ArrowUp', 'Enter', 'Escape'], e => {
         <div
           v-for="(item, index) in items"
           :key="index"
+          class="focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:text-destructive! [&amp;_svg:not([class*='text-'])]:text-muted-foreground [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-8"
           role="menuitem"
           data-slot="context-menu-item"
           data-inset="true"
+          :data-disabled="item?.disabled"
           :data-variant="item?.variant"
-          class="focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:text-destructive! [&amp;_svg:not([class*='text-'])]:text-muted-foreground [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 data-inset:pl-8"
-          tabindex="-1"
           data-orientation="vertical"
+          tabindex="-1"
           @click.stop="item.onClick?.()"
         >
           <component v-if="isVNode(item.children)" :is="item.children" />
