@@ -5,6 +5,8 @@ import { isVNode, shallowRef, useTemplateRef } from 'vue'
 
 import { onKeyStroke, watchOnce } from '@vueuse/core'
 
+import { Button } from '..'
+
 defineOptions({ name: 'SphereRadio', inheritAttrs: true })
 
 const { options, disabled } = defineProps<{
@@ -82,24 +84,11 @@ watchOnce(modelValue, v => {
 </script>
 
 <template>
-  <div
-    v-bind="$attrs"
-    ref="root"
-    class="glass inline-flex rounded-lg shadow dark:shadow-lg dark:shadow-black/20"
-    role="group"
-  >
-    <button
+  <div v-bind="$attrs" ref="root" class="inline-flex rounded-lg p-px shadow" role="group">
+    <Button
       v-for="(option, index) in options"
       :key="index"
-      :class="[
-        'flex items-center px-3 py-2 text-sm font-medium transition-all duration-150 ease-in-out outline-none',
-        index === 0 ? 'rounded-l-lg' : index === options.length - 1 ? 'rounded-r-lg' : '',
-        isSelected(option.value)
-          ? 'bg-primary-600/80 dark:bg-primary-600 dark:shadow-primary-900/30 text-white shadow-inner'
-          : 'text-card-foreground border-transparent bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800/50',
-        option.disabled || disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
-        { 'ring-primary-400/30 ring-4': focusedIndex === index },
-      ]"
+      :variant="isSelected(option.value) ? 'default' : 'ghost'"
       type="button"
       role="radio"
       :aria-checked="isSelected(option.value)"
@@ -116,6 +105,6 @@ watchOnce(modelValue, v => {
         <component v-if="isVNode(option.label)" :is="option.label" />
         <template v-else-if="option.label">{{ option.label }}</template>
       </span>
-    </button>
+    </Button>
   </div>
 </template>

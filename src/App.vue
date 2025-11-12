@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { h } from 'vue'
+import { h, shallowRef } from 'vue'
 
 import { Moon } from '@icon-park/vue-next'
 import { useColorMode, useToggle } from '@vueuse/core'
@@ -15,6 +15,7 @@ import {
   FormItem,
   Input,
   Pagination,
+  Radio,
   Select,
   Tooltip,
 } from './ui'
@@ -24,6 +25,8 @@ defineOptions({ name: 'App' })
 const colorMode = useColorMode()
 
 const [open, toggleOpen] = useToggle()
+
+const radio = shallowRef()
 </script>
 
 <template>
@@ -33,6 +36,14 @@ const [open, toggleOpen] = useToggle()
         {{ colorMode === 'light' ? 'Dark' : 'Light' }}
       </Button>
     </div>
+
+    <Radio
+      v-model="radio"
+      :options="[
+        { label: '1231', value: 1 },
+        { label: '2', value: 2 },
+      ]"
+    />
 
     <Pagination :total="100" :page-size="10" :page-size-options="[10, 20, 30]" />
 
