@@ -329,7 +329,7 @@ const columns: TableColumn[] = [
       <div class="flex flex-col items-center gap-4 py-12">
         <div class="text-6xl">📭</div>
         <div class="text-lg font-medium text-gray-500">暂无数据</div>
-        <Button variant="primary" @click="addData">添加数据</Button>
+        <Button variant="default" @click="addData">添加数据</Button>
       </div>
     </template>
   </Table>

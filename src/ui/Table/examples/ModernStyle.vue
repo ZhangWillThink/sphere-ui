@@ -161,9 +161,9 @@ const rowSelection = {
 
 const getStatusInfo = (status: Employee['status']) => {
   const statusMap = {
-    online: { variant: 'success' as const, text: '在线', icon: '🟢' },
-    offline: { variant: 'error' as const, text: '离线', icon: '🔴' },
-    away: { variant: 'warning' as const, text: '离开', icon: '🟡' },
+    online: { variant: 'secondary' as const, text: '在线', icon: '🟢' },
+    offline: { variant: 'destructive' as const, text: '离线', icon: '🔴' },
+    away: { variant: 'secondary' as const, text: '离开', icon: '🟡' },
   }
   return statusMap[status]
 }
@@ -377,7 +377,7 @@ const handleDelete = (record: Employee) => {
             <div class="flex flex-col items-center gap-4 py-16">
               <div class="text-7xl opacity-50">📭</div>
               <div class="text-lg font-semibold text-gray-500 dark:text-gray-400">暂无员工数据</div>
-              <Button variant="primary" size="sm">
+              <Button variant="default" size="sm">
                 <template #icon>➕</template>
                 添加员工
               </Button>
