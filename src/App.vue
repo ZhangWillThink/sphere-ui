@@ -130,7 +130,9 @@ const radio = shallowRef()
     <Tooltip>
       <Button :icon="h(Moon)" variant="ghost">123</Button>
 
-      <template #content> Tooltip </template>
+      <template #content>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, natus?
+      </template>
     </Tooltip>
 
     <div class="w-1/2">

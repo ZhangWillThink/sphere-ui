@@ -36,9 +36,9 @@ const { isOutside: isOutsideTooltip } = useMouseInElement(tooltip)
 const [tooltipStyle] = useFixedPosition(position, trigger, tooltip)
 
 watchDebounced(
-  () => [isOutsideTrigger, isOutsideTooltip] as const,
+  [isOutsideTrigger, isOutsideTooltip] as const,
   ([isOutsideTrigger, isOutsideTooltip]) => {
-    const shouldShow = (!isOutsideTrigger.value || !isOutsideTooltip.value) && !disabled
+    const shouldShow = (!isOutsideTrigger || !isOutsideTooltip) && !disabled
     toggleVisible(shouldShow)
   },
   { debounce: 300, deep: true },
@@ -60,7 +60,8 @@ watchDebounced(
         v-if="visible && (content || slot.content)"
         ref="tooltip"
         :style="tooltipStyle"
-        class="glass z-50 rounded-lg p-2 shadow-lg dark:shadow-xl dark:shadow-black/40"
+        class="bg-foreground/70 text-background z-50 w-fit rounded-md px-3 py-1.5 text-xs text-balance backdrop-blur-lg"
+        data-slot="tooltip-content"
       >
         <slot name="content">
           <template v-if="content">
