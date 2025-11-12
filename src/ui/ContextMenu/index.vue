@@ -80,9 +80,6 @@ const menuStyle = computed<CSSProperties>(() => {
 function openMenu() {
   toggleOpen(true)
   emit('open')
-  // nextTick(() => {
-  //   highlighted.value = items.findIndex(i => !i.disabled)
-  // })
 }
 
 function closeMenu() {
