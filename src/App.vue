@@ -14,6 +14,7 @@ import {
   Form,
   FormItem,
   Input,
+  Pagination,
   Select,
   Tooltip,
 } from './ui'
@@ -32,6 +33,8 @@ const [open, toggleOpen] = useToggle()
         {{ colorMode === 'light' ? 'Dark' : 'Light' }}
       </Button>
     </div>
+
+    <Pagination :total="100" :page-size="10" :page-size-options="[10, 20, 30]" />
 
     <Card>
       <Form>

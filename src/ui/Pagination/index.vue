@@ -143,7 +143,6 @@ const quickJumperValue = computed({
 
 <template>
   <div class="flex flex-wrap items-center gap-4 select-none">
-    <!-- Page Size Selector -->
     <div v-if="showSizeChanger" class="flex items-center gap-2">
       <Select
         :modelValue="pageSize"
@@ -155,18 +154,15 @@ const quickJumperValue = computed({
       />
     </div>
 
-    <!-- Pagination Controls -->
     <div class="flex items-center gap-1">
-      <!-- Previous Button -->
-      <Button size="icon" variant="ghost" :disabled="!canGoPrev" @click="handlePrev">
+      <Button variant="ghost" :disabled="!canGoPrev" @click="handlePrev">
         <template #icon> <Left /> </template>
       </Button>
 
-      <!-- Page Numbers -->
       <template v-for="page in pageNumbers" :key="page">
         <Button
-          v-if="typeof page === 'number'"
-          :variant="page === currentPage ? 'primary' : 'ghost'"
+          v-if="isNumber(page)"
+          :variant="page === currentPage ? 'default' : 'ghost'"
           :disabled="disabled"
           class="min-w-8"
           size="sm"
@@ -179,25 +175,23 @@ const quickJumperValue = computed({
         </span>
       </template>
 
-      <!-- Next Button -->
-      <Button :disabled="!canGoNext" size="icon" variant="ghost" @click="handleNext">
+      <Button :disabled="!canGoNext" variant="ghost" @click="handleNext">
         <template #icon> <Right /> </template>
       </Button>
     </div>
 
-    <!-- Quick Jumper -->
     <div v-if="showQuickJumper" class="flex items-center gap-2 text-sm">
-      <span class="text-gray-600 dark:text-gray-400">跳至</span>
+      <span class="text-secondary-foreground">跳至</span>
       <input
         v-model="quickJumperValue"
         type="number"
         :min="1"
         :max="totalPages"
         :disabled
-        class="text-card-foreground focus:ring-primary-500 dark:focus:ring-primary-400 w-16 rounded-md border border-gray-300 bg-white px-2 py-1 text-center text-sm transition-all duration-150 ease-in-out focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
+        class="text-card-foreground focus:ring-primary-500 dark:focus:ring-primary-400 w-16 rounded-md border border-gray-300 bg-white px-2 py-1 text-center text-sm transition-all duration-150 ease-in-out focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
         @keydown.enter="($event.target as HTMLInputElement).blur()"
       />
-      <span class="text-gray-600 dark:text-gray-400">页</span>
+      <span class="text-secondary-foreground">页</span>
     </div>
   </div>
 </template>

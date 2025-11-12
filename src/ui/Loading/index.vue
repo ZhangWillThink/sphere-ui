@@ -28,13 +28,7 @@ const { size = 'md', fullscreen = false } = defineProps<{
     aria-live="polite"
     aria-busy="true"
   >
-    <div
-      :class="
-        fullscreen
-          ? 'glass flex items-center gap-4 rounded-lg border p-6 shadow-sm dark:shadow-lg dark:shadow-black/20'
-          : 'flex items-center gap-3'
-      "
-    >
+    <div class="flex items-center gap-3">
       <span
         :class="[
           'border-t-primary-600 dark:border-t-primary-400 inline-block animate-spin rounded-full border-gray-300 dark:border-gray-700',
