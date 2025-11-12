@@ -3,205 +3,44 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Primary Color Palette */
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
-
-  /* Background Colors */
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f8fafc;
-  --color-bg-tertiary: #f1f5f9;
-  --color-bg-overlay: rgba(255, 255, 255, 0.8);
-
-  /* Text Colors */
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #475569;
-  --color-text-tertiary: #94a3b8;
-  --color-text-inverse: #ffffff;
-
-  /* Border Colors */
-  --color-border-light: #e2e8f0;
-  --color-border-default: #cbd5e1;
-
-  /* Glass Effect */
-  --glass-blur: 12px;
-  --glass-opacity: 0.7;
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.3);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
-
-  /* Semantic Variables */
-  --foreground: var(--color-text-primary);
-  --background: var(--color-bg-primary);
-  --muted: var(--color-text-tertiary);
-  --muted-foreground: var(--color-text-secondary);
+  --radius: 0.65rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.488 0.243 264.376);
+  --primary-foreground: oklch(0.97 0.014 254.604);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.708 0 0);
 }
 
-/* Dark Theme Overrides */
 .dark {
-  --color-bg-primary: #0f172a;
-  --color-bg-secondary: #1a1f35;
-  --color-bg-tertiary: #1e293b;
-  --color-bg-overlay: rgba(15, 23, 42, 0.8);
-
-  --color-text-primary: #f1f5f9;
-  --color-text-secondary: #cbd5e1;
-  --color-text-tertiary: #94a3b8;
-  --color-text-inverse: #0f172a;
-
-  --color-border-light: #334155;
-  --color-border-default: #475569;
-
-  --glass-bg: rgba(30, 41, 59, 0.7);
-  --glass-border: rgba(148, 163, 184, 0.15);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
-
-  --foreground: var(--color-text-primary);
-  --background: var(--color-bg-primary);
-  --muted: var(--color-text-tertiary);
-  --muted-foreground: var(--color-text-secondary);
-}
-
-@theme inline {
-  /* Primary Colors */
-  --color-primary-50: var(--color-primary-50);
-  --color-primary-100: var(--color-primary-100);
-  --color-primary-200: var(--color-primary-200);
-  --color-primary-300: var(--color-primary-300);
-  --color-primary-400: var(--color-primary-400);
-  --color-primary-500: var(--color-primary-500);
-  --color-primary-600: var(--color-primary-600);
-  --color-primary-700: var(--color-primary-700);
-  --color-primary-800: var(--color-primary-800);
-  --color-primary-900: var(--color-primary-900);
-
-  /* Background Colors */
-  --color-bg-primary: var(--color-bg-primary);
-  --color-bg-secondary: var(--color-bg-secondary);
-  --color-bg-tertiary: var(--color-bg-tertiary);
-  --color-bg-overlay: var(--color-bg-overlay);
-
-  /* Text Colors */
-  --color-text-primary: var(--color-text-primary);
-  --color-text-secondary: var(--color-text-secondary);
-  --color-text-tertiary: var(--color-text-tertiary);
-  --color-text-inverse: var(--color-text-inverse);
-
-  /* Border Colors */
-  --color-border-light: var(--color-border-light);
-  --color-border-default: var(--color-border-default);
-
-  --shadow-sm: var(--shadow-sm);
-  --shadow-md: var(--shadow-md);
-  --shadow-lg: var(--shadow-lg);
-  --shadow-xl: var(--shadow-xl);
-
-  /* Glass Effect */
-  --glass-blur: var(--glass-blur);
-  --glass-opacity: var(--glass-opacity);
-  --glass-bg: var(--glass-bg);
-  --glass-border: var(--glass-border);
-  --glass-shadow: var(--glass-shadow);
-}
-
-@layer components {
-  /* Glass Effect Components */
-  .glass {
-    @apply hover:border-primary-400 transition-all duration-300;
-    @apply border border-(--glass-border) bg-(--glass-bg) shadow-(--glass-shadow) backdrop-blur-(--glass-blur);
-    backdrop-filter: blur(var(--glass-blur));
-
-    @variant dark {
-      @apply hover:border-primary-500;
-    }
-  }
-
-  .hover\:glass:hover {
-    @apply hover:border-primary-400! transition-all duration-300;
-    @apply border border-(--glass-border) bg-(--glass-bg) shadow-(--glass-shadow) backdrop-blur-(--glass-blur);
-    backdrop-filter: blur(var(--glass-blur));
-
-    @variant dark {
-      @apply hover:border-primary-500;
-    }
-  }
-
-  .glass-light {
-    @apply border border-solid border-white/40 bg-white/85 transition-all duration-300;
-    @apply shadow-(--glass-shadow) backdrop-blur-(--glass-blur);
-    backdrop-filter: blur(var(--glass-blur));
-
-    @variant dark {
-      @apply border-[rgba(148,163,184,0.2)] bg-[rgba(30,41,59,0.85)];
-    }
-  }
-}
-
-/* ============================================
-   Base Styles and Interactions
-   ============================================ */
-
-@layer base {
-  /* Smooth Transitions */
-  * {
-    @apply transition-colors duration-200;
-    transition-property: background-color, border-color, color, fill, stroke;
-  }
-
-  /* Focus Ring */
-  :focus-visible {
-    @apply outline-2 outline-offset-2 outline-transparent;
-    box-shadow:
-      0 0 0 3px var(--color-bg-primary),
-      0 0 0 6px var(--color-primary-500);
-
-    @variant dark {
-      box-shadow:
-        0 0 0 3px var(--color-bg-primary),
-        0 0 0 6px var(--color-primary-400);
-    }
-  }
-
-  /* Button Base Styles */
-  button {
-    @apply font-medium tracking-wider transition-all duration-300;
-
-    &:active {
-      @apply scale-[0.98];
-    }
-  }
-
-  /* Input Focus Effects */
-  input:focus,
-  textarea:focus,
-  select:focus {
-    box-shadow:
-      0 0 0 3px var(--color-primary-100),
-      0 0 0 6px var(--color-primary-500);
-
-    @variant dark {
-      box-shadow:
-        0 0 0 3px var(--color-primary-900),
-        0 0 0 6px var(--color-primary-400);
-    }
-  }
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.488 0.243 264.376);
+  --primary-foreground: oklch(0.97 0.014 254.604);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
 }

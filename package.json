@@ -32,7 +32,7 @@
     "@icon-park/vue-next": "latest",
     "@tailwindcss/vite": "latest",
     "@vueuse/core": "latest",
-    "animate.css": "^4.1.1",
+    "animate.css": "latest",
     "class-variance-authority": "latest",
     "lodash-es": "latest",
     "tailwindcss": "latest",
