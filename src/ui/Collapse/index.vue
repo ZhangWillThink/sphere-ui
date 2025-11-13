@@ -49,7 +49,7 @@ defineSlots<{
       :key="item.key"
       data-orientation="vertical"
       data-slot="accordion-item"
-      class="border-border text-card-foreground border-b last:border-b-0"
+      class="border-border text-foreground border-b last:border-b-0"
     >
       <h3
         data-orientation="vertical"

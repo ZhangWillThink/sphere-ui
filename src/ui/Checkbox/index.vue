@@ -68,7 +68,7 @@ onKeyStroke(
     <div class="grid gap-2">
       <label
         data-slot="label"
-        class="disabled:text-primary-foreground/50 text-card-foreground flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
+        class="disabled:text-primary-foreground/50 text-foreground flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"
         :for="id"
       >
         <slot name="default" />

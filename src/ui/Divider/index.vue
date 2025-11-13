@@ -34,8 +34,8 @@ const {
         :class="[
           'glass rounded-lg px-3 text-sm whitespace-nowrap',
           plain
-            ? 'text-card-foreground/70 dark:text-gray-400'
-            : 'text-card-foreground font-medium dark:text-gray-100',
+            ? 'text-foreground/70 dark:text-gray-400'
+            : 'text-foreground font-medium dark:text-gray-100',
         ]"
       >
         <slot name="default" />

@@ -48,14 +48,14 @@ watch(
 <template>
   <div
     data-slot="textarea"
-    class="text-card-foreground relative overflow-hidden rounded-lg font-mono text-base shadow transition-all duration-200 ease-in-out md:text-sm"
+    class="text-foreground relative overflow-hidden rounded-lg font-mono text-base shadow transition-all duration-200 ease-in-out md:text-sm"
     :style="{ height: `${textareaHeight}px` }"
   >
     <div
       v-if="!modelValue"
       :class="[
         paddingClass,
-        'text-card-foreground/50 pointer-events-none absolute inset-0 size-full wrap-break-word whitespace-pre-wrap select-none',
+        'text-foreground/50 pointer-events-none absolute inset-0 size-full wrap-break-word whitespace-pre-wrap select-none',
       ]"
     >
       <slot name="placeholder">

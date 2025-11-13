@@ -61,7 +61,7 @@ watch(
       </slot>
     </label>
 
-    <p v-if="description || slot.description" class="text-card-foreground/40 text-xs">
+    <p v-if="description || slot.description" class="text-foreground/40 text-xs">
       <slot name="description">
         <template v-if="description">
           <component v-if="isVNode(description)" :is="description" />
