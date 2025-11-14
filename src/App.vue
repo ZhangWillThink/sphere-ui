@@ -15,6 +15,7 @@ import {
   FormItem,
   Input,
   Pagination,
+  Popover,
   Radio,
   Select,
   Slider,
@@ -31,6 +32,8 @@ const colorMode = useColorMode()
 
 const [open, toggleOpen] = useToggle()
 
+const [popoverOpen, togglePopoverOpen] = useToggle()
+
 const radio = shallowRef()
 </script>
 
@@ -40,6 +43,16 @@ const radio = shallowRef()
       <Button variant="default" @click="colorMode = colorMode === 'light' ? 'dark' : 'light'">
         {{ colorMode === 'light' ? 'Dark' : 'Light' }}
       </Button>
+    </div>
+
+    <div>
+      <Popover v-model="popoverOpen">
+        <Button @click="togglePopoverOpen()">Toggle Popover</Button>
+
+        <template #content>
+          <div class="p-4">This is popover content</div>
+        </template>
+      </Popover>
     </div>
 
     <div>
