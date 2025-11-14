@@ -1,41 +1,23 @@
-import { exec } from 'node:child_process'
+import fs from 'node:fs'
 import path from 'node:path'
-import { promisify } from 'node:util'
+import url from 'node:url'
 
 import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { defineConfig } from 'vite'
+import dts from 'vite-plugin-dts'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
-const execAsync = promisify(exec)
-
-// 插件：构建后生成类型定义文件
-function dts() {
-  return {
-    name: 'vite-plugin-dts',
-    async closeBundle() {
-      console.log('\nGenerating TypeScript declaration files...')
-      try {
-        // 使用 vue-tsc 生成类型定义文件
-        const { stdout, stderr } = await execAsync(
-          'bunx vue-tsc -p tsconfig.build.json --declaration --emitDeclarationOnly',
-          { cwd: process.cwd() },
-        )
-        if (stdout) console.log(stdout)
-        if (stderr && !stderr.includes('DeprecationWarning')) console.error(stderr)
-        console.log('✓ TypeScript declaration files generated successfully!\n')
-      } catch (error: any) {
-        console.error('Failed to generate declaration files:', error.message)
-        // 不阻止构建过程
-      }
-    },
-  }
-}
+// 读取 package.json，按 peerDependencies 自动 externalize
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url))
+const pkgPath = path.resolve(__dirname, 'package.json')
+const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
+const externalDeps = Object.keys(pkg.peerDependencies || {})
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx(), vueDevTools(), tailwindcss(), dts()],
+  plugins: [vue(), vueJsx(), vueDevTools(), tailwindcss(), dts() as any],
 
   build: {
     lib: {
@@ -50,7 +32,7 @@ export default defineConfig({
 
     // Rollup options
     rollupOptions: {
-      external: ['vue'],
+      external: [...externalDeps, 'vue'],
       output: {
         globals: {
           vue: 'Vue',
