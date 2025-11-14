@@ -48,7 +48,7 @@ watch(
 <template>
   <div
     data-slot="textarea"
-    class="text-foreground relative overflow-hidden rounded-lg font-mono text-base shadow transition-all duration-200 ease-in-out md:text-sm"
+    class="text-foreground relative w-full overflow-hidden rounded-lg font-mono text-base shadow transition-all duration-200 ease-in-out md:text-sm"
     :style="{ height: `${textareaHeight}px` }"
   >
     <div

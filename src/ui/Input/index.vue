@@ -36,7 +36,7 @@ const html = computedAsync(async () => {
 <template>
   <div
     data-slot="input"
-    class="text-foreground relative h-9 overflow-hidden rounded-lg font-mono text-base shadow transition-all duration-200 ease-in-out md:text-sm"
+    class="text-foreground relative h-9 w-full overflow-hidden rounded-lg font-mono text-base shadow transition-all duration-200 ease-in-out md:text-sm"
   >
     <div
       v-if="!modelValue"
