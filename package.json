@@ -21,7 +21,8 @@
   "keywords": [
     "vue",
     "components",
-    "ui"
+    "ui",
+    "tailwindcss"
   ],
   "author": "WillZhang",
   "license": "MIT",
