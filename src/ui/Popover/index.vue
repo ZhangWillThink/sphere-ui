@@ -61,7 +61,7 @@ onClickOutside(trigger, hidePopover, {
         v-if="visible && (content || slot.content)"
         ref="popover"
         :style="popoverStyle"
-        class="bg-foreground/70 text-background z-50 w-fit rounded-md px-3 py-1.5 text-xs text-balance backdrop-blur-lg"
+        class="bg-background/40 text-foreground z-50 w-fit rounded-md px-3 py-1.5 text-xs text-balance shadow-2xl backdrop-blur-lg"
         data-slot="popover-content"
       >
         <slot name="content">

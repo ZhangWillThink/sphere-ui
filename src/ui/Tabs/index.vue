@@ -47,7 +47,7 @@ const isActive = (value: any) => activeTab.value === value
   <div
     v-bind="$attrs"
     ref="root"
-    class="text-card-foreground flex flex-col gap-2"
+    class="text-foreground flex flex-col gap-2"
     dir="ltr"
     data-orientation="horizontal"
     data-slots="tabs"

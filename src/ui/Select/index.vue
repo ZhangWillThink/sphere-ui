@@ -213,7 +213,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
           />
           <template v-else>{{ getLabelByValue(selectedValues) }}</template>
         </span>
-        <span v-else class="text-card-foreground/60">
+        <span v-else class="text-foreground/60">
           <template v-if="isVNode(placeholder)"><component :is="placeholder" /></template>
           <template v-else>{{ placeholder ?? 'Select' }}</template>
         </span>
@@ -231,7 +231,7 @@ onClickOutside(content, closeDropdown, { ignore: [trigger] })
             {{ getLabelByValue(value) }}
           </UiTag>
         </template>
-        <span v-else class="text-card-foreground/60">{{ placeholder }}</span>
+        <span v-else class="text-foreground/60">{{ placeholder }}</span>
       </template>
     </div>
 

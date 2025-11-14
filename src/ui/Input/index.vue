@@ -36,13 +36,13 @@ const html = computedAsync(async () => {
 <template>
   <div
     data-slot="input"
-    class="text-card-foreground relative h-9 overflow-hidden rounded-lg font-mono text-base shadow transition-all duration-200 ease-in-out md:text-sm"
+    class="text-foreground relative h-9 overflow-hidden rounded-lg font-mono text-base shadow transition-all duration-200 ease-in-out md:text-sm"
   >
     <div
       v-if="!modelValue"
       :class="[
         paddingClass,
-        'text-card-foreground/50 pointer-events-none absolute inset-0 flex size-full h-9 items-center text-nowrap',
+        'text-foreground/50 pointer-events-none absolute inset-0 flex size-full h-9 items-center text-nowrap',
       ]"
     >
       <slot name="placeholder">
@@ -63,7 +63,7 @@ const html = computedAsync(async () => {
       :disabled
       :class="[
         paddingClass,
-        type === 'password' ? 'text-card-foreground' : 'text-transparent',
+        type === 'password' ? 'text-foreground' : 'text-transparent',
         'file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive caret-card-foreground absolute h-9 w-full min-w-0 appearance-none rounded-lg border bg-transparent shadow-xs transition-all outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
       ]"
       :type

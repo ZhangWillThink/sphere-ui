@@ -109,7 +109,7 @@ const MenuItem = defineComponent({
     return () => (
       <li
         class={[
-          'text-card-foreground items-center justify-between transition-colors select-none',
+          'text-foreground items-center justify-between transition-colors select-none',
           item.disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
         ]}
         onClick={onClick}

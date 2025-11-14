@@ -35,7 +35,7 @@ const { size = 'md', fullscreen = false } = defineProps<{
           classes[size],
         ]"
       />
-      <span v-if="message" class="text-card-foreground/90 text-sm sm:text-base">
+      <span v-if="message" class="text-foreground/90 text-sm sm:text-base">
         <component v-if="isVNode(message)" :is="message" />
         <template v-else-if="message">{{ message }}</template>
       </span>
